@@ -21,14 +21,14 @@ private:
 
 
 
-    QRect Button1;
-    QRect Button2;
-    QRect Button3;
+    QRect ButtonNew;
+    QRect ButtonLoad;
+    QRect ButtonExit;
 	QRect alertButton;
 
-	void clickButton1();
-	void clickButton2();
-    void clickButton3();
+    void clickButtonNew();
+    void clickButtonLoad();
+    void clickButtonExit();
     void clickTest();
 
 

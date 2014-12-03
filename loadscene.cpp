@@ -21,19 +21,19 @@ LoadScene::LoadScene( Game* game) : Scene( game )
         load[i] = false;
     }
 
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data1")) {
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1")) {
         filename[0] =  "data1.png";
         load[0] = true;
     }
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data2")) {
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2")) {
         filename[1] =  "data2.png";
         load[1] = true;
     }
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data3")) {
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3")) {
         filename[2] =  "data3.png";
         load[2] = true;
     }
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data4")) {
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4")) {
         filename[3] =  "data4.png";
         load[3] = true;
     }

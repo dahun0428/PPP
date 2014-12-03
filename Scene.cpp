@@ -29,7 +29,7 @@ void Scene::draw( double x, double y, QString imgName )
 {
 	if(canvas){
         QByteArray FullName;
-        FullName.append("..\\..\\PPP\\Resources\\");
+        FullName.append("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\");
 
 		FullName.append(imgName);
 
@@ -44,7 +44,7 @@ void Scene::drawCenter( double _x, double _y, QString imgName, double scale )
     if( canvas == NULL ) return;
 
     QByteArray FullName;
-    FullName.append("..\\..\\PPP\\Resources\\");
+    FullName.append("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\");
 	FullName.append(imgName);
 
 	QPixmap* pixmap;

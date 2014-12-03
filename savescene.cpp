@@ -21,13 +21,13 @@ SaveScene::SaveScene( Game* game) : Scene( game )
         filename[i] = "None.png";
     }
 
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data1"))
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1"))
         filename[0] =  "data1.png";
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data2"))
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2"))
         filename[1] =  "data2.png";
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data3"))
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3"))
         filename[2] =  "data3.png";
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data4"))
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4"))
         filename[3] =  "data4.png";
 
 

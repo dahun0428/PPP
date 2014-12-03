@@ -2,17 +2,17 @@
 #include "Scene.h"
 #define SAVE_SLOTS 4
 
-#ifndef LOADSCENE_H
-#define LOADSCENE_H
+#ifndef SAVESCENE_H
+#define SAVESCENE_H
 
-class LoadScene : public Scene
+class SaveScene : public Scene
 
 {
 public:
-    LoadScene( Game *);
+    SaveScene( Game *);
 
 
-    ~LoadScene();
+    ~SaveScene();
 protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );
@@ -28,16 +28,15 @@ private:
     QRect alertButton;
     QRect BackButton;
 
-	// game slot click
+    // game slot click
     void clickButton1();
     void clickButton2();
     void clickButton3();
     void clickButton4();
     void clickBackButton();
 
-    // load ∞°¥… ø©∫Œø° ªÁøÎ«“ ∫Øºˆ
+    // load Í∞ÄÎä• Ïó¨Î∂ÄÏóê ÏÇ¨Ïö©Ìï† Î≥ÄÏàò
     QString filename[SAVE_SLOTS];
-    bool load[SAVE_SLOTS];
 };
 
-#endif // LOADSCENE_H
+#endif // SAVE`SCENE_H

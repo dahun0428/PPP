@@ -1,10 +1,10 @@
-#include "loadscene.h"
+#include "savescene.h"
 #include "StartScene.h"
 #include "newScene.h" // tb
 #include "qfile.h" // tb
 #include "Game.h"
 #include "qlabel.h"
-LoadScene::LoadScene( Game* game) : Scene( game )
+SaveScene::SaveScene( Game* game) : Scene( game )
 {
 
     nextScene = NULL;
@@ -15,41 +15,32 @@ LoadScene::LoadScene( Game* game) : Scene( game )
     Button3 = QRect( 130, 340, 540, 60 );
     Button4 = QRect( 130, 440, 540, 60 );
     BackButton = QRect ( 50, 50, 40, 40 );
+    alertButton = QRect( 260, 270, 120, 100 );
 
-	// save data°¡ ÀÖÀ¸¸é ¹öÆ° ÀÌ¹ÌÁö ¹Ù²î¾î¼­ ÁøÇàÇÒ ¼ö ÀÖ°Ô²û
+    // save dataê°€ ìˆìœ¼ë©´ ë²„íŠ¼ ì´ë¯¸ì§€ ë°”ë€Œì–´ì„œ ì§„í–‰í•  ìˆ˜ ìˆê²Œë”
     for(int i=0; i<4; i++) {
         filename[i] = "None.png";
-        load[i] = false;
     }
 
-    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data1")) {
+    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data1"))
         filename[0] =  "data1.png";
-        load[0] = true;
-    }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2")) {
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2"))
         filename[1] =  "data2.png";
-        load[1] = true;
-    }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3")) {
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3"))
         filename[2] =  "data3.png";
-        load[2] = true;
-    }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4")) {
+    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4"))
         filename[3] =  "data4.png";
-        load[3] = true;
-    }
+
 
 }
-LoadScene::~LoadScene()
+SaveScene::~SaveScene()
 {
 
 }
-Scene* LoadScene::update()
+Scene* SaveScene::update()
 {
     draw( 0, 0, "White.png" );
     draw( 0, 30, "White.png" );
-
-	// ÀüÃ¼ÀûÀ¸·Î ¼öÁ¤ÇÔ
 
     if( Button1.contains( lastCursor ) )
         drawCenter( 400, 170, filename[0] );
@@ -81,7 +72,7 @@ Scene* LoadScene::update()
 
     return nextScene;
 }
-bool LoadScene::mouseEvent( int x, int y, MouseFunction function )
+bool SaveScene::mouseEvent( int x, int y, MouseFunction function )
 {
     lastCursor.setX( x );
     lastCursor.setY( y );
@@ -113,41 +104,39 @@ bool LoadScene::mouseEvent( int x, int y, MouseFunction function )
 
     return false;
 }
-void LoadScene::clickButton1()
+void SaveScene::clickButton1()
 {
-    if(load[0]) {
-        // game load
-        Game* pg = getGameClass();
-        pg->loadGame("..\\..\\PPP\\Resources\\Save\\save_data1");
-        nextScene = new NewScene( getGameClass() );
-    }
+    // game save
+    Game* pg = getGameClass();
+    pg->saveGame("..\\..\\PPP\\Resources\\Save\\save_data1");
+    nextScene = new NewScene( getGameClass() );
 }
 
-void LoadScene::clickButton2()
+void SaveScene::clickButton2()
 {
-    if(load[1]) {
-        // game load
-        nextScene = new NewScene( getGameClass() );
-    }
+    // game save
+    Game* pg = getGameClass();
+    pg->saveGame("..\\..\\PPP\\Resources\\Save\\save_data2");
+    nextScene = new NewScene( getGameClass() );
 }
 
-void LoadScene::clickButton3()
+void SaveScene::clickButton3()
 {
-    if(load[2]) {
-        // game load
-        nextScene = new NewScene( getGameClass() );
-    }
+    // game save
+    Game* pg = getGameClass();
+    pg->saveGame("..\\..\\PPP\\Resources\\Save\\save_data3");
+    nextScene = new NewScene( getGameClass() );
 }
 
-void LoadScene::clickButton4()
+void SaveScene::clickButton4()
 {
-    if(load[3]) {
-        // game load
-        nextScene = new NewScene( getGameClass() );
-    }
+    // game save
+    Game* pg = getGameClass();
+    pg->saveGame("..\\..\\PPP\\Resources\\Save\\save_data4");
+    nextScene = new NewScene( getGameClass() );
 }
 
-void LoadScene::clickBackButton(){
+void SaveScene::clickBackButton(){
     nextScene = new StartScene( getGameClass() );
 
 }

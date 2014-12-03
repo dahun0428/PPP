@@ -20,6 +20,16 @@ public:
 
     void setGamemode(GameMode gamemode);
     enum GameMode getGamemode();
+
+	// tb
+    void setPoint(int _point);
+    void setCharacterAvailable(int index, bool _available);
+    int getPoint();
+    bool getCharaacterAvailable(int index);
+    void loadGame(QString filename);
+    void saveGame(QString filename);
+    // tb
+
 private:
 	Window* window;
 	Scene* nowScene;

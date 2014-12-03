@@ -81,7 +81,7 @@ int Game::getPoint() {
     return point;
 }
 
-bool Game::getCharaacterAvailable(int index) {
+bool Game::getCharacterAvailable(int index) {
     return characterAvailable[index];
 }
 

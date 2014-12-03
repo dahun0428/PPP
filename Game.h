@@ -38,8 +38,20 @@ private:
 	void deleteNowScene();
 	void drawNowScene( QPainter* canvas );
     int point;
-    bool characterAvailable[4];
+    bool characterAvailable[5];
     enum Difficulty difficulty;
     enum GameMode gamemode;
+
+    // exercise mode history
+    int easy_level_history[5];
+    int normal_level_history[5];
+    int hard_level_history[5];
+
+    // olympic mode history
+    bool played[5]; // if true --> player played the game
+    // in olympic mode, if all elemnets in played array are true
+    // then olympic_cnt++ and played[i] = false for all i
+    int olympic_cnt; // total number of olympic, need for loading
+    // class for olympic data
 
 };

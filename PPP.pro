@@ -26,7 +26,8 @@ SOURCES += \
     selectscene.cpp \
     selectsinglescene.cpp \
     GambleScene.cpp \
-    savescene.cpp
+    savescene.cpp \
+    OlympicData.cpp
 
 
 
@@ -45,7 +46,8 @@ HEADERS  += \
     selectscene.h \
     selectsinglescene.h \
     GambleScene.h \
-    savescene.h
+    savescene.h \
+    OlympicData.h
 
 
 

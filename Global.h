@@ -20,3 +20,4 @@ enum { CLICK_MOUSE_MOVE_RANGE = 6 };
 enum { SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600, FRAME = 60 };
 enum Difficulty { NONE, EASY, NORMAL, HARD};
 enum GameMode { SINGLE, OLYMPIC};
+enum Medal {GOLD, SILVER, BRONZE};

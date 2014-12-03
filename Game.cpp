@@ -11,7 +11,7 @@ Game::Game( Window* _window ) : window( _window )
     setScene( scene );
     point = 0;
 
-    for (int i = 0 ;  i<4; i++) characterAvailable[i]= false;
+    for (int i = 0 ;  i<5; i++) characterAvailable[i]= false;
 }
 Game::~Game()
 {
@@ -95,6 +95,7 @@ void Game::loadGame(QString filename) {
     characterAvailable[1] = (bool)(tmpList[1].toInt());
     characterAvailable[2] = (bool)(tmpList[1].toInt());
     characterAvailable[3] = (bool)(tmpList[1].toInt());
+    characterAvailable[4] = (bool)(tmpList[1].toInt());
 
     file->close();
 }
@@ -104,12 +105,13 @@ void Game::saveGame(QString filename) {
     file->setFileName(filename);
     file->open(QIODevice::WriteOnly);
 
-    QString tmp = QString("%1 %2 %3 %4 %5\n")
+    QString tmp = QString("%1 %2 %3 %4 %5 %6\n")
             .arg(point)
             .arg((int)characterAvailable[0])
             .arg((int)characterAvailable[1])
             .arg((int)characterAvailable[2])
-            .arg((int)characterAvailable[3]);
+            .arg((int)characterAvailable[3])
+            .arg((int)characterAvailable[4]);
     QByteArray str;
     str.append(tmp);
     file->write(str);

@@ -19,7 +19,7 @@ private:
 	QRect Button1;
 	QRect Button2;
     QRect ShopButton;
-	QRect alertButton;
+    //QRect alertButton;
     QRect BackButton;
 
 	void clickButton1();

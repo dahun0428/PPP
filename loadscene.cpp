@@ -16,7 +16,6 @@ LoadScene::LoadScene( Game* game) : Scene( game )
     Button4 = QRect( 130, 440, 540, 60 );
     BackButton = QRect ( 50, 50, 40, 40 );
 
-	// save data가 있으면 버튼 이미지 바뀌어서 진행할 수 있게끔
     for(int i=0; i<4; i++) {
         filename[i] = "None.png";
         load[i] = false;
@@ -26,15 +25,15 @@ LoadScene::LoadScene( Game* game) : Scene( game )
         filename[0] =  "data1.png";
         load[0] = true;
     }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2")) {
+    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data2")) {
         filename[1] =  "data2.png";
         load[1] = true;
     }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3")) {
+    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data3")) {
         filename[2] =  "data3.png";
         load[2] = true;
     }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4")) {
+    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data4")) {
         filename[3] =  "data4.png";
         load[3] = true;
     }
@@ -48,8 +47,6 @@ Scene* LoadScene::update()
 {
     draw( 0, 0, "White.png" );
     draw( 0, 30, "White.png" );
-
-	// 전체적으로 수정함
 
     if( Button1.contains( lastCursor ) )
         drawCenter( 400, 170, filename[0] );

@@ -12,9 +12,6 @@ Game::Game( Window* _window ) : window( _window )
     point = 0;
 
     for (int i = 0 ;  i<4; i++) characterAvailable[i]= false;
-    // 여기서 초기화 시키면 나중에 load 하고나서 변심해서 다시 new 시작해버리면
-    // 초기화 안되고 나중에 load된 애가 불려와짐
-    // 초기화하는 함수 따로 만들어서 new 클릭되는 순간 호출되게끔 해야할 듯!
 }
 Game::~Game()
 {

@@ -17,18 +17,17 @@ SaveScene::SaveScene( Game* game) : Scene( game )
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
 
-    // save data가 있으면 버튼 이미지 바뀌어서 진행할 수 있게끔
     for(int i=0; i<4; i++) {
         filename[i] = "None.png";
     }
 
     if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data1"))
         filename[0] =  "data1.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2"))
+    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data2"))
         filename[1] =  "data2.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3"))
+    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data3"))
         filename[2] =  "data3.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4"))
+    if(QFile::exists("..\\..\\PPP\\Resources\\Save\\save_data4"))
         filename[3] =  "data4.png";
 
 

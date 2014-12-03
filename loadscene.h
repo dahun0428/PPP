@@ -35,7 +35,7 @@ private:
     void clickButton4();
     void clickBackButton();
 
-    // load 가능 여부에 사용할 변수
+    // load
     QString filename[SAVE_SLOTS];
     bool load[SAVE_SLOTS];
 };

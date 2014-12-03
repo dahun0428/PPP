@@ -24,7 +24,9 @@ SOURCES += \
     shopscene.cpp \
     olympicnanido.cpp \
     selectscene.cpp \
-    selectsinglescene.cpp
+    selectsinglescene.cpp \
+    GambleScene.cpp \
+    savescene.cpp
 
 
 
@@ -41,7 +43,9 @@ HEADERS  += \
     shopscene.h \
     olympicnanido.h \
     selectscene.h \
-    selectsinglescene.h
+    selectsinglescene.h \
+    GambleScene.h \
+    savescene.h
 
 
 

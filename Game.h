@@ -30,6 +30,13 @@ public:
     bool getCharacterAvailable(int index);
     void loadGame(QString filename);
     void saveGame(QString filename);
+
+    // exercise mode data get&set
+    void setNewHistory(enum GameType _gametype, int _score);
+    int getEasyLevelHistory(enum GameType _gametype);
+    int getNormalLevelHistory(enum GameType _gametype);
+    int getHardLevelHistory(enum GameType _gametype);
+    OlympicData* getOlympicData(int _index);
     // tb
 
 private:

@@ -30,10 +30,9 @@ void Game::initialize(){
     }
     olympic_cnt = 0;
     for (int i=0; i<10; i++) {
-        OlympicHistory[i].setPostechMedal(0,0,0);
-        OlympicHistory[i].setKaistMedal(0,0,0);
-        OlympicHistory[i].setUnistMedal(0,0,0);
-        OlympicHistory[i].setGistMedal(0,0,0);
+        for (int j=0; j<4; j++) {
+            OlympicHistory[i].setMedal((School)j,0,0,0);
+        }
     }
 }
 
@@ -141,19 +140,19 @@ void Game::loadGame(QString filename) {
     for (int i=0; i<olympic_cnt; i++) {
         tmp = read.readLine(); // read postech data
         tmpList = tmp.split(" ");
-        OlympicHistory[i].setPostechMedal(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
+        OlympicHistory[i].setMedal(POSTECH, tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
 
         tmp = read.readLine(); // read kaist data
         tmpList = tmp.split(" ");
-        OlympicHistory[i].setKaistMedal(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
+        OlympicHistory[i].setMedal(KAIST, tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
 
         tmp = read.readLine(); // read unist data
         tmpList = tmp.split(" ");
-        OlympicHistory[i].setUnistMedal(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
+        OlympicHistory[i].setMedal(UNIST, tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
 
         tmp = read.readLine(); // read gist data
         tmpList = tmp.split(" ");
-        OlympicHistory[i].setGistMedal(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
+        OlympicHistory[i].setMedal(GIST, tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
     }
 
     file->close();
@@ -176,6 +175,33 @@ void Game::saveGame(QString filename) {
     file->write(str);
 
     file->close();
+}
+
+void Game::setNewHistory(enum GameType _gametype, int _score) {
+    switch (difficulty) {
+        case EASY:
+            easy_level_history[_gametype] = _score;
+        case NORMAL:
+            normal_level_history[_gametype] = _score;
+        case HARD:
+            hard_level_history[_gametype] = _score;
+    }
+}
+
+int Game::getEasyLevelHistory(enum GameType _gametype) {
+    return easy_level_history[_gametype];
+}
+
+int Game::getNormalLevelHistory(enum GameType _gametype) {
+    return normal_level_history[_gametype];
+}
+
+int Game::getHardLevelHistory(enum GameType _gametype) {
+    return hard_level_history[_gametype];
+}
+
+OlympicData* Game::getOlympicData(int _index) {
+    return &OlympicHistory[_index];
 }
 
 // tb

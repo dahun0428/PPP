@@ -2,7 +2,6 @@
 #include "qlabel.h"
 #include "newScene.h"
 #include "loadscene.h"
-
 StartScene::StartScene( Game* game) : Scene( game )
 {
 
@@ -12,8 +11,7 @@ StartScene::StartScene( Game* game) : Scene( game )
     Button1 = QRect( 310, 200, 180, 80 );
     Button2 = QRect( 310, 300, 180, 80 );
     Button3 = QRect( 310, 400, 180, 80 );
-    alertButton = QRect( 100, 100, 120, 100 );
-
+	alertButton = QRect( 260, 270, 120, 100 );
 }
 StartScene::~StartScene()
 {
@@ -22,7 +20,6 @@ StartScene::~StartScene()
 Scene* StartScene::update()
 {
     draw( 0, 0, "White.png" );
-
 
 
 	if( Button1.contains( lastCursor ) )
@@ -39,9 +36,6 @@ Scene* StartScene::update()
         drawCenter( 400, 440, "Exit.png" );
     else
         drawCenter( 400-2, 440-2, "Exit.png" );
-
-
-
 
 
 
@@ -76,12 +70,6 @@ bool StartScene::mouseEvent( int x, int y, MouseFunction function )
                 clickButton3();
                 return true;
             }
-
-
-
-
-
-
 	}
 	
 	return false;
@@ -89,7 +77,6 @@ bool StartScene::mouseEvent( int x, int y, MouseFunction function )
 void StartScene::clickButton1()
 {
 	nextScene = new NewScene( getGameClass() );
-
 }
 
 void StartScene::clickButton2()
@@ -103,7 +90,12 @@ void StartScene::clickButton3()
 }
 
 
+
 // oh my god, git hub is so difficult!
 
 
 // i want to die
+
+// gitgit
+// for next test
+

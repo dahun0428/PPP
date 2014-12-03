@@ -94,8 +94,7 @@ void NewScene::clickButton1()
 {
     getGameClass()->setGamemode(SINGLE);
     getGameClass()->setDifficulty(NONE);
-    nextScene = new SelectSingleScene(getGameClass());
-
+	nextScene = new SelectSingleScene( getGameClass() );
 }
 
 void NewScene::clickButton2()

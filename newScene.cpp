@@ -92,8 +92,7 @@ bool NewScene::mouseEvent( int x, int y, MouseFunction function )
 }
 void NewScene::clickButton1()
 {
-    getGameClass()->setGamemode(SINGLE);
-    getGameClass()->setDifficulty(NONE);
+    getGameClass()->initialize();
 	nextScene = new SelectSingleScene( getGameClass() );
 }
 

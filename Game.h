@@ -4,6 +4,7 @@
 class Window;
 class QPainter;
 class Scene;
+class OlympicData;
 
 class Game
 {
@@ -54,5 +55,6 @@ private:
     // then olympic_cnt++ and played[i] = false for all i
     int olympic_cnt; // total number of olympic, need for loading
     // class for olympic data
+    OlympicData* OlympicHistory;
 
 };

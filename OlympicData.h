@@ -5,8 +5,6 @@
 
 class OlympicData {
 private:
-    OlympicData();
-    ~OlympicData();
     enum Difficulty diff;
     int postech_result[3]; // 0: gold, 1: silver, 2:bronze
     int kaist_result[3];
@@ -14,6 +12,8 @@ private:
     int gist_result[3];
 
 public:
+    OlympicData();
+    ~OlympicData();
     void setDiff(enum Difficulty _diff);
     // these functions will be used in loadGame function
     void setPostechMedal(int gold, int silver, int bronze);

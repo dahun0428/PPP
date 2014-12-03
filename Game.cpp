@@ -3,22 +3,38 @@
 #include "StartScene.h"
 #include "qfile.h" // tb
 #include "qtextstream.h" // tb
+#include "OlympicData.h" // tb
 
 Game::Game( Window* _window ) : window( _window )
 {
     nowScene = NULL;
     Scene* scene = new StartScene(this);
     setScene( scene );
-    point = 0;
 
-    for (int i = 0 ;  i<5; i++) characterAvailable[i]= false;
+    OlympicHistory = new OlympicData[10];
 }
 Game::~Game()
 {
 	deleteNowScene();
+    delete[] OlympicHistory;
 }
 void Game::initialize(){
-
+    point = 0;
+    for (int i = 0 ;  i<5; i++)
+        characterAvailable[i]= false;
+    for (int i=0; i<5; i++) {
+        easy_level_history[i] = 0;
+        normal_level_history[i] = 0;
+        hard_level_history[i] = 0;
+        played[i] = false;
+    }
+    olympic_cnt = 0;
+    for (int i=0; i<10; i++) {
+        OlympicHistory[i].setPostechMedal(0,0,0);
+        OlympicHistory[i].setKaistMedal(0,0,0);
+        OlympicHistory[i].setUnistMedal(0,0,0);
+        OlympicHistory[i].setGistMedal(0,0,0);
+    }
 }
 
 bool Game::mouseEvent( int x, int y, MouseFunction function )
@@ -92,13 +108,53 @@ void Game::loadGame(QString filename) {
     QTextStream read(file);
 
     QString tmp = read.readLine();
+    point = tmp.toInt();
+
+    tmp = read.readLine();
     QStringList tmpList = tmp.split(" ");
-    point = tmpList[0].toInt();
-    characterAvailable[0] = (bool)(tmpList[1].toInt());
-    characterAvailable[1] = (bool)(tmpList[1].toInt());
-    characterAvailable[2] = (bool)(tmpList[1].toInt());
-    characterAvailable[3] = (bool)(tmpList[1].toInt());
-    characterAvailable[4] = (bool)(tmpList[1].toInt());
+    for (int i=0; i<5; i++)
+        characterAvailable[i] = (bool)(tmpList[i].toInt());
+
+    tmp = read.readLine(); // read easy level highest scores
+    tmpList = tmp.split(" ");
+    for (int i=0; i<5; i++)
+        easy_level_history[i] = tmpList[i].toInt();
+
+    tmp = read.readLine(); // read normal level highest scores
+    tmpList = tmp.split(" ");
+    for (int i=0; i<5; i++)
+        normal_level_history[i] = tmpList[i].toInt();
+
+    tmp = read.readLine(); // read hard level highest scores
+    tmpList = tmp.split(" ");
+    for (int i=0; i<5; i++)
+        hard_level_history[i] = tmpList[i].toInt();
+
+    tmp = read.readLine();
+    olympic_cnt = tmp.toInt();
+
+    tmp = read.readLine(); // read played array
+    tmpList = tmp.split(" ");
+    for (int i=0; i<5; i++)
+        played[i] = (bool)tmpList[i].toInt();
+
+    for (int i=0; i<olympic_cnt; i++) {
+        tmp = read.readLine(); // read postech data
+        tmpList = tmp.split(" ");
+        OlympicHistory[i].setPostechMedal(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
+
+        tmp = read.readLine(); // read kaist data
+        tmpList = tmp.split(" ");
+        OlympicHistory[i].setKaistMedal(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
+
+        tmp = read.readLine(); // read unist data
+        tmpList = tmp.split(" ");
+        OlympicHistory[i].setUnistMedal(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
+
+        tmp = read.readLine(); // read gist data
+        tmpList = tmp.split(" ");
+        OlympicHistory[i].setGistMedal(tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
+    }
 
     file->close();
 }

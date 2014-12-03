@@ -15,6 +15,10 @@ private:
     QPoint lastCursor;
     QString pointText;
     int gambleCost;
+    int spinSlot[3];
+    QString spinSlotShapeName[3];
+
+    int spinCount;
 
     QRect Button1;
     QRect BackButton;
@@ -22,6 +26,9 @@ private:
 
     void clickButton1();
     void clickBackButton();
+    void startOneRound();
+    void finishOneRound();
+    void showGambleResult();
 
     QString intToQString(int n);        // move somewhere else?
 

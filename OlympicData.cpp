@@ -62,7 +62,7 @@ enum Difficulty OlympicData::getDifficulty() {
 }
 
 int OlympicData::getPostechMedal(enum Medal _medal) {
-    return posteh_result[_medal];
+    return postech_result[_medal];
 }
 
 int OlympicData::getKaistMedal(enum Medal _medal) {
@@ -76,5 +76,3 @@ int OlympicData::getUnistMedal(enum Medal _medal) {
 int OlympicData::getGistMedal(enum Medal _medal) {
     return gist_result[_medal];
 }
-
-#endif // OLYMPICDATA_H

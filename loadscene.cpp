@@ -115,7 +115,7 @@ void LoadScene::clickButton1()
     if(load[0]) {
         // game load
         Game* pg = getGameClass();
-        pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1");
+        pg->loadGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1");
         nextScene = new NewScene( getGameClass() );
     }
 }

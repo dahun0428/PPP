@@ -17,7 +17,7 @@ NewScene::NewScene( Game* game) : Scene( game )
     Button2 = QRect( 310, 340, 180, 80 );
     ShopButton = QRect ( 700, 50, 40, 40);
     BackButton = QRect ( 50, 50, 40, 40 );
-	alertButton = QRect( 260, 270, 120, 100 );
+//	alertButton = QRect( 260, 270, 120, 100 );
 }
 NewScene::~NewScene()
 {

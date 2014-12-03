@@ -24,10 +24,11 @@ SOURCES += \
     shopscene.cpp \
     olympicnanido.cpp \
     selectscene.cpp \
-    selectsinglescene.cpp\
-    GambleScene.cpp\
-    Character.cpp\
-    savescene.cpp
+    selectsinglescene.cpp
+
+
+
+
 HEADERS  += \
     Game.h\
     newScene.h\
@@ -41,12 +42,10 @@ HEADERS  += \
     olympicnanido.h \
     selectscene.h \
     selectsinglescene.h
-    GambleScene.h\
-    Character.h\
-    savescene.h
 
-DESTDIR += \
-    Resources \
+
+
+
 
 
 FORMS    += mainwindow.ui

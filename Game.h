@@ -12,6 +12,7 @@ public:
 	~Game();
 	void onDraw( QPainter* canvas );
 	bool mouseEvent( int x, int y, MouseFunction );
+    void initialize();
 
 	Window* getWindow(){ return window; }
 
@@ -41,5 +42,6 @@ private:
     bool characterAvailable[4];
     enum Difficulty difficulty;
     enum GameMode gamemode;
+
 
 };

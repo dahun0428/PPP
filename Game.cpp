@@ -17,6 +17,9 @@ Game::~Game()
 {
 	deleteNowScene();
 }
+void Game::initialize(){
+
+}
 
 bool Game::mouseEvent( int x, int y, MouseFunction function )
 {

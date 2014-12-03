@@ -2,15 +2,16 @@
 #include "qlabel.h"
 #include "newScene.h"
 #include "loadscene.h"
+#include "Game.h"
 StartScene::StartScene( Game* game) : Scene( game )
 {
 
     nextScene = NULL;
 
 
-    Button1 = QRect( 310, 200, 180, 80 );
-    Button2 = QRect( 310, 300, 180, 80 );
-    Button3 = QRect( 310, 400, 180, 80 );
+    ButtonNew = QRect( 310, 200, 180, 80 );
+    ButtonLoad = QRect( 310, 300, 180, 80 );
+    ButtonExit = QRect( 310, 400, 180, 80 );
 	alertButton = QRect( 260, 270, 120, 100 );
 }
 StartScene::~StartScene()
@@ -22,17 +23,17 @@ Scene* StartScene::update()
     draw( 0, 0, "White.png" );
 
 
-	if( Button1.contains( lastCursor ) )
+    if( ButtonNew.contains( lastCursor ) )
         drawCenter( 400, 240, "NewGame.png" );
     else
         drawCenter( 400-2, 240-2, "NewGame.png" );
 
-    if( Button2.contains( lastCursor ) )
+    if( ButtonLoad.contains( lastCursor ) )
         drawCenter( 400, 340, "Continue.png" );
 	else
         drawCenter( 400-2, 340-2, "Continue.png" );
 
-    if( Button3.contains( lastCursor ) )
+    if( ButtonExit.contains( lastCursor ) )
         drawCenter( 400, 440, "Exit.png" );
     else
         drawCenter( 400-2, 440-2, "Exit.png" );
@@ -53,38 +54,39 @@ bool StartScene::mouseEvent( int x, int y, MouseFunction function )
 	{
 		case MOUSE_CLICK:
 
-			if( Button1.contains( x, y ) )
+            if( ButtonNew.contains( x, y ) )
 			{
-				clickButton1();
+                clickButtonNew();
 				return true;
 			}
 
-			if( Button2.contains( x, y ) )
+            if( ButtonLoad.contains( x, y ) )
 			{
-				clickButton2();
+                clickButtonLoad();
 				return true;
 			}
 
-            if( Button3.contains( x, y ) )
+            if( ButtonExit.contains( x, y ) )
             {
-                clickButton3();
+                clickButtonExit();
                 return true;
             }
 	}
 	
 	return false;
 }
-void StartScene::clickButton1()
+void StartScene::clickButtonNew()
 {
+    getGameClass()->initialize();
 	nextScene = new NewScene( getGameClass() );
 }
 
-void StartScene::clickButton2()
+void StartScene::clickButtonLoad()
 {
     nextScene = new LoadScene( getGameClass() );
 }
 
-void StartScene::clickButton3()
+void StartScene::clickButtonExit()
 {
     exit(0);
 }

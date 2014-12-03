@@ -2,6 +2,7 @@
 
 #include <QPainter>
 #include <QRect>
+#include <QKeyEvent>
 
 Scene::Scene( Game* _game ) : game( _game )
 {

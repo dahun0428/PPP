@@ -18,10 +18,7 @@ private:
 	Scene* nextScene;
 	QPoint lastCursor;
 
-// animation test
-    double testX;
-    double testY;
-    QTimer * Timer;
+
 
 
     QRect Button1;
@@ -34,9 +31,5 @@ private:
     void clickButton3();
     void clickTest();
 
-public slots:
-
-     void TestMoving(); // TEST
-     void Delete();
 
 };

@@ -4,7 +4,9 @@
 #include "newScene.h"
 #include "CharacterScene.h"
 #include "soccerscene.h"
+#include "basketballscene.h"
 #include "SwimScene.h"
+
 SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
@@ -190,7 +192,7 @@ void SelectSingleScene::clickButtonSwim()
 
 void SelectSingleScene::clickButtonBasket()
 {
-
+    nextScene= new basketballscene(getGameClass());
 }
 
 

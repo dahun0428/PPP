@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "qlabel.h"
 #include "olympicnanido.h"
+#include "soccerscene.h"
 SelectScene::SelectScene(Game * game) : Scene(game)
 {
     nextScene = NULL;

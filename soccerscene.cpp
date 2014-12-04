@@ -5,6 +5,30 @@
 #include "qlabel.h"
 #include <QKeyEvent>
 
+QString soccerscene::intToQString(int n) {
+    std::stringstream tempStrs;
+    std::string temp;
+    QString tempQStr;
+    tempStrs << n;
+    temp = tempStrs.str();
+    tempQStr = temp.c_str();
+    return tempQStr;
+}
+
+bool soccerscene::keyEvent(QKeyEvent * input){
+
+    if(nextScene !=NULL)
+        return false;
+
+    switch(input->key()){
+        case Qt::Key_A:
+     //       drawCenter( 100, 100, "Exit.png" );
+            break;
+    default:
+        break;
+
+    }
+}
 
 
 soccerscene::soccerscene(Game* game) : Scene( game )
@@ -29,7 +53,7 @@ Scene* soccerscene::update()
 {
     draw( 0, 0, "soccerBG2.png" );
     draw(300,0,"soccerscore.png");
-    drawText(400,0,scoretext);
+    drawText(400,30,scoretext);
 
     switch(state){
     case 0:
@@ -162,20 +186,6 @@ bool soccerscene::mouseEvent( int x, int y, MouseFunction function )
     return false;
 }
 
-bool soccerscene::keyEvent(QKeyEvent * input){
-
-    if(nextScene !=NULL)
-        return false;
-
-    switch(input->key()){
-        case Qt::Key_A:
-     //       drawCenter( 100, 100, "Exit.png" );
-            break;
-    default:
-        break;
-
-    }
-}
 void soccerscene::clickButton1()
 
 {

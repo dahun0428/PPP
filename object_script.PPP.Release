@@ -15,6 +15,7 @@ INPUT(
 ./release/savescene.o
 ./release/OlympicData.o
 ./release/soccerscene.o
+./release/basketballscene.o
 ./release/moc_Window.o
 ./release/moc_mainwindow.o
 );

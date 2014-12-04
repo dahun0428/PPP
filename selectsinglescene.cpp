@@ -90,6 +90,20 @@ Scene* SelectSingleScene::update()
 
     return nextScene;
 }
+bool SelectSingleScene::keyEvent(QKeyEvent * input){
+
+    if(nextScene !=NULL)
+        return false;
+
+    switch(input->key()){
+        case Qt::Key_A:
+     //       drawCenter( 100, 100, "Exit.png" );
+            break;
+    default:
+        break;
+
+    }
+}
 bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
 {
     lastCursor.setX( x );

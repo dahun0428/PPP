@@ -1,6 +1,7 @@
 #pragma once
 #include "Global.h"
 
+class QKeyEvent;
 class Window;
 class QPainter;
 class Scene;
@@ -12,6 +13,7 @@ public:
 	~Game();
 	void onDraw( QPainter* canvas );
 	bool mouseEvent( int x, int y, MouseFunction );
+    bool keyEvent( QKeyEvent *);
     void initialize();
 
 	Window* getWindow(){ return window; }

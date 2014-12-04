@@ -11,6 +11,7 @@ public:
 protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );
+    bool keyEvent(QKeyEvent *);
 private:
     Scene* nextScene;
     QPoint lastCursor;

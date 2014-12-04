@@ -2,6 +2,9 @@
 #include <QPainter>
 #include <QFontDatabase>
 #include "Global.h"
+#include <QKeyEvent>
+
+
 
 
 class Game;
@@ -18,8 +21,9 @@ public:
 	Game* getGameClass(){ return game; }
 
 	bool mouseFunction( int x, int y, MouseFunction );
+    bool keyFunction(QKeyEvent *);
 	QPoint getCursorXY(){ return cursorXY; }
-
+    QKeyEvent getlastKeyInput(){ return *keyInput;}
 	QPainter* getCanvas(){ return canvas; }
 	void setPen( QPen* pen ){ canvas->setPen( *pen ); }
 	
@@ -34,15 +38,16 @@ public:
 
 protected:
 	virtual bool mouseEvent( int x, int y, MouseFunction ) = 0;
+    virtual bool keyEvent(QKeyEvent * ) = 0;
 	void setCanvas( QPainter* );
 	QPainter* canvas;
+
 private:
 	Game* game;
 	QPoint cursorXY;
 	QPen* scorePen;
+    QKeyEvent* keyInput;
 
 
-
-public:
 
 };

@@ -90,6 +90,20 @@ bool NewScene::mouseEvent( int x, int y, MouseFunction function )
 	
 	return false;
 }
+bool NewScene::keyEvent(QKeyEvent * input){
+
+    if(nextScene !=NULL)
+        return false;
+
+    switch(input->key()){
+        case Qt::Key_A:
+     //       drawCenter( 100, 100, "Exit.png" );
+            break;
+    default:
+        break;
+
+    }
+}
 void NewScene::clickButton1()
 {
     getGameClass()->setGamemode(SINGLE);

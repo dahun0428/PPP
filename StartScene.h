@@ -3,7 +3,7 @@
 #include <QTimer>
 #include <QObject>
 
-class StartScene : public Scene , public QObject
+class StartScene : public Scene
 {
 
 
@@ -14,9 +14,14 @@ public:
 protected:
 	Scene* update();
 	bool mouseEvent( int x, int y, MouseFunction );
+    bool keyEvent(QKeyEvent *);
 private:
 	Scene* nextScene;
 	QPoint lastCursor;
+    QKeyEvent *lastKeyInput;
+    int lastKey;
+    double testX;
+    double testY;
 
 
 
@@ -30,6 +35,7 @@ private:
     void clickButtonLoad();
     void clickButtonExit();
     void clickTest();
-
-
+    void pressA();
+    void pressB();
+    void pressDown();
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "OlympicData.h"
 
 #ifndef HISTORYSCENE_H
 #define HISTORYSCENE_H
@@ -16,15 +17,30 @@ private:
     Scene* nextScene;
     QPoint lastCursor;
 
-    QRect ExerciseHistoryButton;
+    QRect BackButton;
+    QRect SingleHistoryButton;
     QRect OlympicHistoryButton;
 
-    bool mode;
-    QRect ExerciseEasyButton;
-    QRect ExerciseNormalButton;
-    QRect ExerciseHardButton;
+    enum GameMode mode; // 0: single, 1: olympic
+    QRect SingleEasyButton;
+    QRect SingleNormalButton;
+    QRect SingleHardButton;
+    QRect OlympicButtons;
 
-    QRect OlympicButton[10];
+    void clickBackButton();
+    void clickSingleEasyButton();
+    void clickSingleNormalButton();
+    void clickSingleHardButton();
+    void clickOlympicButtons();
+
+    enum Difficulty diff;
+    int olympic_index;
+    int olympic_cnt;
+
+    void drawSingleEasy();
+    void drawSingleNormal();
+    void drawSingleHard();
+    void drawOlympic(int index);
 
 };
 

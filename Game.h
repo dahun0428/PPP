@@ -40,6 +40,7 @@ public:
     int getHardLevelHistory(enum GameType _gametype);
     OlympicData* getOlympicData(int _index);
     // tb
+    int getOlympicCnt();
 
 private:
 	Window* window;
@@ -65,5 +66,6 @@ private:
     int olympic_cnt; // total number of olympic, need for loading
     // class for olympic data
     OlympicData* OlympicHistory;
+
 
 };

@@ -209,4 +209,8 @@ OlympicData* Game::getOlympicData(int _index) {
     return &OlympicHistory[_index];
 }
 
+int Game::getOlympicCnt() {
+    return olympic_cnt;
+}
+
 // tb

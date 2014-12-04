@@ -117,7 +117,6 @@ bool NewScene::keyEvent(QKeyEvent * input){
 }
 void NewScene::clickButton1()
 {
-    getGameClass()->initialize();
 	nextScene = new SelectSingleScene( getGameClass() );
 }
 

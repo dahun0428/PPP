@@ -28,12 +28,12 @@ SOURCES += \
     GambleScene.cpp \
     savescene.cpp \
     OlympicData.cpp \
-    basketballscene.cpp
     historyscene.cpp \
     Character.cpp \
     soccerscene.cpp \
     SwimScene.cpp \
     CharacterScene.cpp \
+    basketballscene.cpp
     soccerscene.cpp
 
 
@@ -55,13 +55,13 @@ HEADERS  += \
     GambleScene.h \
     savescene.h \
     OlympicData.h \
-    basketballscene.h
     historyscene.h \
     Character.h \
     soccerscene.h \
     ui_mainwindow.h \
     SwimScene.h \
     CharacterScene.h \
+    basketballscene.h
     soccerscene.h
 
 

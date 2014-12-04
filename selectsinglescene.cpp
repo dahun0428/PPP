@@ -4,11 +4,9 @@
 #include "newScene.h"
 #include "CharacterScene.h"
 #include "soccerscene.h"
-<<<<<<< HEAD
 #include "basketballscene.h"
-=======
 #include "SwimScene.h"
->>>>>>> 6e735646837cb7292d4f2d44f209587872be48da
+
 SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
     nextScene = NULL;

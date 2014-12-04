@@ -93,3 +93,9 @@ bool Scene::mouseFunction( int x, int y, MouseFunction function )
 	cursorXY.setY( y );
 	return mouseEvent( x, y, function );
 }
+
+bool Scene::keyFunction(QKeyEvent* input){
+
+    keyInput = input;
+    return keyEvent(input);
+}

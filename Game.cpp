@@ -142,7 +142,7 @@ void Game::loadGame(QString filename) {
     for (int i=0; i<5; i++)
         played[i] = (bool)tmpList[i].toInt();
 
-    for (int i=0; i<olympic_cnt; i++) {
+    for (int i=0; i<=olympic_cnt; i++) {
         tmp = read.readLine(); // read postech data
         tmpList = tmp.split(" ");
         OlympicHistory[i].setMedal(POSTECH, tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
@@ -168,20 +168,87 @@ void Game::saveGame(QString filename) {
     file->setFileName(filename);
     file->open(QIODevice::WriteOnly);
 
-    QString tmp = QString("%1 %2 %3 %4 %5 %6\n")
-            .arg(point)
+    QString tmp = QString("%1\n").arg(point);
+    QByteArray str;
+    str.append(tmp);
+
+    tmp = QString("%1 %2 %3 %4 %5\n")
             .arg((int)characterAvailable[0])
             .arg((int)characterAvailable[1])
             .arg((int)characterAvailable[2])
             .arg((int)characterAvailable[3])
             .arg((int)characterAvailable[4]);
-    QByteArray str;
     str.append(tmp);
-    file->write(str);
 
+    tmp = QString("%1 %2 %3 %4 %5\n")
+            .arg(easy_level_history[0])
+            .arg(easy_level_history[1])
+            .arg(easy_level_history[2])
+            .arg(easy_level_history[3])
+            .arg(easy_level_history[4]);
+    str.append(tmp);
+
+    tmp = QString("%1 %2 %3 %4 %5\n")
+            .arg(normal_level_history[0])
+            .arg(normal_level_history[1])
+            .arg(normal_level_history[2])
+            .arg(normal_level_history[3])
+            .arg(normal_level_history[4]);
+    str.append(tmp);
+
+    tmp = QString("%1 %2 %3 %4 %5\n")
+            .arg(hard_level_history[0])
+            .arg(hard_level_history[1])
+            .arg(hard_level_history[2])
+            .arg(hard_level_history[3])
+            .arg(hard_level_history[4]);
+    str.append(tmp);
+
+    tmp = QString("%1\n").arg(olympic_cnt);
+    str.append(tmp);
+
+    tmp = QString("%1 %2 %3 %4 %5\n")
+            .arg(played[0])
+            .arg(played[1])
+            .arg(played[2])
+            .arg(played[3])
+            .arg(played[4]);
+    str.append(tmp);
+
+    for (int i=0; i<=olympic_cnt; i++) {
+        tmp = QString("%1 %2 %3\n")
+                .arg(getOlympicData(i)->getSchoolMedal(POSTECH, GOLD))
+                .arg(getOlympicData(i)->getSchoolMedal(POSTECH, SILVER))
+                .arg(getOlympicData(i)->getSchoolMedal(POSTECH, BRONZE));
+        str.append(tmp);
+
+        tmp = QString("%1 %2 %3\n")
+                .arg(getOlympicData(i)->getSchoolMedal(KAIST, GOLD))
+                .arg(getOlympicData(i)->getSchoolMedal(KAIST, SILVER))
+                .arg(getOlympicData(i)->getSchoolMedal(KAIST, BRONZE));
+        str.append(tmp);
+
+        tmp = QString("%1 %2 %3\n")
+                .arg(getOlympicData(i)->getSchoolMedal(UNIST, GOLD))
+                .arg(getOlympicData(i)->getSchoolMedal(UNIST, SILVER))
+                .arg(getOlympicData(i)->getSchoolMedal(UNIST, BRONZE));
+        str.append(tmp);
+
+        tmp = QString("%1 %2 %3\n")
+                .arg(getOlympicData(i)->getSchoolMedal(GIST, GOLD))
+                .arg(getOlympicData(i)->getSchoolMedal(GIST, SILVER))
+                .arg(getOlympicData(i)->getSchoolMedal(GIST, BRONZE));
+        str.append(tmp);
+    }
+
+    file->write(str);
     file->close();
 }
 
+// have to make some functions to set new data
+// becouse each game has different score type
+// ex: swimming --> lower value is better
+//     soccer --> higher value is better
 void Game::setNewHistory(enum GameType _gametype, int _score) {
     switch (difficulty) {
         case EASY:

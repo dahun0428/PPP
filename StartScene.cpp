@@ -3,6 +3,7 @@
 #include "newScene.h"
 #include "loadscene.h"
 #include "Game.h"
+#include "savescene.h"
 
 StartScene::StartScene( Game* game) : Scene( game )
 {

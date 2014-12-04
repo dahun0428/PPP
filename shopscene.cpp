@@ -20,11 +20,9 @@ ShopScene::ShopScene(Game * game) : Scene(game)
             priceText[i].append(" Points");
         }
     }
-    Button1 = QRect( 40, 190, 120, 120 );
-    Button2 = QRect( 190, 190, 120, 120 );
-    Button3 = QRect( 340, 190, 120, 120 );
-    Button4 = QRect( 490, 190, 120, 120 );
-    Button5 = QRect( 640, 190, 120, 120 );
+    for(int i=0; i<5; i++)
+        BuyButton[i] = QRect( 40+150*i, 190, 120, 120);
+
     GambleButton = QRect(640, 440, 120, 120);
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
@@ -42,33 +40,30 @@ Scene* ShopScene::update()
     pointText = intToQString(getGameClass()->getPoint());
     drawText( 680, 78, pointText);
 
-    drawText( 70, 330, priceText[0]);
-    drawText( 220, 330, priceText[1]);
-    drawText( 370, 330, priceText[2]);
-    drawText( 520, 330, priceText[3]);
-    drawText( 670, 330, priceText[4]);
+    for(int i=0; i<5; i++)
+        drawText( 70+150*i, 330, priceText[i]);
 
-    if( Button1.contains( lastCursor ) )
+    if( BuyButton[0].contains( lastCursor ) )
         drawCenter( 100, 250, "Pobba.png");
     else
         drawCenter( 100-2, 250-2, "Pobba.png");
 
-    if( Button2.contains( lastCursor ) )
+    if(BuyButton[1].contains( lastCursor ) )
         drawCenter( 250, 250, "Kaiser.png" );
     else
         drawCenter( 250-2, 250-2, "Kaiser.png" );
 
-    if( Button3.contains( lastCursor ) )
+    if( BuyButton[2].contains( lastCursor ) )
         drawCenter( 400, 250, "Swimmer.png" );
     else
         drawCenter( 400-2, 250-2, "Swimmer.png" );
 
-    if( Button4.contains( lastCursor ) )
+    if( BuyButton[3].contains( lastCursor ) )
         drawCenter( 550, 250, "Physics.png" );
     else
         drawCenter( 550-2, 250-2, "Physics.png" );
 
-    if( Button5.contains( lastCursor ) )
+    if( BuyButton[4].contains( lastCursor ) )
         drawCenter( 700, 250, "DeptTop.png" );
     else
         drawCenter( 700-2, 250-2, "DeptTop.png" );
@@ -96,30 +91,11 @@ bool ShopScene::mouseEvent( int x, int y, MouseFunction function )
     switch( function )
     {
         case MOUSE_CLICK:
-            if( Button1.contains( x, y ) )
-            {
-                clickBuyButton(0);
-                return true;
-            }
-            if( Button2.contains( x, y ) )
-            {
-                clickBuyButton(1);
-                return true;
-            }
-            if( Button3.contains( x, y ) )
-            {
-                clickBuyButton(2);
-                return true;
-            }
-            if( Button4.contains( x, y ) )
-            {
-                clickBuyButton(3);
-                return true;
-            }
-            if( Button5.contains( x, y ) )
-            {
-                clickBuyButton(4);
-                return true;
+            for(int i=0; i<5; i++) {
+                if( BuyButton[i].contains( x, y ) ) {
+                    clickBuyButton(i);
+                    return true;
+                }
             }
             if( GambleButton.contains( x, y ) )
             {
@@ -151,14 +127,14 @@ bool ShopScene::keyEvent(QKeyEvent * input){
     }
 }
 void ShopScene::clickBuyButton(int index) {
-    if(getGameClass()->getCharacterAvailable(index)) {
+    if( getGameClass()->getCharacterAvailable(index) ) {
         // display already purchased.
     }
-    else if(getGameClass()->getPoint() < price[index]) {
+    else if( getGameClass()->getPoint() < price[index] ) {
         // display no money.
     }
     else {
-        getGameClass()->setPoint(getGameClass()->getPoint() - price[index]);
+        getGameClass()->setPoint( getGameClass()->getPoint() - price[index] );
         getGameClass()->setCharacterAvailable(index, true);
         priceText[index] = "Purchased";
         // display purchased.

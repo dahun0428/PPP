@@ -30,7 +30,9 @@ SOURCES += \
     OlympicData.cpp \
     historyscene.cpp \
     Character.cpp \
-    soccerscene.cpp
+    soccerscene.cpp \
+    SwimScene.cpp \
+    CharacterScene.cpp
     soccerscene.cpp
 
 
@@ -55,7 +57,9 @@ HEADERS  += \
     historyscene.h \
     Character.h \
     soccerscene.h \
-    ui_mainwindow.h
+    ui_mainwindow.h \
+    SwimScene.h \
+    CharacterScene.h
     soccerscene.h
 
 

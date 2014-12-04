@@ -4,6 +4,7 @@
 #include "qlabel.h"
 #include "newScene.h"
 #include "soccerscene.h"
+#include "basketballscene.h"
 SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
@@ -193,7 +194,7 @@ bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
 
 void SelectSingleScene::clickButtonBasket()
 {
-
+    nextScene= new basketballscene(getGameClass());
 }
 
 

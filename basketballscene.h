@@ -1,0 +1,44 @@
+#ifndef BASKETBALLSCENE_H
+#define BASKETBALLSCENE_H
+#include"Scene.h"
+#include "StartScene.h"
+#include "olympicnanido.h"
+#include "Game.h"
+#include <QTimer>
+#include <QObject>
+
+#define GRAV 1
+#define BXE 450
+#define BXN 550
+#define BXH 700
+#define BY 250
+#define VMAX
+
+
+class basketballscene : public Scene
+{
+public:
+    basketballscene(Game* game);
+protected:
+    Scene* update();
+    bool mouseEvent( int x, int y, MouseFunction );
+    bool keyEvent(QKeyEvent *);
+private:
+    int t,t2;
+    int state;
+    Scene* nextScene;
+    QPoint lastCursor;
+    QKeyEvent *lastKeyInput;
+    int lastKey;
+    QString scoretext;
+    int score;
+    bool updown,check;
+    int bx0,bx,by,bv,bdir,bvx,bvy;
+
+     QString intToQString(int n);
+     QRect BackButton;
+     void clickBackButton();
+
+};
+
+#endif // BASKETBALLSCENE_H

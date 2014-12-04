@@ -11,6 +11,7 @@ public:
 protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );
+    bool keyEvent(QKeyEvent *);
 private:
     int t;
     int state;
@@ -19,6 +20,8 @@ private:
     QPoint lastCursor;
     QString scoretext;
     int score;
+
+    QString intToQString(int n);       // move somewhere else?R
 
 
     QRect Button1;

@@ -15,6 +15,7 @@ INPUT(
 ./debug/savescene.o
 ./debug/OlympicData.o
 ./debug/soccerscene.o
+./debug/basketballscene.o
 ./debug/moc_Window.o
 ./debug/moc_mainwindow.o
 );

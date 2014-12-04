@@ -106,8 +106,7 @@ bool NewScene::keyEvent(QKeyEvent * input){
 }
 void NewScene::clickButton1()
 {
-    getGameClass()->setGamemode(SINGLE);
-    getGameClass()->setDifficulty(NONE);
+    getGameClass()->initialize();
 	nextScene = new SelectSingleScene( getGameClass() );
 }
 

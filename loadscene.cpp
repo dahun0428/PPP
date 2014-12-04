@@ -101,6 +101,19 @@ bool LoadScene::mouseEvent( int x, int y, MouseFunction function )
                 clickButton2();
                 return true;
             }
+
+            if( Button3.contains( x, y ) )
+            {
+                clickButton3();
+                return true;
+            }
+
+            if( Button4.contains( x, y ) )
+            {
+                clickButton4();
+                return true;
+            }
+
             if( BackButton.contains(x,y)){
                 clickBackButton();
                 return true;
@@ -138,6 +151,8 @@ void LoadScene::clickButton2()
 {
     if(load[1]) {
         // game load
+        Game* pg = getGameClass();
+        pg->loadGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2");
         nextScene = new NewScene( getGameClass() );
     }
 }
@@ -146,6 +161,8 @@ void LoadScene::clickButton3()
 {
     if(load[2]) {
         // game load
+        Game* pg = getGameClass();
+        pg->loadGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3");
         nextScene = new NewScene( getGameClass() );
     }
 }
@@ -154,11 +171,12 @@ void LoadScene::clickButton4()
 {
     if(load[3]) {
         // game load
+        Game* pg = getGameClass();
+        pg->loadGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4");
         nextScene = new NewScene( getGameClass() );
     }
 }
 
 void LoadScene::clickBackButton(){
     nextScene = new StartScene( getGameClass() );
-
 }

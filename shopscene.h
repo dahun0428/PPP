@@ -19,11 +19,7 @@ private:
     int price[5];
     QString priceText[5];
 
-    QRect Button1;
-    QRect Button2;
-    QRect Button3;
-    QRect Button4;
-    QRect Button5;
+    QRect BuyButton[5];
     QRect GambleButton;
     QRect BackButton;
     QRect alertButton;

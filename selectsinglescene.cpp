@@ -1,10 +1,14 @@
 #include "selectsinglescene.h"
-
 #include "Game.h"
 #include "qlabel.h"
 #include "newScene.h"
+#include "CharacterScene.h"
 #include "soccerscene.h"
+<<<<<<< HEAD
 #include "basketballscene.h"
+=======
+#include "SwimScene.h"
+>>>>>>> 6e735646837cb7292d4f2d44f209587872be48da
 SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
@@ -168,28 +172,24 @@ bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
         }
 
         return false;
-    }
+}
 
-    void SelectSingleScene::clickButtonEasy()
-    {
-        getGameClass()->setDifficulty(EASY);
+void SelectSingleScene::clickButtonEasy()
+{
+    getGameClass()->setDifficulty(EASY);
+}
+void SelectSingleScene::clickButtonNormal()
+{
+    getGameClass()->setDifficulty(NORMAL);
+}
+void SelectSingleScene::clickButtonHard()
+{
+    getGameClass()->setDifficulty(HARD);
+}
 
-    }
-
-    void SelectSingleScene::clickButtonNormal()
-    {
-        getGameClass()->setDifficulty(NORMAL);
-    }
-
-
-    void SelectSingleScene::clickButtonHard()
-    {
-        getGameClass()->setDifficulty(HARD);
-    }
-    void SelectSingleScene::clickButtonSwim()
-    {
-
-
+void SelectSingleScene::clickButtonSwim()
+{
+    nextScene = new CharacterScene( getGameClass() );
 }
 
 void SelectSingleScene::clickButtonBasket()
@@ -201,7 +201,6 @@ void SelectSingleScene::clickButtonBasket()
 void SelectSingleScene::clickButtonSoccer()
 {
     nextScene= new soccerscene(getGameClass());
-
 }
 
 void SelectSingleScene::clickBackButton(){

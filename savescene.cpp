@@ -94,6 +94,19 @@ bool SaveScene::mouseEvent( int x, int y, MouseFunction function )
                 clickButton2();
                 return true;
             }
+
+            if( Button3.contains( x, y ) )
+            {
+                clickButton3();
+                return true;
+            }
+
+            if( Button3.contains( x, y ) )
+            {
+                clickButton4();
+                return true;
+            }
+
             if( BackButton.contains(x,y)){
                 clickBackButton();
                 return true;
@@ -122,7 +135,7 @@ void SaveScene::clickButton1()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("..\\..\\PPP\\Resources\\Save\\save_data1");
+    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1");
     nextScene = new NewScene( getGameClass() );
 }
 
@@ -130,7 +143,7 @@ void SaveScene::clickButton2()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("..\\..\\PPP\\Resources\\Save\\save_data2");
+    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2");
     nextScene = new NewScene( getGameClass() );
 }
 
@@ -138,7 +151,7 @@ void SaveScene::clickButton3()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("..\\..\\PPP\\Resources\\Save\\save_data3");
+    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3");
     nextScene = new NewScene( getGameClass() );
 }
 
@@ -146,7 +159,7 @@ void SaveScene::clickButton4()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("..\\..\\PPP\\Resources\\Save\\save_data4");
+    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4");
     nextScene = new NewScene( getGameClass() );
 }
 

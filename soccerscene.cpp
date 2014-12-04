@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include "qlabel.h"
+#include <QKeyEvent>
 
 QString soccerscene::intToQString(int n) {
     std::stringstream tempStrs;
@@ -38,7 +39,7 @@ soccerscene::soccerscene(Game* game) : Scene( game )
     t=0;
     state=0;
     score=0;
-    scoretext = intToQString(score);
+   // scoretext = intToQString(score);
 
 
     Button1 = QRect( 180, 450, 40, 40 );
@@ -184,6 +185,21 @@ bool soccerscene::mouseEvent( int x, int y, MouseFunction function )
 
     return false;
 }
+
+bool soccerscene::keyEvent(QKeyEvent * input){
+
+    if(nextScene !=NULL)
+        return false;
+
+    switch(input->key()){
+        case Qt::Key_A:
+     //       drawCenter( 100, 100, "Exit.png" );
+            break;
+    default:
+        break;
+
+    }
+}
 void soccerscene::clickButton1()
 
 {
@@ -191,7 +207,7 @@ void soccerscene::clickButton1()
     state=1;
     if(keeper!=(state-1)){
         score++;
-        scoretext = intToQString(score);
+     //   scoretext = intToQString(score);
     }
 }
 void soccerscene::clickButton2()
@@ -200,7 +216,7 @@ void soccerscene::clickButton2()
     state=2;
     if(keeper!=(state-1)){
         score++;
-        scoretext = intToQString(score);
+      //  scoretext = intToQString(score);
     }
 
 }
@@ -209,7 +225,7 @@ void soccerscene::clickButton3(){
     state=3;
     if(keeper!=(state-1)){
         score++;
-        scoretext = intToQString(score);
+     //   scoretext = intToQString(score);
     }
 }
 void soccerscene::clickBackButton(){

@@ -12,6 +12,7 @@ protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );
     bool keyEvent(QKeyEvent *);
+
 private:
     int t;
     int state;

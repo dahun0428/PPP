@@ -6,6 +6,7 @@
 #include "selectsinglescene.h"
 #include "selectscene.h"
 #include "Game.h"
+#include "historyscene.h"
 
 NewScene::NewScene( Game* game) : Scene( game )
 {
@@ -17,6 +18,7 @@ NewScene::NewScene( Game* game) : Scene( game )
     Button2 = QRect( 310, 340, 180, 80 );
     ShopButton = QRect ( 700, 50, 40, 40);
     BackButton = QRect ( 50, 50, 40, 40 );
+    HistoryButton = QRect (310, 440, 180, 80);
 //	alertButton = QRect( 260, 270, 120, 100 );
 }
 NewScene::~NewScene()
@@ -48,6 +50,10 @@ Scene* NewScene::update()
     else
         drawCenter( 70-2, 70-2, "Back.png" );
 
+    if( HistoryButton.contains( lastCursor ) )
+        drawCenter( 400, 480, "Olympic.png" );
+    else
+        drawCenter( 400-2, 480-2, "Olympic.png" );
 
 
 	return nextScene;
@@ -86,6 +92,11 @@ bool NewScene::mouseEvent( int x, int y, MouseFunction function )
                 return true;
             }
 
+            if( HistoryButton.contains(x,y)) {
+                clickHistoryButton();
+                return true;
+            }
+
 	}
 	
 	return false;
@@ -106,7 +117,6 @@ bool NewScene::keyEvent(QKeyEvent * input){
 }
 void NewScene::clickButton1()
 {
-    getGameClass()->initialize();
 	nextScene = new SelectSingleScene( getGameClass() );
 }
 
@@ -123,4 +133,8 @@ void NewScene::clickBackButton(){
 void NewScene::clickShop(){
     nextScene = new ShopScene( getGameClass() );
 
+}
+
+void NewScene::clickHistoryButton() {
+    nextScene = new HistoryScene( getGameClass() );
 }

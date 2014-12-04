@@ -3,6 +3,7 @@
 #include "newScene.h"
 #include "loadscene.h"
 #include "Game.h"
+
 StartScene::StartScene( Game* game) : Scene( game )
 {
 
@@ -13,6 +14,10 @@ StartScene::StartScene( Game* game) : Scene( game )
     ButtonLoad = QRect( 310, 300, 180, 80 );
     ButtonExit = QRect( 310, 400, 180, 80 );
 	alertButton = QRect( 260, 270, 120, 100 );
+    lastKeyInput = NULL;
+    lastKey = Qt::Key_unknown;
+    testX=100;
+    testY=100;
 }
 StartScene::~StartScene()
 {
@@ -38,7 +43,7 @@ Scene* StartScene::update()
     else
         drawCenter( 400-2, 440-2, "Exit.png" );
 
-
+            drawCenter( testX, testY, "Exit.png" );
 
 	return nextScene;
 }
@@ -71,10 +76,38 @@ bool StartScene::mouseEvent( int x, int y, MouseFunction function )
                 clickButtonExit();
                 return true;
             }
+            drawCenter( 100, 100, "Exit.png" );
+            break;
+         default:
+             break;
 	}
 	
 	return false;
 }
+bool StartScene::keyEvent(QKeyEvent *input){
+    lastKeyInput = input;
+    lastKey = input->key();
+    if(nextScene !=NULL)
+        return false;
+
+    switch(lastKey){
+        case 'A':
+            pressA();
+            return true;
+
+        case 'B':
+            pressB();
+            return true;
+        case 0x01000015:
+            pressDown();
+            return true;
+    default:
+        break;
+
+    }
+    return false;
+}
+
 void StartScene::clickButtonNew()
 {
     getGameClass()->initialize();
@@ -91,7 +124,21 @@ void StartScene::clickButtonExit()
     exit(0);
 }
 
+void StartScene::pressA()
+{
+    testX += 2.0;
+    testY += 2.0;
+}
 
+void StartScene::pressB(){
+    testX -= 1.0;
+    testY -= 1.5;
+}
+
+void StartScene::pressDown()
+{
+    testY += 2.0;
+}
 
 // oh my god, git hub is so difficult!
 

@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "qlabel.h"
 #include "newScene.h"
+#include "soccerscene.h"
 SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
@@ -89,6 +90,20 @@ Scene* SelectSingleScene::update()
 
 
     return nextScene;
+}
+bool SelectSingleScene::keyEvent(QKeyEvent * input){
+
+    if(nextScene !=NULL)
+        return false;
+
+    switch(input->key()){
+        case Qt::Key_A:
+     //       drawCenter( 100, 100, "Exit.png" );
+            break;
+    default:
+        break;
+
+    }
 }
 bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
 {
@@ -184,6 +199,7 @@ void SelectSingleScene::clickButtonBasket()
 
 void SelectSingleScene::clickButtonSoccer()
 {
+    nextScene= new soccerscene(getGameClass());
 
 }
 

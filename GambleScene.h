@@ -1,4 +1,4 @@
-#ifndef GAMBLESCENE_H
+    #ifndef GAMBLESCENE_H
 #define GAMBLESCENE_H
 #include "Scene.h"
 
@@ -10,6 +10,7 @@ public:
 protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );
+    bool keyEvent(QKeyEvent *);
 private:
     Scene* nextScene;
     QPoint lastCursor;

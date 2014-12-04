@@ -29,6 +29,7 @@ SOURCES += \
     savescene.cpp \
     OlympicData.cpp \
     historyscene.cpp
+    soccerscene.cpp
 
 
 
@@ -50,6 +51,7 @@ HEADERS  += \
     savescene.h \
     OlympicData.h \
     historyscene.h
+    soccerscene.h
 
 
 

@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QFontDatabase>
+#include <QKeyEvent>
 #include "game.h"
 
 
@@ -25,11 +26,14 @@ void Window::initialize()
 	setMouseTracking(true);
 	setFixedSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 	isMouseDown = false;
+    keyDown = false;
  	game = new Game( this );
 	makeTimer();
     show();
 	startFps();
 }
+
+
 
 void Window::paintEvent( QPaintEvent*  )
 {
@@ -37,6 +41,32 @@ void Window::paintEvent( QPaintEvent*  )
      game->onDraw( painter );
 }
 
+void Window::keyPressEvent( QKeyEvent * keyEvent)
+{
+
+    switch(keyEvent->key())
+    {
+        default:
+            keyDown = true;
+            keyFunction( keyEvent);
+      //          keyDown = false;
+
+            break;
+
+    }
+
+
+}
+void Window::keyReleaseEvent(QKeyEvent * keyEvent)
+{
+    switch(keyEvent->key())
+    {
+        default:
+          //  keyFunction( keyEvent);
+        break;
+    }
+
+}
 void Window::mousePressEvent( QMouseEvent* mouseEvent )
 {
 	mousePos = mouseEvent->pos();
@@ -86,6 +116,12 @@ bool Window::mouseFunction( MouseFunction function )
 {
 	return game->mouseEvent( mousePos.x(), mousePos.y(), function );
 }
+
+bool Window::keyFunction(QKeyEvent * input){
+
+    return game->keyEvent(input);
+}
+
 void Window::makeTimer()
 {
 	setDrawTime();

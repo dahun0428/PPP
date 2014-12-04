@@ -24,11 +24,15 @@ protected:
 	void mouseReleaseEvent( QMouseEvent* );
 	void timerEvent( QTimerEvent* );
 
+    void keyPressEvent(QKeyEvent*) ;
+    void keyReleaseEvent(QKeyEvent *);
+
 private:
 	QTime lastDrawTime;
     Game *game;
     QPainter *painter;
 	bool isMouseDown;
+    bool keyDown;
 	QPointF mouseDownPos;
 	QPointF mousePos;
 
@@ -42,8 +46,10 @@ private:
 	void redraw();
 	void setDrawTime();
 	bool mouseFunction( MouseFunction );
-	void startFps();
+    void startFps();
 	void checkFps();
+
+    bool keyFunction( QKeyEvent *);
 
 
 };

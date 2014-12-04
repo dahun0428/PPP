@@ -40,6 +40,11 @@ bool Game::mouseEvent( int x, int y, MouseFunction function )
 {
 	return nowScene->mouseFunction( x, y, function );
 }
+
+bool Game::keyEvent(QKeyEvent* input){
+    return nowScene->keyFunction(input);
+}
+
 void Game::onDraw( QPainter* canvas )
 {
 	drawNowScene( canvas );

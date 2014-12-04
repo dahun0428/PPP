@@ -16,7 +16,7 @@ private:
     Scene* nextScene;
     QPoint lastCursor;
 
-    QRect CharacterButton[5];
+    QRect CharacterButton[6];
     QRect BackButton;
     QRect alertButton;
 

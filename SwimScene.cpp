@@ -10,24 +10,43 @@ SwimScene::SwimScene( Game* game) : Scene(game)
     Button1 = QRect( 315, 525, 170, 70 );
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
+    //lastKeyInput = NULL;
+    lastKey = Qt::Key_unknown;
 
-    if( getGameClass()->getGamemode() == OLYMPIC)
-        numOfPlayers = 5;
+    if( getGameClass()->getGamemode() == OLYMPIC )
+        numOfPlayers = 4;
     else
         numOfPlayers = 2;
 
+    player = new Character* [numOfPlayers];
+    player[0] = new Character;
+    player[1] = new Kaist;
+    if( getGameClass()->getGamemode() == OLYMPIC ) {
+        player[2] = new Unist;
+        player[3] = new Gist;
+    }
+
+    swimFactor = new double[numOfPlayers];
+    for(int i=0; i<numOfPlayers; i++) {
+        swimFactor[i] = player[i]->getSpeed();
+    }
+    if( getGameClass()->getCharacterInUse() == SWIMMER )
+        swimFactor[0] *= 7.0;
+    else
+        swimFactor[0] *= 4.0;
     switch( getGameClass()->getDifficulty() ) {
     case EASY:
-        opponentSwimFactor = 1.0;
-        break;
-    case NORMAL:
-        opponentSwimFactor = 2.0;
+        for(int i=1; i<numOfPlayers; i++)
+            swimFactor[i] *= 1.0;
         break;
     case HARD:
-        opponentSwimFactor = 3.0;
+        for(int i=1; i<numOfPlayers; i++)
+            swimFactor[i] *= 3.0;
         break;
+    case NORMAL:
     default:
-        opponentSwimFactor = 2.0;
+        for(int i=1; i<numOfPlayers; i++)
+            swimFactor[i] *= 2.0;
         break;
     }
 
@@ -62,10 +81,16 @@ Scene* SwimScene::update()
     else
         drawCenter( 70-2, 70-2, "Back.png" );
     if(isFinished()) {
-        if( getGameClass()->getGamemode() == OLYMPIC)
+        if( getGameClass()->getGamemode() == OLYMPIC ) {
+            delete player;
+            delete position;
             nextScene = new SelectScene( getGameClass() );
-        else
+        }
+        else {
+            delete player;
+            delete position;
             nextScene = new SelectSingleScene( getGameClass() );
+        }
     }
     return nextScene;
 }
@@ -95,27 +120,48 @@ bool SwimScene::mouseEvent( int x, int y, MouseFunction function )
 
     return false;
 }
-bool SwimScene::keyEvent(QKeyEvent * input) {
+bool SwimScene::keyEvent(QKeyEvent* input){
+    if(nextScene != NULL)
+        return false;
+
+    switch(input->key()){
+    case 'A':
+        clickButton1();
+        return true;
+    case 'B':
+        clickButton1();
+        return true;
+    default:
+        break;
+    }
+    //lastKeyInput = input;
+    lastKey = input->key();
     return false;
 }
 
 void SwimScene::clickButton1()
 {
-    position[0] += 10.0;
+    position[0] += swimFactor[0];
 }
 void SwimScene::clickBackButton()
 {
-    if( getGameClass()->getGamemode() == OLYMPIC )
+    if( getGameClass()->getGamemode() == OLYMPIC ) {
+        delete player;
+        delete position;
         nextScene = new SelectScene( getGameClass() );
-    else
+    }
+    else {
+        delete player;
+        delete position;
         nextScene = new SelectSingleScene( getGameClass() );
+    }
 }
 
 void SwimScene::opponentSwim() {
     double range = static_cast<double>(RAND_MAX/3);
     double swimDistance;
     for(int i=1; i<numOfPlayers; i++) {
-        swimDistance = (static_cast<double>(rand()) / range)*opponentSwimFactor;
+        swimDistance = (static_cast<double>(rand()) / range)*swimFactor[i];
         position[i] += swimDistance;
     }
 }

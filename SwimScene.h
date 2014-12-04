@@ -1,6 +1,7 @@
 #ifndef SWIMSCENE_H
 #define SWIMSCENE_H
 #include "Scene.h"
+#include "Character.h"
 
 class SwimScene : public Scene
 {
@@ -10,14 +11,19 @@ public:
 protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );
-    bool keyEvent(QKeyEvent * );
+    bool keyEvent(QKeyEvent* input);
 private:
     Scene* nextScene;
     QPoint lastCursor;
+    //QKeyEvent* lastKeyInput;
+    int lastKey;
     int numOfPlayers;
-    double opponentSwimFactor;
+    Character** player;
+
+    double* swimFactor;
     double* position;
     double finishPosition;
+
     int opponentSwimCount;
     int winnderIndex;
 

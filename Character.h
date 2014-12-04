@@ -21,33 +21,40 @@ public:
     ~Pobba();
 };
 class Kaiser : public Character {
+public:
     Kaiser();
     ~Kaiser();
 };
 class Swimmer : public Character {
+public:
     Swimmer();
     ~Swimmer();
 };
 class Physics : public Character {
+public:
     Physics();
     ~Physics();
 };
 class Depttop : public Character {
+public:
     Depttop();
     ~Depttop();
 };
 
-class KAIST : public Character {
-    KAIST();
-    ~KAIST();
+class Kaist : public Character {
+public:
+    Kaist();
+    ~Kaist();
 };
-class UNIST : public Character {
-    UNIST();
-    ~UNIST();
+class Unist : public Character {
+public:
+    Unist();
+    ~Unist();
 };
-class GIST : public Character {
-    GIST();
-    ~GIST();
+class Gist : public Character {
+public:
+    Gist();
+    ~Gist();
 };
 
 #endif // CHARACTER_H

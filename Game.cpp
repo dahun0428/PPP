@@ -88,6 +88,14 @@ enum GameMode Game::getGamemode(){
     return gamemode;
 }
 
+void Game::setCharacterInUse(CharacterType character){
+    characterInUse = character;
+}
+
+enum CharacterType Game::getCharacterInUse(){
+    return characterInUse;
+}
+
 // tb
 void Game::setPoint(int _point) {
     point = _point;

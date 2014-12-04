@@ -25,6 +25,9 @@ public:
     void setGamemode(GameMode gamemode);
     enum GameMode getGamemode();
 
+    void setCharacterInUse(CharacterType character);
+    enum CharacterType getCharacterInUse();
+
 	// tb
     void setPoint(int _point);
     void setCharacterAvailable(int index, bool _available);
@@ -52,6 +55,7 @@ private:
     bool characterAvailable[5];
     enum Difficulty difficulty;
     enum GameMode gamemode;
+    enum CharacterType characterInUse;
 
     // exercise mode history
     int easy_level_history[5];

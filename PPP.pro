@@ -28,7 +28,9 @@ SOURCES += \
     GambleScene.cpp \
     savescene.cpp \
     OlympicData.cpp \
-    historyscene.cpp
+    historyscene.cpp \
+    Character.cpp \
+    soccerscene.cpp
     soccerscene.cpp
 
 
@@ -50,7 +52,10 @@ HEADERS  += \
     GambleScene.h \
     savescene.h \
     OlympicData.h \
-    historyscene.h
+    historyscene.h \
+    Character.h \
+    soccerscene.h \
+    ui_mainwindow.h
     soccerscene.h
 
 

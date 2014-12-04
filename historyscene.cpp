@@ -22,3 +22,18 @@ bool HistoryScene::mouseEvent(int x, int y, MouseFunction) {
 
     return false;
 }
+
+bool HistoryScene::keyEvent(QKeyEvent * input){
+
+    if(nextScene !=NULL)
+        return false;
+
+    switch(input->key()){
+        case Qt::Key_A:
+     //       drawCenter( 100, 100, "Exit.png" );
+            break;
+    default:
+        break;
+
+    }
+}

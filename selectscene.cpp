@@ -3,6 +3,7 @@
 #include "qlabel.h"
 #include "olympicnanido.h"
 #include "soccerscene.h"
+#include "savescene.h"
 SelectScene::SelectScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
@@ -11,7 +12,7 @@ SelectScene::SelectScene(Game * game) : Scene(game)
     ButtonBasket = QRect( 300, 200, 140, 140 );
     ButtonSoccer = QRect( 550, 200, 140, 140 );
     BackButton = QRect ( 50, 50, 40, 40 );
-
+    SaveButton = QRect ( 650, 50, 40, 40);
     getGameClass()->setGamemode(OLYMPIC);
 }
 SelectScene::~SelectScene()
@@ -32,6 +33,11 @@ Scene* SelectScene::update()
         drawCenter( 370, 270, "Basket.png" );
     else
         drawCenter( 370-2, 270-2, "Basket.png" );
+
+    if( SaveButton.contains( lastCursor ) )
+        drawCenter( 670-2, 70, "Save.png" );
+    else
+        drawCenter( 670-3, 70-1, "Save.png" );
 
     if( ButtonSoccer.contains( lastCursor ) )
         drawCenter( 620, 270, "Soccer.png" );
@@ -81,6 +87,11 @@ bool SelectScene::mouseEvent( int x, int y, MouseFunction function )
                 return true;
             }
 
+            if( SaveButton.contains(x,y))
+               {
+                clickSaveButton();
+                return true;
+            }
 
 
     }
@@ -122,3 +133,8 @@ void SelectScene::clickBackButton(){
     nextScene = new OlympicNanido( getGameClass() );
 
 }
+
+void SelectScene::clickSaveButton(){
+    nextScene = new SaveScene( getGameClass());
+}
+

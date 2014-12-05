@@ -22,7 +22,7 @@ OlympicNanido::~OlympicNanido()
 Scene* OlympicNanido::update()
 {
     draw( 0, 0, "White.png" );
-    draw( 0, 30, "White.png" );
+
 
     if( ButtonEasy.contains( lastCursor ) )
         drawCenter( 400, 240, "Easy.png" );

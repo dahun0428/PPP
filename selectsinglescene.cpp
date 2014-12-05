@@ -221,24 +221,27 @@ void SelectSingleScene::clickButtonHard()
 
 void SelectSingleScene::clickButtonSwim()
 {
+    getGameClass()->setGametype(SWIMMING);
     nextScene = new CharacterScene( getGameClass() );
 }
 
 void SelectSingleScene::clickButtonBasket()
 {
-    nextScene= new basketballscene(getGameClass());
+    getGameClass()->setGametype(BASKETBALL);
+    nextScene = new CharacterScene( getGameClass() );
 }
 
 
 void SelectSingleScene::clickButtonSoccer()
 {
-    nextScene= new soccerscene(getGameClass());
+    getGameClass()->setGametype(SOCCER);
+    nextScene = new CharacterScene( getGameClass() );
 }
 
 void SelectSingleScene::clickButtonQuiz()
 {
-
-    nextScene= new QuizScene(getGameClass()); // quizscene
+    getGameClass()->setGametype(QUIZ);
+    nextScene = new CharacterScene( getGameClass() );
 
 }
 

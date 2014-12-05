@@ -114,8 +114,10 @@ Scene* basketballscene::update()
 {
     if(life==0){
         //getGameClass()->setScore(score);
-        if(mode==SINGLE)
+        if(mode==SINGLE) {
+            getGameClass()->setScore(score);
             nextScene = new singleResultScene(getGameClass());
+        }
         else
             nextScene = new SelectSingleScene(getGameClass());
     }

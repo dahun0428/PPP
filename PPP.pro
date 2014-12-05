@@ -34,7 +34,8 @@ SOURCES += \
     SwimScene.cpp \
     CharacterScene.cpp \
     basketballscene.cpp \
-    basketresultscene.cpp
+    basketresultscene.cpp \
+    quizscene.cpp
 
 
 
@@ -63,7 +64,8 @@ HEADERS  += \
     SwimScene.h \
     CharacterScene.h \
     basketballscene.h \
-    basketresultscene.h
+    basketresultscene.h \
+    quizscene.h
 
 
 

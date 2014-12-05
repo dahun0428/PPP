@@ -102,7 +102,7 @@ Scene* SelectSingleScene::update()
         if (ButtonQuiz.contains( lastCursor ) )
             drawCenter(370, 470, "Quiz.png");
         else
-            drawCenter(370-2, 270-2, "Quiz.png");
+            drawCenter(370-2, 470-2, "Quiz.png");
 
 
     if( BackButton.contains(lastCursor))
@@ -240,7 +240,7 @@ void SelectSingleScene::clickButtonSoccer()
 
 void SelectSingleScene::clickButtonQuiz()
 {
-    nextScene= new quizscene(getGameClass());
+    nextScene= new soccerscene(getGameClass()); // quizscene
 }
 
 void SelectSingleScene::clickBackButton(){

@@ -49,7 +49,7 @@ Depttop::~Depttop() {}
 Kaist::Kaist() {
     speed = 1.8;
     accuracy = 4.0;
-    intelligence = 4.0;
+    intelligence = 4.5;
 }
 Kaist::~Kaist() {}
 
@@ -63,6 +63,6 @@ Unist::~Unist() {}
 Gist::Gist() {
     speed = 3.4;
     accuracy = 5.0;
-    intelligence = 5.0;
+    intelligence = 4.0;
 }
 Gist::~Gist() {}

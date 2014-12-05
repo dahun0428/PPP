@@ -8,10 +8,17 @@ SelectScene::SelectScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
 
+<<<<<<< HEAD
     ButtonSwim = QRect( 78, 168, 140, 140 );
     ButtonBasket = QRect( 201, 310, 140, 140 );
     ButtonSoccer = QRect( 453, 304, 140, 140 );
     ButtonQuiz = QRect ( 576, 166, 140, 140);
+=======
+    ButtonSwim = QRect( 50, 200, 140, 140 );
+    ButtonBasket = QRect( 300, 200, 140, 140 );
+    ButtonSoccer = QRect( 550, 200, 140, 140 );
+    ButtonQuiz = QRect(300, 400, 140, 140);
+>>>>>>> quizscene making
     BackButton = QRect ( 50, 50, 40, 40 );
     SaveButton = QRect ( 650, 50, 40, 40);
     getGameClass()->setGamemode(OLYMPIC);
@@ -56,6 +63,10 @@ Scene* SelectScene::update()
     else
         drawCenter( 70-2, 70-2, "Back.png" );
 
+    if (ButtonQuiz.contains( lastCursor ) )
+        drawCenter(370, 470, "Quiz.png");
+    else
+        drawCenter(370-2, 470-2, "Quiz.png");
 
 
     return nextScene;
@@ -89,6 +100,13 @@ bool SelectScene::mouseEvent( int x, int y, MouseFunction function )
                 clickButtonSoccer();
                 return true;
             }
+
+            if( ButtonQuiz.contains(x, y))
+            {
+                clickButtonQuiz();
+                return true;
+            }
+
             if( BackButton.contains(x,y)){
                 clickBackButton();
                 return true;
@@ -132,6 +150,11 @@ void SelectScene::clickButtonBasket()
 
 
 void SelectScene::clickButtonSoccer()
+{
+
+}
+
+void SelectScene::clickButtonQuiz()
 {
 
 }

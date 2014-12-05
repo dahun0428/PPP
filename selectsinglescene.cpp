@@ -172,6 +172,11 @@ bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
                     return true;
                 }
 
+                if( SaveButton.contains(x, y)) {
+                    clickSaveButton();
+                    return true;
+                }
+
 
 
 
@@ -215,7 +220,7 @@ void SelectSingleScene::clickBackButton(){
 }
 
 void SelectSingleScene::clickSaveButton(){
-    nextScene = new SaveScene( getGameClass());
+    nextScene = new SaveScene( getGameClass(), SINGLESELECT);
 }
 
 

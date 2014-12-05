@@ -135,6 +135,6 @@ void SelectScene::clickBackButton(){
 }
 
 void SelectScene::clickSaveButton(){
-    nextScene = new SaveScene( getGameClass());
+    nextScene = new SaveScene( getGameClass(), OLYMPICSELECT);
 }
 

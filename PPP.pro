@@ -33,7 +33,7 @@ SOURCES += \
     soccerscene.cpp \
     SwimScene.cpp \
     CharacterScene.cpp \
-    basketballscene.cpp
+    basketballscene.cpp \
     soccerscene.cpp
 
 
@@ -61,7 +61,7 @@ HEADERS  += \
     ui_mainwindow.h \
     SwimScene.h \
     CharacterScene.h \
-    basketballscene.h
+    basketballscene.h \
     soccerscene.h
 
 

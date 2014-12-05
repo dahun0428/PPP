@@ -9,7 +9,7 @@ class SaveScene : public Scene
 
 {
 public:
-    SaveScene( Game *);
+    SaveScene( Game *, enum SavePoint);
 
 
     ~SaveScene();
@@ -39,6 +39,7 @@ private:
     // load
     QString filename[SAVE_SLOTS];
     QString FilePath;
+    enum SavePoint sp;
 };
 
 #endif // SAVESCENE_H

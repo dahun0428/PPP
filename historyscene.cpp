@@ -156,11 +156,6 @@ void HistoryScene::drawOlympic(int index) {
     drawCenter(unist_x, unist_y, "unist.png");
     drawCenter(gist_x, gist_y, "gist.png");
 
-    if (index >= olympic_cnt) {
-        drawCenter(400, 400, "notyet.png");
-        return;
-    }
-
     int postech_gold = getGameClass()->getOlympicData(index)->getSchoolMedal(POSTECH, GOLD);
     int postech_silver = getGameClass()->getOlympicData(index)->getSchoolMedal(POSTECH, SILVER);
     int postech_bronze = getGameClass()->getOlympicData(index)->getSchoolMedal(POSTECH, BRONZE);
@@ -234,4 +229,7 @@ void HistoryScene::drawOlympic(int index) {
         x_pos+=60;
     }
 
+    if (index >= olympic_cnt) {
+        drawCenter(400, 400, "notyet.png");
+    }
 }

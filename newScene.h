@@ -23,11 +23,13 @@ private:
     //QRect alertButton;
     QRect BackButton;
     QRect HistoryButton;
+    QRect SaveButton;
 
 	void clickButton1();
 	void clickButton2();
     void clickShop();
     void clickBackButton();
     void clickHistoryButton();
+    void clickSaveButton();
 
 };

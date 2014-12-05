@@ -34,7 +34,14 @@ SwimScene::SwimScene( Game* game) : Scene(game)
         swimFactor[0] *= 7.0;
     else
         swimFactor[0] *= 4.0;
-    switch( getGameClass()->getDifficulty() ) {
+
+    enum Difficulty diff;
+    if (getGameClass()->getGamemode() == SINGLE)
+        diff = getGameClass()->getSingleDifficulty();
+    else
+        diff = getGameClass()->getOlympicDifficulty();
+
+    switch( diff ) {
     case EASY:
         for(int i=1; i<numOfPlayers; i++)
             swimFactor[i] *= 1.0;

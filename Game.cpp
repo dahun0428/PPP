@@ -22,7 +22,7 @@ void Game::initialize(){
     point = 0;
     for (int i = 0 ;  i<5; i++)
         characterAvailable[i]= false;
-    for (int i=0; i<5; i++) {
+    for (int i=0; i<4; i++) {
         easy_level_history[i] = 0;
         normal_level_history[i] = 0;
         hard_level_history[i] = 0;
@@ -70,12 +70,20 @@ void Game::drawNowScene( QPainter* canvas )
 		setScene( newScene );
 }
 
-void Game::setDifficulty(enum Difficulty diff){
-    difficulty = diff;
+void Game::setSingleDifficulty(enum Difficulty diff){
+    singledifficulty = diff;
 }
 
-enum Difficulty Game::getDifficulty(){
-    return difficulty;
+enum Difficulty Game::getSingleDifficulty(){
+    return singledifficulty;
+}
+
+void Game::setOlympicDifficulty(enum Difficulty diff){
+    olympicdifficulty = diff;
+}
+
+enum Difficulty Game::getOlympicDifficulty(){
+    return olympicdifficulty;
 }
 
 void Game::setGamemode(enum GameMode mode){
@@ -94,6 +102,14 @@ void Game::setCharacterInUse(CharacterType character){
 
 enum CharacterType Game::getCharacterInUse(){
     return characterInUse;
+}
+
+enum GameType Game::getGametype() {
+    return gametype;
+}
+
+void Game::setGametype(enum GameType type) {
+    gametype = type;
 }
 
 // tb
@@ -129,17 +145,17 @@ void Game::loadGame(QString filename) {
 
     tmp = read.readLine(); // read easy level highest scores
     tmpList = tmp.split(" ");
-    for (int i=0; i<5; i++)
+    for (int i=0; i<4; i++)
         easy_level_history[i] = tmpList[i].toInt();
 
     tmp = read.readLine(); // read normal level highest scores
     tmpList = tmp.split(" ");
-    for (int i=0; i<5; i++)
+    for (int i=0; i<4; i++)
         normal_level_history[i] = tmpList[i].toInt();
 
     tmp = read.readLine(); // read hard level highest scores
     tmpList = tmp.split(" ");
-    for (int i=0; i<5; i++)
+    for (int i=0; i<4; i++)
         hard_level_history[i] = tmpList[i].toInt();
 
     tmp = read.readLine();
@@ -147,10 +163,13 @@ void Game::loadGame(QString filename) {
 
     tmp = read.readLine(); // read played array
     tmpList = tmp.split(" ");
-    for (int i=0; i<5; i++)
+    for (int i=0; i<3; i++)
         played[i] = (bool)tmpList[i].toInt();
 
     for (int i=0; i<=olympic_cnt; i++) {
+        tmp = read.readLine(); // read difficulty
+        OlympicHistory[i].setDiff((enum Difficulty)(tmp.toInt()));
+
         tmp = read.readLine(); // read postech data
         tmpList = tmp.split(" ");
         OlympicHistory[i].setMedal(POSTECH, tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
@@ -215,37 +234,40 @@ void Game::saveGame(QString filename) {
     tmp = QString("%1\n").arg(olympic_cnt);
     str.append(tmp);
 
-    tmp = QString("%1 %2 %3 %4 %5\n")
+    tmp = QString("%1 %2 %3 %4\n")
             .arg(played[0])
             .arg(played[1])
             .arg(played[2])
-            .arg(played[3])
-            .arg(played[4]);
+            .arg(played[3]);
     str.append(tmp);
 
     for (int i=0; i<=olympic_cnt; i++) {
-        tmp = QString("%1 %2 %3\n")
-                .arg(getOlympicData(i)->getSchoolMedal(POSTECH, GOLD))
-                .arg(getOlympicData(i)->getSchoolMedal(POSTECH, SILVER))
-                .arg(getOlympicData(i)->getSchoolMedal(POSTECH, BRONZE));
+        tmp = QString("%1\n")
+                .arg((int)(OlympicHistory[i].getDifficulty()));
         str.append(tmp);
 
         tmp = QString("%1 %2 %3\n")
-                .arg(getOlympicData(i)->getSchoolMedal(KAIST, GOLD))
-                .arg(getOlympicData(i)->getSchoolMedal(KAIST, SILVER))
-                .arg(getOlympicData(i)->getSchoolMedal(KAIST, BRONZE));
+                .arg(OlympicHistory[i].getSchoolMedal(POSTECH, GOLD))
+                .arg(OlympicHistory[i].getSchoolMedal(POSTECH, SILVER))
+                .arg(OlympicHistory[i].getSchoolMedal(POSTECH, BRONZE));
         str.append(tmp);
 
         tmp = QString("%1 %2 %3\n")
-                .arg(getOlympicData(i)->getSchoolMedal(UNIST, GOLD))
-                .arg(getOlympicData(i)->getSchoolMedal(UNIST, SILVER))
-                .arg(getOlympicData(i)->getSchoolMedal(UNIST, BRONZE));
+                .arg(OlympicHistory[i].getSchoolMedal(KAIST, GOLD))
+                .arg(OlympicHistory[i].getSchoolMedal(KAIST, SILVER))
+                .arg(OlympicHistory[i].getSchoolMedal(KAIST, BRONZE));
         str.append(tmp);
 
         tmp = QString("%1 %2 %3\n")
-                .arg(getOlympicData(i)->getSchoolMedal(GIST, GOLD))
-                .arg(getOlympicData(i)->getSchoolMedal(GIST, SILVER))
-                .arg(getOlympicData(i)->getSchoolMedal(GIST, BRONZE));
+                .arg(OlympicHistory[i].getSchoolMedal(UNIST, GOLD))
+                .arg(OlympicHistory[i].getSchoolMedal(UNIST, SILVER))
+                .arg(OlympicHistory[i].getSchoolMedal(UNIST, BRONZE));
+        str.append(tmp);
+
+        tmp = QString("%1 %2 %3\n")
+                .arg(OlympicHistory[i].getSchoolMedal(GIST, GOLD))
+                .arg(OlympicHistory[i].getSchoolMedal(GIST, SILVER))
+                .arg(OlympicHistory[i].getSchoolMedal(GIST, BRONZE));
         str.append(tmp);
     }
 
@@ -257,27 +279,62 @@ void Game::saveGame(QString filename) {
 // becouse each game has different score type
 // ex: swimming --> lower value is better
 //     soccer --> higher value is better
-void Game::setNewHistory(enum GameType _gametype, int _score) {
-    switch (difficulty) {
+void Game::setNewHistory(int _score) {
+    switch (singledifficulty) {
         case EASY:
-            easy_level_history[_gametype] = _score;
+            if (gametype == SWIMMING) {
+                if (easy_level_history[gametype] > _score)
+                    easy_level_history[gametype] = _score;
+            }
+            else {
+                if (easy_level_history[gametype] < _score)
+                    easy_level_history[gametype] = _score;
+            }
+            break;
         case NORMAL:
-            normal_level_history[_gametype] = _score;
+            if (gametype == SWIMMING) {
+                if (normal_level_history[gametype] > _score)
+                    normal_level_history[gametype] = _score;
+            }
+            else {
+                if (normal_level_history[gametype] < _score)
+                    normal_level_history[gametype] = _score;
+            }
+        break;
         case HARD:
-            hard_level_history[_gametype] = _score;
+            if (gametype == SWIMMING) {
+                if (hard_level_history[gametype] > _score)
+                    hard_level_history[gametype] = _score;
+            }
+            else {
+                if (hard_level_history[gametype] < _score)
+                    hard_level_history[gametype] = _score;
+            }
+        break;
     }
 }
 
-int Game::getEasyLevelHistory(enum GameType _gametype) {
-    return easy_level_history[_gametype];
+int Game::getHistory() {
+    switch (singledifficulty) {
+        case EASY:
+            return easy_level_history[gametype];
+        case NORMAL:
+            return normal_level_history[gametype];
+        case HARD:
+            return hard_level_history[gametype];
+    }
 }
 
-int Game::getNormalLevelHistory(enum GameType _gametype) {
-    return normal_level_history[_gametype];
-}
-
-int Game::getHardLevelHistory(enum GameType _gametype) {
-    return hard_level_history[_gametype];
+// for historyscene
+int Game::getHistory(enum Difficulty diff, enum GameType type) {
+    switch (diff) {
+        case EASY:
+            return easy_level_history[type];
+        case NORMAL:
+            return normal_level_history[type];
+        case HARD:
+            return hard_level_history[type];
+    }
 }
 
 OlympicData* Game::getOlympicData(int _index) {

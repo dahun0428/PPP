@@ -4,7 +4,9 @@
 #include "qfile.h" // tb
 #include "Game.h"
 #include "qlabel.h"
-SaveScene::SaveScene( Game* game) : Scene( game )
+#include "selectsinglescene.h"
+#include "selectscene.h"
+SaveScene::SaveScene( Game* game, enum SavePoint _sp) : Scene( game )
 {
 
     nextScene = NULL;
@@ -32,7 +34,7 @@ SaveScene::SaveScene( Game* game) : Scene( game )
     if(QFile::exists(FilePath+"Save\\save_data4"))
         filename[3] =  "data4.png";
 
-
+    sp = _sp;
 }
 SaveScene::~SaveScene()
 {
@@ -138,7 +140,17 @@ void SaveScene::clickButton1()
     // game save
     Game* pg = getGameClass();
     pg->saveGame(FilePath+"Save\\save_data1");
-    nextScene = new NewScene( getGameClass() );
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 }
 
 void SaveScene::clickButton2()
@@ -146,7 +158,17 @@ void SaveScene::clickButton2()
     // game save
     Game* pg = getGameClass();
     pg->saveGame(FilePath+"Save\\save_data2");
-    nextScene = new NewScene( getGameClass() );
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 }
 
 void SaveScene::clickButton3()
@@ -154,7 +176,17 @@ void SaveScene::clickButton3()
     // game save
     Game* pg = getGameClass();
     pg->saveGame(FilePath+"Save\\save_data3");
-    nextScene = new NewScene( getGameClass() );
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 }
 
 void SaveScene::clickButton4()
@@ -162,10 +194,30 @@ void SaveScene::clickButton4()
     // game save
     Game* pg = getGameClass();
     pg->saveGame(FilePath+"Save\\save_data4");
-    nextScene = new NewScene( getGameClass() );
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 }
 
 void SaveScene::clickBackButton(){
-    nextScene = new StartScene( getGameClass() );
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 
 }

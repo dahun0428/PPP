@@ -7,6 +7,7 @@
 #include "selectscene.h"
 #include "Game.h"
 #include "historyscene.h"
+#include "savescene.h"
 
 NewScene::NewScene( Game* game) : Scene( game )
 {
@@ -19,6 +20,7 @@ NewScene::NewScene( Game* game) : Scene( game )
     ShopButton = QRect ( 700, 50, 40, 40);
     BackButton = QRect ( 50, 50, 40, 40 );
     HistoryButton = QRect (310, 440, 180, 80);
+    SaveButton = QRect (600, 50, 40, 40);
 //	alertButton = QRect( 260, 270, 120, 100 );
 }
 NewScene::~NewScene()
@@ -54,6 +56,11 @@ Scene* NewScene::update()
         drawCenter( 400, 480, "Olympic.png" );
     else
         drawCenter( 400-2, 480-2, "Olympic.png" );
+
+    if (SaveButton.contains( lastCursor ) )
+        drawCenter( 620, 70, "Save.png");
+    else
+        drawCenter( 620-2, 70-2, "Save.png");
 
 
 	return nextScene;
@@ -97,6 +104,11 @@ bool NewScene::mouseEvent( int x, int y, MouseFunction function )
                 return true;
             }
 
+            if( SaveButton.contains(x, y)) {
+                clickSaveButton();
+                return true;
+            }
+
 	}
 	
 	return false;
@@ -137,4 +149,8 @@ void NewScene::clickShop(){
 
 void NewScene::clickHistoryButton() {
     nextScene = new HistoryScene( getGameClass() );
+}
+
+void NewScene::clickSaveButton() {
+    nextScene = new SaveScene( getGameClass(), NEW);
 }

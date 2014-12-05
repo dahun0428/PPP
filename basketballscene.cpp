@@ -20,9 +20,16 @@ basketballscene::basketballscene(Game *game) : Scene(game)
     t=0;
     t2=0;
     check=true;
-    if(game->getDifficulty()==EASY)
+
+    enum Difficulty diff;
+    if (getGameClass()->getGamemode() == SINGLE)
+        diff = getGameClass()->getSingleDifficulty();
+    else
+        diff = getGameClass()->getOlympicDifficulty();
+
+    if(diff==EASY)
         bx0=BXE;
-    else if(game->getDifficulty()==NORMAL)
+    else if(diff==NORMAL)
         bx0=BXN;
     else
         bx0=BXH;

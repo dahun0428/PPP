@@ -39,7 +39,7 @@ SaveScene::~SaveScene()
 Scene* SaveScene::update()
 {
     draw( 0, 0, "White.png" );
-    draw( 0, 30, "White.png" );
+
 
     if( Button1.contains( lastCursor ) )
         drawCenter( 400, 170, filename[0] );

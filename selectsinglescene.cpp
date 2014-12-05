@@ -31,7 +31,7 @@ SelectSingleScene::~SelectSingleScene()
 Scene* SelectSingleScene::update()
 {
     draw( 0, 0, "White.png" );
-    draw( 0, 30, "White.png" );
+
 
 
     if( ButtonEasy.contains( lastCursor ) ){

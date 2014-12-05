@@ -14,11 +14,11 @@ StartScene::StartScene( Game* game) : Scene( game )
     ButtonNew = QRect( 310, 200, 180, 80 );
     ButtonLoad = QRect( 310, 300, 180, 80 );
     ButtonExit = QRect( 310, 400, 180, 80 );
-	alertButton = QRect( 260, 270, 120, 100 );
+//	alertButton = QRect( 260, 270, 120, 100 );
     lastKeyInput = NULL;
     lastKey = Qt::Key_unknown;
-    testX=100;
-    testY=100;
+   // testX=100;
+  //  testY=100;
 }
 StartScene::~StartScene()
 {
@@ -44,7 +44,7 @@ Scene* StartScene::update()
     else
         drawCenter( 400-2, 440-2, "Exit.png" );
 
-            drawCenter( testX, testY, "Exit.png" );
+      //      drawCenter( testX, testY, "Exit.png" );
 
 	return nextScene;
 }
@@ -72,12 +72,12 @@ bool StartScene::mouseEvent( int x, int y, MouseFunction function )
 				return true;
 			}
 
-            if( ButtonExit.contains( x, y ) )
+           if( ButtonExit.contains( x, y ) )
             {
                 clickButtonExit();
                 return true;
             }
-            drawCenter( 100, 100, "Exit.png" );
+
             break;
          default:
              break;

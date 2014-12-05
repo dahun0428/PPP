@@ -15,6 +15,7 @@ SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
     ButtonSwim = QRect( 50, 200, 140, 140 );
     ButtonBasket = QRect( 300, 200, 140, 140 );
     ButtonSoccer = QRect( 550, 200, 140, 140 );
+    ButtonQuiz = QRect(300, 400, 140, 140);
     BackButton = QRect ( 50, 50, 40, 40 );
 
     ButtonEasy = QRect( 300, 70, 40, 60 );
@@ -86,6 +87,11 @@ Scene* SelectSingleScene::update()
             drawCenter( 620, 270, "Soccer.png" );
         else
             drawCenter( 620-2, 270-2, "Soccer.png" );
+
+        if (ButtonQuiz.contains( lastCursor ) )
+            drawCenter(370, 470, "Quiz.png");
+        else
+            drawCenter(370-2, 270-2, "Quiz.png");
 
 
     if( BackButton.contains(lastCursor))
@@ -172,6 +178,13 @@ bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
                     return true;
                 }
 
+                if( ButtonQuiz.contains(x,y))
+                   {
+                    if(getGameClass()->getSingleDifficulty() == NONE) return false;
+                    clickButtonSoccer();
+                    return true;
+                }
+
                 if( SaveButton.contains(x, y)) {
                     clickSaveButton();
                     return true;
@@ -212,6 +225,11 @@ void SelectSingleScene::clickButtonBasket()
 void SelectSingleScene::clickButtonSoccer()
 {
     nextScene= new soccerscene(getGameClass());
+}
+
+void SelectSingleScene::clickButtonQuiz()
+{
+    nextScene= new quizscene(getGameClass());
 }
 
 void SelectSingleScene::clickBackButton(){

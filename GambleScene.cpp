@@ -17,6 +17,8 @@ GambleScene::GambleScene( Game* game) : Scene(game)
     Button1 = QRect( 670, 265, 60, 170 );
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
+    newFont.setPointSize(18);
+    newFont.setFamily("SansSerif");
 
 }
 GambleScene::~GambleScene() {}
@@ -27,7 +29,7 @@ Scene* GambleScene::update()
 
     drawCenter( 660, 70, "Points.png");
     pointText = intToQString(getGameClass()->getPoint());
-    drawText( 680, 78, pointText);
+    drawText( 680, 78, pointText,newFont);
 
     if( spinCount == 0 ) {
         drawCenter( 160, 300, "SpinSlot.png");
@@ -57,7 +59,7 @@ Scene* GambleScene::update()
     }
 
     drawCenter( 680, 200, "Cost.png");
-    drawText( 695, 207, intToQString(gambleCost));
+    drawText( 695, 207, intToQString(gambleCost),newFont);
     if( Button1.contains( lastCursor ) )
         drawCenter( 680, 350, "Pull1.png" );
     else

@@ -26,6 +26,11 @@ ShopScene::ShopScene(Game * game) : Scene(game)
     GambleButton = QRect(640, 440, 120, 120);
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
+    Font1.setPointSize(18);
+    Font1.setFamily("SansSerif");
+    Font2.setPointSize(15);
+    Font2.setFamily("SansSerif");
+
 }
 ShopScene::~ShopScene()
 {
@@ -38,10 +43,12 @@ Scene* ShopScene::update()
 
     drawCenter( 660, 70, "Points.png");
     pointText = intToQString(getGameClass()->getPoint());
-    drawText( 680, 78, pointText);
+
+
+    drawText( 680, 78, pointText,Font1);
 
     for(int i=0; i<5; i++)
-        drawText( 70+150*i, 330, priceText[i]);
+        drawText( 50+150*i, 330, priceText[i],Font2);
 
     if( BuyButton[0].contains( lastCursor ) )
         drawCenter( 100, 250, "Pobba.png");

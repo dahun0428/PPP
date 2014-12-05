@@ -1,0 +1,35 @@
+﻿image relocate
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Author:    dahun0428 <dahun0428@gmail.com>
+#
+# rebase in progress; onto 28dd2f8
+# You are currently rebasing branch 'master' on '28dd2f8'.
+#
+# Changes to be committed:
+#	modified:   PPP.pro.user
+#	modified:   Resources/Basket.png
+#	modified:   Resources/Continue.png
+#	modified:   Resources/History.png
+#	modified:   Resources/NewGame.png
+#	modified:   Resources/Olympic.png
+#	modified:   Resources/Olympic_history.png
+#	modified:   Resources/Quiz.png
+#	modified:   Resources/Save.png
+#	new file:   Resources/Save/save_data4
+#	modified:   Resources/Single.png
+#	modified:   Resources/Single_Result.png
+#	new file:   Resources/Single_Result1.png
+#	modified:   Resources/Single_history.png
+#	modified:   Resources/Soccer.png
+#	modified:   Resources/Swim.png
+#	modified:   Resources/YouShouldChoose.png
+#	modified:   Resources/soccerb1.png
+#	modified:   Resources/soccerb3.png
+#	modified:   selectscene.cpp
+#	modified:   selectscene.h
+#	modified:   selectsinglescene.cpp
+#
+

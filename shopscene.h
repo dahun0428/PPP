@@ -1,6 +1,7 @@
 #ifndef SHOPSCENE_H
 #define SHOPSCENE_H
 #include"Scene.h"
+#include<QFont>
 
 class ShopScene : public Scene
 {
@@ -29,6 +30,7 @@ private:
     void clickBackButton();
 
     QString intToQString(int n);       // move somewhere else?
+    QFont Font1,Font2;
 };
 
 #endif // SHOPSCENE_H

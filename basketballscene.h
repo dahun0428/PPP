@@ -43,6 +43,8 @@ private:
 
      enum GameMode mode;
 
+     QFont newFont;
+
 };
 
 #endif // BASKETBALLSCENE_H

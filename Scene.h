@@ -35,6 +35,7 @@ public:
 	void drawText( double x, double y, QString text );
 	void drawText( double x, double y, double w, double h, QString text, TextAlign = LEFT );
 	void drawText( QRect, QString text, TextAlign = LEFT );
+    void drawText( double x, double y, QString text, QFont font );
 
 protected:
 	virtual bool mouseEvent( int x, int y, MouseFunction ) = 0;

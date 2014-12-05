@@ -22,10 +22,13 @@ class SelectScene : public Scene
         QRect ButtonBasket;
         QRect ButtonSoccer;
         QRect BackButton;
+        QRect SaveButton;
 
         void clickButtonSwim();
         void clickButtonBasket();
         void clickButtonSoccer();
         void clickBackButton();
+        void clickSaveButton();
+
 };
 #endif // SELECTSCENE_H

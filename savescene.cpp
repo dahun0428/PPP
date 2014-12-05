@@ -4,7 +4,9 @@
 #include "qfile.h" // tb
 #include "Game.h"
 #include "qlabel.h"
-SaveScene::SaveScene( Game* game) : Scene( game )
+#include "selectsinglescene.h"
+#include "selectscene.h"
+SaveScene::SaveScene( Game* game, enum SavePoint _sp) : Scene( game )
 {
 
     nextScene = NULL;
@@ -17,20 +19,22 @@ SaveScene::SaveScene( Game* game) : Scene( game )
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
 
+    FilePath = "C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\";
+
     for(int i=0; i<4; i++) {
         filename[i] = "None.png";
     }
 
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1"))
+    if(QFile::exists(FilePath+"Save\\save_data1"))
         filename[0] =  "data1.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2"))
+    if(QFile::exists(FilePath+"Save\\save_data2"))
         filename[1] =  "data2.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3"))
+    if(QFile::exists(FilePath+"Save\\save_data3"))
         filename[2] =  "data3.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4"))
+    if(QFile::exists(FilePath+"Save\\save_data4"))
         filename[3] =  "data4.png";
 
-
+    sp = _sp;
 }
 SaveScene::~SaveScene()
 {
@@ -135,35 +139,85 @@ void SaveScene::clickButton1()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1");
-    nextScene = new NewScene( getGameClass() );
+    pg->saveGame(FilePath+"Save\\save_data1");
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 }
 
 void SaveScene::clickButton2()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2");
-    nextScene = new NewScene( getGameClass() );
+    pg->saveGame(FilePath+"Save\\save_data2");
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 }
 
 void SaveScene::clickButton3()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3");
-    nextScene = new NewScene( getGameClass() );
+    pg->saveGame(FilePath+"Save\\save_data3");
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 }
 
 void SaveScene::clickButton4()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4");
-    nextScene = new NewScene( getGameClass() );
+    pg->saveGame(FilePath+"Save\\save_data4");
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 }
 
 void SaveScene::clickBackButton(){
-    nextScene = new StartScene( getGameClass() );
+    switch(sp) {
+        case NEW:
+            nextScene = new NewScene( getGameClass() );
+            break;
+        case SINGLESELECT:
+            nextScene = new SelectSingleScene( getGameClass() );
+            break;
+        case OLYMPICSELECT:
+            nextScene = new SelectScene( getGameClass() );
+            break;
+    }
 
 }

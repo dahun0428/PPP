@@ -104,20 +104,20 @@ bool OlympicNanido::keyEvent(QKeyEvent * input){
 }
 void OlympicNanido::clickButtonEasy()
 {
-    getGameClass()->setDifficulty(EASY);
+    getGameClass()->setOlympicDifficulty(EASY);
     nextScene = new SelectScene(getGameClass());
 }
 
 void OlympicNanido::clickButtonNormal()
 {
-    getGameClass()->setDifficulty(NORMAL);
+    getGameClass()->setOlympicDifficulty(NORMAL);
     nextScene = new SelectScene(getGameClass());
 }
 
 
 void OlympicNanido::clickButtonHard()
 {
-    getGameClass()->setDifficulty(HARD);
+    getGameClass()->setOlympicDifficulty(HARD);
     nextScene = new SelectScene(getGameClass());
 }
 

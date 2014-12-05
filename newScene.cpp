@@ -7,6 +7,7 @@
 #include "selectscene.h"
 #include "Game.h"
 #include "historyscene.h"
+#include "savescene.h"
 
 NewScene::NewScene( Game* game) : Scene( game )
 {
@@ -17,6 +18,7 @@ NewScene::NewScene( Game* game) : Scene( game )
     Button1 = QRect( 310, 240, 180, 80 );
     Button2 = QRect( 310, 340, 180, 80 );
     ShopButton = QRect ( 700, 50, 40, 40);
+    SaveButton = QRect ( 650, 50, 40, 40);
     BackButton = QRect ( 50, 50, 40, 40 );
     HistoryButton = QRect (310, 440, 180, 80);
 //	alertButton = QRect( 260, 270, 120, 100 );
@@ -43,7 +45,12 @@ Scene* NewScene::update()
     if( ShopButton.contains( lastCursor ) )
         drawCenter( 720, 70, "Shop.png" );
     else
-        drawCenter( 720-2, 70-2, "Shop.png" );
+        drawCenter( 720-1, 70-1, "Shop.png" );
+
+    if( SaveButton.contains( lastCursor ) )
+        drawCenter( 670-2, 70, "Save.png" );
+    else
+        drawCenter( 670-3, 70-1, "Save.png" );
 
     if( BackButton.contains(lastCursor))
         drawCenter( 70, 70, "Back.png" );
@@ -51,10 +58,9 @@ Scene* NewScene::update()
         drawCenter( 70-2, 70-2, "Back.png" );
 
     if( HistoryButton.contains( lastCursor ) )
-        drawCenter( 400, 480, "Olympic.png" );
+        drawCenter( 400, 480, "History.png" );
     else
-        drawCenter( 400-2, 480-2, "Olympic.png" );
-
+        drawCenter( 400-2, 480-2, "History.png" );
 
 	return nextScene;
 }
@@ -92,10 +98,17 @@ bool NewScene::mouseEvent( int x, int y, MouseFunction function )
                 return true;
             }
 
+            if( SaveButton.contains(x,y))
+               {
+                clickSaveButton();
+                return true;
+            }
+
             if( HistoryButton.contains(x,y)) {
                 clickHistoryButton();
                 return true;
             }
+
 
 	}
 	
@@ -137,4 +150,8 @@ void NewScene::clickShop(){
 
 void NewScene::clickHistoryButton() {
     nextScene = new HistoryScene( getGameClass() );
+}
+
+void NewScene::clickSaveButton() {
+    nextScene = new SaveScene( getGameClass(), NEW);
 }

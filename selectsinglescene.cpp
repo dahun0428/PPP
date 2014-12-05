@@ -6,6 +6,7 @@
 #include "soccerscene.h"
 #include "basketballscene.h"
 #include "SwimScene.h"
+#include "savescene.h"
 
 SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
@@ -20,9 +21,11 @@ SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
     ButtonNormal = QRect( 400, 70, 50, 60 );
     ButtonHard = QRect( 500, 70, 50, 60 );
 
+    SaveButton = QRect ( 650, 50, 40, 40);
+
 
     getGameClass()->setGamemode(SINGLE);
-    getGameClass()->setDifficulty(NONE);
+    getGameClass()->setSingleDifficulty(NONE);
 }
 SelectSingleScene::~SelectSingleScene()
 {
@@ -35,38 +38,38 @@ Scene* SelectSingleScene::update()
 
 
     if( ButtonEasy.contains( lastCursor ) ){
-        if( getGameClass()->getDifficulty() == EASY)
+        if( getGameClass()->getSingleDifficulty() == EASY)
                     drawCenter (320, 90, "SelectedSingleE.png");
         else
             drawCenter( 320, 90, "SingleE.png" );
     }
-    else if( getGameClass()->getDifficulty() == EASY)
+    else if( getGameClass()->getSingleDifficulty() == EASY)
             drawCenter (320-2, 90-2, "SelectedSingleE.png");
     else
         drawCenter( 320-2, 90-2, "SingleE.png" );
 
     if( ButtonNormal.contains( lastCursor ) ){
-        if( getGameClass()->getDifficulty() == NORMAL)
+        if( getGameClass()->getSingleDifficulty() == NORMAL)
                     drawCenter (420, 90, "SelectedSingleN.png");
         else
             drawCenter( 420, 90, "SingleN.png" );
     }
-    else if( getGameClass()->getDifficulty() == NORMAL)
+    else if( getGameClass()->getSingleDifficulty() == NORMAL)
             drawCenter (420-2, 90-2, "SelectedSingleN.png");
     else
         drawCenter( 420-2, 90-2, "SingleN.png" );
 
     if( ButtonHard.contains( lastCursor ) ){
-        if( getGameClass()->getDifficulty() == HARD)
+        if( getGameClass()->getSingleDifficulty() == HARD)
             drawCenter( 520, 90, "SelectedSingleH.png" );
         else drawCenter( 520, 90, "SingleH.png" );
     }
-    else if( getGameClass()->getDifficulty() == HARD)
+    else if( getGameClass()->getSingleDifficulty() == HARD)
             drawCenter (520-2, 90-2, "SelectedSingleH.png");
     else
         drawCenter( 520-2, 90-2, "SingleH.png" );
 
-    if (getGameClass()->getDifficulty() == NONE)
+    if (getGameClass()->getSingleDifficulty() == NONE)
         drawCenter( 400,550, "YouShouldChoose.png");
 
         if( ButtonSwim.contains( lastCursor ) )
@@ -89,6 +92,11 @@ Scene* SelectSingleScene::update()
         drawCenter( 70, 70, "Back.png" );
     else
         drawCenter( 70-2, 70-2, "Back.png" );
+
+    if( SaveButton.contains( lastCursor ) )
+        drawCenter( 670-2, 70, "Save.png" );
+    else
+        drawCenter( 670-3, 70-1, "Save.png" );
 
 
 
@@ -145,22 +153,27 @@ bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
 
                 if( ButtonSwim.contains( x, y ) )
                 {
-                    if(getGameClass()->getDifficulty() == NONE) return false;
+                    if(getGameClass()->getSingleDifficulty() == NONE) return false;
                     clickButtonSwim();
                     return true;
                 }
 
                 if( ButtonBasket.contains( x, y ) )
                 {
-                    if(getGameClass()->getDifficulty() == NONE) return false;
+                    if(getGameClass()->getSingleDifficulty() == NONE) return false;
                     clickButtonBasket();
                     return true;
                 }
 
                 if( ButtonSoccer.contains(x,y))
                    {
-                    if(getGameClass()->getDifficulty() == NONE) return false;
+                    if(getGameClass()->getSingleDifficulty() == NONE) return false;
                     clickButtonSoccer();
+                    return true;
+                }
+
+                if( SaveButton.contains(x, y)) {
+                    clickSaveButton();
                     return true;
                 }
 
@@ -174,15 +187,15 @@ bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
 
 void SelectSingleScene::clickButtonEasy()
 {
-    getGameClass()->setDifficulty(EASY);
+    getGameClass()->setSingleDifficulty(EASY);
 }
 void SelectSingleScene::clickButtonNormal()
 {
-    getGameClass()->setDifficulty(NORMAL);
+    getGameClass()->setSingleDifficulty(NORMAL);
 }
 void SelectSingleScene::clickButtonHard()
 {
-    getGameClass()->setDifficulty(HARD);
+    getGameClass()->setSingleDifficulty(HARD);
 }
 
 void SelectSingleScene::clickButtonSwim()
@@ -205,4 +218,9 @@ void SelectSingleScene::clickBackButton(){
     nextScene = new NewScene( getGameClass() );
 
 }
+
+void SelectSingleScene::clickSaveButton(){
+    nextScene = new SaveScene( getGameClass(), SINGLESELECT);
+}
+
 

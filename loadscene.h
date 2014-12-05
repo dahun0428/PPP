@@ -39,6 +39,7 @@ private:
     // load
     QString filename[SAVE_SLOTS];
     bool load[SAVE_SLOTS];
+    QString FilePath;
 };
 
 #endif // LOADSCENE_H

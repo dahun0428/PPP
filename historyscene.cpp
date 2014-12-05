@@ -142,10 +142,6 @@ void HistoryScene::drawSingleHard() {
 }
 
 void HistoryScene::drawOlympic(int index) {
-    if (index >= olympic_cnt) {
-        drawCenter(400, 420, "notyet.png");
-        return;
-    }
 
     int postech_x = 50;
     int kaist_x = 50;
@@ -233,4 +229,7 @@ void HistoryScene::drawOlympic(int index) {
         x_pos+=60;
     }
 
+    if (index >= olympic_cnt) {
+        drawCenter(400, 400, "notyet.png");
+    }
 }

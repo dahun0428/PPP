@@ -86,6 +86,19 @@ void Scene::drawText( double x, double y, QString text, QFont font )
 
 }
 
+void Scene::drawText( double x, double y, QString text, QFont font, enum Qt::GlobalColor color)
+{
+    QFont temp=canvas->font();
+    canvas->setPen(color);
+    canvas->setFont(font);
+    if(canvas)
+        canvas->drawText( x, y, text );
+
+    canvas->setFont(temp);
+    canvas->setPen(Qt::black);
+
+}
+
 void Scene::drawText( double x, double y, double w, double h, QString text, TextAlign align )
 {
 	QRect rect(x, y, w, h);

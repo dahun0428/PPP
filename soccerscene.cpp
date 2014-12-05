@@ -21,7 +21,11 @@ soccerscene::soccerscene(Game* game) : Scene( game )
     state=0;
     score=0;
     life=3;
-    Diff=game->getDifficulty();
+    if (game->getGamemode() == SINGLE)
+        Diff = game->getSingleDifficulty();
+    else
+        Diff = game->getOlympicDifficulty();
+
     if(Diff==EASY)
         Dir=5;
     else if(Diff==NORMAL)

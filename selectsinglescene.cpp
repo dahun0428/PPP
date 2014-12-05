@@ -99,8 +99,11 @@ Scene* SelectSingleScene::update()
         if (getGameClass()->getSingleDifficulty() == NONE)
             drawCenter( 400,380, "YouShouldChoose.png");
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> quiz
 
     if( BackButton.contains(lastCursor))
         drawCenter( 70, 70, "Back.png" );

@@ -17,17 +17,19 @@ SaveScene::SaveScene( Game* game) : Scene( game )
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
 
+    FilePath = "C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\";
+
     for(int i=0; i<4; i++) {
         filename[i] = "None.png";
     }
 
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1"))
+    if(QFile::exists(FilePath+"Save\\save_data1"))
         filename[0] =  "data1.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2"))
+    if(QFile::exists(FilePath+"Save\\save_data2"))
         filename[1] =  "data2.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3"))
+    if(QFile::exists(FilePath+"Save\\save_data3"))
         filename[2] =  "data3.png";
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4"))
+    if(QFile::exists(FilePath+"Save\\save_data4"))
         filename[3] =  "data4.png";
 
 
@@ -135,7 +137,7 @@ void SaveScene::clickButton1()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1");
+    pg->saveGame(FilePath+"Save\\save_data1");
     nextScene = new NewScene( getGameClass() );
 }
 
@@ -143,7 +145,7 @@ void SaveScene::clickButton2()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2");
+    pg->saveGame(FilePath+"Save\\save_data2");
     nextScene = new NewScene( getGameClass() );
 }
 
@@ -151,7 +153,7 @@ void SaveScene::clickButton3()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3");
+    pg->saveGame(FilePath+"Save\\save_data3");
     nextScene = new NewScene( getGameClass() );
 }
 
@@ -159,7 +161,7 @@ void SaveScene::clickButton4()
 {
     // game save
     Game* pg = getGameClass();
-    pg->saveGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4");
+    pg->saveGame(FilePath+"Save\\save_data4");
     nextScene = new NewScene( getGameClass() );
 }
 

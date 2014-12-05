@@ -2,7 +2,7 @@
 #define QUIZSCENE_H
 
 #include "Scene.h"
-#include "Character.h"
+class Character;
 
 class QuizScene : public Scene
 {
@@ -16,19 +16,14 @@ protected:
 private:
     Scene* nextScene;
     QPoint lastCursor;
-    //QKeyEvent* lastKeyInput;
     int lastKey;
     int numOfPlayers;
-    Character** player;
-
-    QRect Button1;
-    QRect BackButton;
-    QRect alertButton;
-
-    void clickButton1();
-    void clickBackButton();
-    void opponentSwim();
-    bool isFinished();
+    Character* player;
+    int* scores;
+    double playtime;
+    QString problems[100];
+    QString answers[100];
+    QString operators[4];
 };
 
 #endif // QUIZSCENE_H

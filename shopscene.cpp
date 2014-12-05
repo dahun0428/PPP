@@ -13,7 +13,7 @@ ShopScene::ShopScene(Game * game) : Scene(game)
     pointText = intToQString(getGameClass()->getPoint());
     for(int i=0; i<5; i++) {
         price[i] = (i+1)*500;
-        if(getGameClass()->getCharacterAvailable(i))
+        if(getGameClass()->getCharacterAvailable(i+1))
             priceText[i] = "Purchased";
         else {
             priceText[i] = intToQString(price[i]);
@@ -127,7 +127,7 @@ bool ShopScene::keyEvent(QKeyEvent * input){
     }
 }
 void ShopScene::clickBuyButton(int index) {
-    if( getGameClass()->getCharacterAvailable(index) ) {
+    if( getGameClass()->getCharacterAvailable(index+1) ) {
         // display already purchased.
     }
     else if( getGameClass()->getPoint() < price[index] ) {
@@ -135,7 +135,7 @@ void ShopScene::clickBuyButton(int index) {
     }
     else {
         getGameClass()->setPoint( getGameClass()->getPoint() - price[index] );
-        getGameClass()->setCharacterAvailable(index, true);
+        getGameClass()->setCharacterAvailable(index+1, true);
         priceText[index] = "Purchased";
         // display purchased.
     }

@@ -5,7 +5,7 @@
 #include "qlabel.h"
 #include <QKeyEvent>
 #include"Game.h"
-#include"basketresultscene.h"
+#include"singleresultscene.h"
 #include"selectsinglescene.h"
 
 
@@ -52,7 +52,7 @@ Scene* soccerscene::update()
     if(life==0&&enable){
         getGameClass()->setScore(score);
         if(mode==SINGLE)
-            nextScene = new basketResultScene(getGameClass());
+            nextScene = new singleResultScene(getGameClass());
         else //olympic
             nextScene = new SelectSingleScene(getGameClass());
     }

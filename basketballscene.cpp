@@ -4,7 +4,7 @@
 #include <sstream>
 #include "qlabel.h"
 #include"selectsinglescene.h"
-#include"basketresultscene.h"
+#include"singleresultscene.h"
 
 basketballscene::basketballscene(Game *game) : Scene(game)
 {
@@ -113,9 +113,9 @@ bool basketballscene::keyEvent(QKeyEvent * input){
 Scene* basketballscene::update()
 {
     if(life==0){
-        getGameClass()->setScore(score);
+        //getGameClass()->setScore(score);
         if(mode==SINGLE)
-            nextScene = new basketResultScene(getGameClass());
+            nextScene = new singleResultScene(getGameClass());
         else
             nextScene = new SelectSingleScene(getGameClass());
     }

@@ -1,10 +1,10 @@
-#include"basketresultscene.h"
+#include"singleresultscene.h"
 #include "Game.h"
 #include "qlabel.h"
 #include "selectsinglescene.h"
 #include <string>
 #include <sstream>
-basketResultScene::basketResultScene(Game * game) : Scene(game)
+singleResultScene::singleResultScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
 
@@ -12,11 +12,11 @@ basketResultScene::basketResultScene(Game * game) : Scene(game)
 
     //scoretext="t";
 }
-basketResultScene::~basketResultScene()
+singleResultScene::~singleResultScene()
 {
 
 }
-Scene* basketResultScene::update()
+Scene* singleResultScene::update()
 {
     draw( 0, 0, "White.png" );
     draw(50,100,"Single_Result.png");
@@ -34,7 +34,7 @@ Scene* basketResultScene::update()
 
     return nextScene;
 }
-bool basketResultScene::mouseEvent( int x, int y, MouseFunction function )
+bool singleResultScene::mouseEvent( int x, int y, MouseFunction function )
 {
     lastCursor.setX( x );
     lastCursor.setY( y );
@@ -57,7 +57,7 @@ bool basketResultScene::mouseEvent( int x, int y, MouseFunction function )
 
     return false;
 }
-bool basketResultScene::keyEvent(QKeyEvent * input){
+bool singleResultScene::keyEvent(QKeyEvent * input){
 
     if(nextScene !=NULL)
         return false;
@@ -71,12 +71,12 @@ bool basketResultScene::keyEvent(QKeyEvent * input){
 
     }
 }
-void basketResultScene::clickButtonNext()
+void singleResultScene::clickButtonNext()
 {
     //point, Best 처리
     nextScene = new SelectSingleScene(getGameClass());
 }
-QString basketResultScene::intToQString(int n) {
+QString singleResultScene::intToQString(int n) {
     std::stringstream tempStrs;
     std::string temp;
     QString tempQStr;

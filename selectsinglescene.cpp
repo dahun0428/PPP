@@ -7,6 +7,7 @@
 #include "basketballscene.h"
 #include "SwimScene.h"
 #include "savescene.h"
+#include "quizscene.h"
 
 SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
@@ -188,7 +189,7 @@ bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
                 if( ButtonQuiz.contains(x,y))
                    {
                     if(getGameClass()->getSingleDifficulty() == NONE) return false;
-                    clickButtonSoccer();
+                    clickButtonQuiz();
                     return true;
                 }
 
@@ -237,8 +238,8 @@ void SelectSingleScene::clickButtonSoccer()
 void SelectSingleScene::clickButtonQuiz()
 {
 
+    nextScene= new QuizScene(getGameClass()); // quizscene
 
-    nextScene= new soccerscene(getGameClass()); // quizscene
 }
 
 void SelectSingleScene::clickBackButton(){

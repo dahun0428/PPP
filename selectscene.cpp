@@ -58,10 +58,6 @@ Scene* SelectScene::update()
     else
         drawCenter( 70-2, 70-2, "Back.png" );
 
-    if (ButtonQuiz.contains( lastCursor ) )
-        drawCenter(370, 470, "Quiz.png");
-    else
-        drawCenter(370-2, 470-2, "Quiz.png");
 
 
     return nextScene;

@@ -44,35 +44,35 @@ Scene* SelectSingleScene::update()
 
     if( ButtonEasy.contains( lastCursor ) ){
         if( getGameClass()->getSingleDifficulty() == EASY)
-                    drawCenter (320, 90, "SelectedSingleE.png");
+                    drawCenter (296, 90, "SelectedSingleE.png");
         else
-            drawCenter( 320, 90, "SingleE.png" );
+            drawCenter( 296, 90, "SingleE.png" );
     }
     else if( getGameClass()->getSingleDifficulty() == EASY)
-            drawCenter (320-2, 90-2, "SelectedSingleE.png");
+            drawCenter (296-2, 90-2, "SelectedSingleE.png");
     else
-        drawCenter( 320-2, 90-2, "SingleE.png" );
+        drawCenter( 296-2, 90-2, "SingleE.png" );
 
     if( ButtonNormal.contains( lastCursor ) ){
         if( getGameClass()->getSingleDifficulty() == NORMAL)
-                    drawCenter (420, 90, "SelectedSingleN.png");
+                    drawCenter (396, 90, "SelectedSingleN.png");
         else
-            drawCenter( 420, 90, "SingleN.png" );
+            drawCenter( 396, 90, "SingleN.png" );
     }
     else if( getGameClass()->getSingleDifficulty() == NORMAL)
-            drawCenter (420-2, 90-2, "SelectedSingleN.png");
+            drawCenter (396-2, 90-2, "SelectedSingleN.png");
     else
-        drawCenter( 420-2, 90-2, "SingleN.png" );
+        drawCenter( 396-2, 90-2, "SingleN.png" );
 
     if( ButtonHard.contains( lastCursor ) ){
         if( getGameClass()->getSingleDifficulty() == HARD)
-            drawCenter( 520, 90, "SelectedSingleH.png" );
-        else drawCenter( 520, 90, "SingleH.png" );
+            drawCenter( 496, 90, "SelectedSingleH.png" );
+        else drawCenter( 496, 90, "SingleH.png" );
     }
     else if( getGameClass()->getSingleDifficulty() == HARD)
-            drawCenter (520-2, 90-2, "SelectedSingleH.png");
+            drawCenter (496-2, 90-2, "SelectedSingleH.png");
     else
-        drawCenter( 520-2, 90-2, "SingleH.png" );
+        drawCenter( 496-2, 90-2, "SingleH.png" );
 
 
 

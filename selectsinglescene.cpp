@@ -99,14 +99,7 @@ Scene* SelectSingleScene::update()
         if (getGameClass()->getSingleDifficulty() == NONE)
             drawCenter( 400,380, "YouShouldChoose.png");
 
-<<<<<<< HEAD
-        if (ButtonQuiz.contains( lastCursor ) )
-            drawCenter(370, 470, "Quiz.png");
-        else
-            drawCenter(370-2, 470-2, "Quiz.png");
-=======
 
->>>>>>> soso
 
 
     if( BackButton.contains(lastCursor))
@@ -244,11 +237,9 @@ void SelectSingleScene::clickButtonSoccer()
 
 void SelectSingleScene::clickButtonQuiz()
 {
-<<<<<<< HEAD
+
     nextScene= new soccerscene(getGameClass()); // quizscene
-=======
-    //nextScene= new quizscene(getGameClass());
->>>>>>> soso
+
 }
 
 void SelectSingleScene::clickBackButton(){

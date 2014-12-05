@@ -12,21 +12,21 @@ Character::Character() {
 Character::~Character() {}
 
 Pobba::Pobba() {
-    speed = 2.0;
+    speed = 2.4;
     accuracy = 4.5;
     intelligence = 3.0;
 }
 Pobba::~Pobba() {}
 
 Kaiser::Kaiser() {
-    speed = 2.4;
+    speed = 2.8;
     accuracy = 4.0;
     intelligence = 3.0;
 }
 Kaiser::~Kaiser() {}
 
 Swimmer::Swimmer() {
-    speed = 10.0;
+    speed = 5.0;
     accuracy = 3.0;
     intelligence = 3.0;
 }

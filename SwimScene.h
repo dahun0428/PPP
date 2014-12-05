@@ -2,6 +2,7 @@
 #define SWIMSCENE_H
 #include "Scene.h"
 #include "Character.h"
+#include <QTime>
 
 class SwimScene : public Scene
 {
@@ -15,15 +16,19 @@ protected:
 private:
     Scene* nextScene;
     QPoint lastCursor;
-    //QKeyEvent* lastKeyInput;
     int lastKey;
+    QTime timer;
+    int elapsedTime;
+    int finishedCount;
+
+    Difficulty diff;
     int numOfPlayers;
     Character** player;
-
     double* swimFactor;
     double* position;
     double finishPosition;
 
+    int userSwimCount;
     int opponentSwimCount;
     int winnderIndex;
 
@@ -31,10 +36,12 @@ private:
     QRect BackButton;
     QRect alertButton;
 
-    void clickButton1();
+    void userSwim();
     void clickBackButton();
     void opponentSwim();
     bool isFinished();
+
+    QString doubleToQString(double n);
 };
 
 

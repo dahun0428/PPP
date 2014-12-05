@@ -21,6 +21,7 @@ class SelectScene : public Scene
         QRect ButtonSwim;
         QRect ButtonBasket;
         QRect ButtonSoccer;
+        QRect ButtonQuiz;
         QRect BackButton;
         QRect SaveButton;
 

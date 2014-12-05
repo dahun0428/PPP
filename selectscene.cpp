@@ -8,9 +8,10 @@ SelectScene::SelectScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
 
-    ButtonSwim = QRect( 50, 200, 140, 140 );
-    ButtonBasket = QRect( 300, 200, 140, 140 );
-    ButtonSoccer = QRect( 550, 200, 140, 140 );
+    ButtonSwim = QRect( 78, 168, 140, 140 );
+    ButtonBasket = QRect( 201, 310, 140, 140 );
+    ButtonSoccer = QRect( 453, 304, 140, 140 );
+    ButtonQuiz = QRect ( 576, 166, 140, 140);
     BackButton = QRect ( 50, 50, 40, 40 );
     SaveButton = QRect ( 650, 50, 40, 40);
     getGameClass()->setGamemode(OLYMPIC);
@@ -25,24 +26,30 @@ Scene* SelectScene::update()
 
 
     if( ButtonSwim.contains( lastCursor ) )
-        drawCenter( 120, 270, "Swim.png" );
+        drawCenter( 148, 238, "Swim.png" );
     else
-        drawCenter( 120-2, 270-2, "Swim.png" );
+        drawCenter( 148-2, 238-2, "Swim.png" );
 
     if( ButtonBasket.contains( lastCursor ) )
-        drawCenter( 370, 270, "Basket.png" );
+        drawCenter( 271, 380, "Basket.png" );
     else
-        drawCenter( 370-2, 270-2, "Basket.png" );
+        drawCenter( 271-2, 380-2, "Basket.png" );
+
+    if( ButtonSoccer.contains( lastCursor ) )
+        drawCenter( 523, 374, "Soccer.png" );
+    else
+        drawCenter( 523-2, 374-2, "Soccer.png" );
+
+    if( ButtonQuiz.contains( lastCursor ) )
+        drawCenter( 646, 236, "Quiz.png" );
+    else
+        drawCenter( 646-2, 236-2, "Quiz.png" );
 
     if( SaveButton.contains( lastCursor ) )
         drawCenter( 670-2, 70, "Save.png" );
     else
         drawCenter( 670-3, 70-1, "Save.png" );
 
-    if( ButtonSoccer.contains( lastCursor ) )
-        drawCenter( 620, 270, "Soccer.png" );
-    else
-        drawCenter( 620-2, 270-2, "Soccer.png" );
 
     if( BackButton.contains(lastCursor))
         drawCenter( 70, 70, "Back.png" );

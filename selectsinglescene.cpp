@@ -12,11 +12,15 @@ SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
 
-    ButtonSwim = QRect( 50, 200, 140, 140 );
-    ButtonBasket = QRect( 300, 200, 140, 140 );
-    ButtonSoccer = QRect( 550, 200, 140, 140 );
-    ButtonQuiz = QRect(300, 400, 140, 140);
+
+    ButtonSwim = QRect( 78, 168, 140, 140 );
+    ButtonBasket = QRect( 201, 310, 140, 140 );
+    ButtonSoccer = QRect( 453, 304, 140, 140 );
+    ButtonQuiz = QRect ( 576, 166, 140, 140);
+
+
     BackButton = QRect ( 50, 50, 40, 40 );
+
 
     ButtonEasy = QRect( 300, 70, 40, 60 );
     ButtonNormal = QRect( 400, 70, 50, 60 );
@@ -70,23 +74,30 @@ Scene* SelectSingleScene::update()
     else
         drawCenter( 520-2, 90-2, "SingleH.png" );
 
-    if (getGameClass()->getSingleDifficulty() == NONE)
-        drawCenter( 400,550, "YouShouldChoose.png");
+
 
         if( ButtonSwim.contains( lastCursor ) )
-            drawCenter( 120, 270, "Swim.png" );
+            drawCenter( 148, 238, "Swim.png" );
         else
-            drawCenter( 120-2, 270-2, "Swim.png" );
+            drawCenter( 148-2, 238-2, "Swim.png" );
 
         if( ButtonBasket.contains( lastCursor ) )
-            drawCenter( 370, 270, "Basket.png" );
+            drawCenter( 271, 380, "Basket.png" );
         else
-            drawCenter( 370-2, 270-2, "Basket.png" );
+            drawCenter( 271-2, 380-2, "Basket.png" );
 
         if( ButtonSoccer.contains( lastCursor ) )
-            drawCenter( 620, 270, "Soccer.png" );
+            drawCenter( 523, 374, "Soccer.png" );
         else
-            drawCenter( 620-2, 270-2, "Soccer.png" );
+            drawCenter( 523-2, 374-2, "Soccer.png" );
+
+        if( ButtonQuiz.contains( lastCursor ) )
+            drawCenter( 646, 236, "Quiz.png" );
+        else
+            drawCenter( 646-2, 236-2, "Quiz.png" );
+
+        if (getGameClass()->getSingleDifficulty() == NONE)
+            drawCenter( 400,380, "YouShouldChoose.png");
 
         if (ButtonQuiz.contains( lastCursor ) )
             drawCenter(370, 470, "Quiz.png");

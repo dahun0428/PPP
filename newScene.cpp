@@ -18,6 +18,7 @@ NewScene::NewScene( Game* game) : Scene( game )
     Button1 = QRect( 310, 240, 180, 80 );
     Button2 = QRect( 310, 340, 180, 80 );
     ShopButton = QRect ( 700, 50, 40, 40);
+    SaveButton = QRect ( 650, 50, 40, 40);
     BackButton = QRect ( 50, 50, 40, 40 );
     HistoryButton = QRect (310, 440, 180, 80);
     SaveButton = QRect (600, 50, 40, 40);
@@ -45,7 +46,12 @@ Scene* NewScene::update()
     if( ShopButton.contains( lastCursor ) )
         drawCenter( 720, 70, "Shop.png" );
     else
-        drawCenter( 720-2, 70-2, "Shop.png" );
+        drawCenter( 720-1, 70-1, "Shop.png" );
+
+    if( SaveButton.contains( lastCursor ) )
+        drawCenter( 670-2, 70, "Save.png" );
+    else
+        drawCenter( 670-3, 70-1, "Save.png" );
 
     if( BackButton.contains(lastCursor))
         drawCenter( 70, 70, "Back.png" );
@@ -96,6 +102,12 @@ bool NewScene::mouseEvent( int x, int y, MouseFunction function )
             if( ShopButton.contains(x,y))
                {
                 clickShop();
+                return true;
+            }
+
+            if( SaveButton.contains(x,y))
+               {
+                clickSaveButton();
                 return true;
             }
 

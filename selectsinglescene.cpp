@@ -6,6 +6,7 @@
 #include "soccerscene.h"
 #include "basketballscene.h"
 #include "SwimScene.h"
+#include "savescene.h"
 
 SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
 {
@@ -19,6 +20,8 @@ SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
     ButtonEasy = QRect( 300, 70, 40, 60 );
     ButtonNormal = QRect( 400, 70, 50, 60 );
     ButtonHard = QRect( 500, 70, 50, 60 );
+
+    SaveButton = QRect ( 650, 50, 40, 40);
 
 
     getGameClass()->setGamemode(SINGLE);
@@ -89,6 +92,11 @@ Scene* SelectSingleScene::update()
         drawCenter( 70, 70, "Back.png" );
     else
         drawCenter( 70-2, 70-2, "Back.png" );
+
+    if( SaveButton.contains( lastCursor ) )
+        drawCenter( 670-2, 70, "Save.png" );
+    else
+        drawCenter( 670-3, 70-1, "Save.png" );
 
 
 
@@ -205,4 +213,9 @@ void SelectSingleScene::clickBackButton(){
     nextScene = new NewScene( getGameClass() );
 
 }
+
+void SelectSingleScene::clickSaveButton(){
+    nextScene = new SaveScene( getGameClass());
+}
+
 

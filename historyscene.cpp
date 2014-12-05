@@ -45,9 +45,9 @@ Scene* HistoryScene::update() {
         drawCenter( 550-2, 100-2, "Olympic_history.png");
 
     if (mode == SINGLE) {
-        drawCenter( 175, 200, "Easy_history.png");
-        drawCenter( 400, 200, "Normal_history.png");
-        drawCenter( 625, 200, "Hard_history.png");
+        drawCenter( 148, 200, "Easy_history.png");
+        drawCenter( 396, 200, "Normal_history.png");
+        drawCenter( 647, 200, "Hard_history.png");
         if (diff == SINGLE)
             drawSingleEasy();
         if (diff == NORMAL)

@@ -21,7 +21,7 @@ SelectScene::~SelectScene()
 Scene* SelectScene::update()
 {
     draw( 0, 0, "White.png" );
-    draw( 0, 30, "White.png" );
+
 
     if( ButtonSwim.contains( lastCursor ) )
         drawCenter( 120, 270, "Swim.png" );

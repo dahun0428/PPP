@@ -49,7 +49,7 @@ soccerscene::soccerscene(Game* game) : Scene( game )
 
 Scene* soccerscene::update()
 {
-    if(life==0){
+    if(life==0&&enable){
         getGameClass()->setScore(score);
         if(mode==SINGLE)
             nextScene = new basketResultScene(getGameClass());

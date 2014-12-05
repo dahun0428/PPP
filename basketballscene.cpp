@@ -3,6 +3,8 @@
 #include <string>
 #include <sstream>
 #include "qlabel.h"
+#include"selectsinglescene.h"
+#include"basketresultscene.h"
 
 basketballscene::basketballscene(Game *game) : Scene(game)
 {
@@ -103,14 +105,20 @@ bool basketballscene::keyEvent(QKeyEvent * input){
 
 Scene* basketballscene::update()
 {
-    if(life==0)
-        nextScene = new SelectSingleScene(getGameClass());
+    if(life==0){
+        getGameClass()->setScore(score);
+        if(mode==SINGLE)
+            nextScene = new basketResultScene(getGameClass());
+        else
+            nextScene = new SelectSingleScene(getGameClass());
+    }
+
     draw( 0, 0, "basketballBG.png" );
     draw(300,0,"soccerscore.png");
     if(life==3)
         drawCenter(760,30,"basketball.png");
     if(life>=2)
-        drawCenter(7300,30,"basketball.png");
+        drawCenter(710,30,"basketball.png");
 
     if( BackButton.contains(lastCursor))
         drawCenter( 70, 70, "Back.png" );

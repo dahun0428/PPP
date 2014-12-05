@@ -28,6 +28,9 @@ public:
     void setCharacterInUse(CharacterType character);
     enum CharacterType getCharacterInUse();
 
+    void setScore(int _score);
+    int getScore();
+
 	// tb
     void setPoint(int _point);
     void setCharacterAvailable(int index, bool _available);
@@ -53,6 +56,7 @@ private:
 	void deleteNowScene();
 	void drawNowScene( QPainter* canvas );
     int point;
+    int score;
     bool characterAvailable[5];
     enum Difficulty difficulty;
     enum GameMode gamemode;

@@ -20,7 +20,12 @@ private:
     Scene* nextScene;
     QPoint lastCursor;
     QString scoretext;
-    int score;
+    int score,life;
+    enum Difficulty Diff;
+    int Dir;
+
+    enum GameMode mode;
+    bool enable;
 
     QString intToQString(int n);       // move somewhere else?R
 
@@ -28,12 +33,16 @@ private:
     QRect Button1;
     QRect Button2;
     QRect Button3;
+    QRect Button4;
+    QRect Button5;
     //QRect alertButton;
     QRect BackButton;
 
     void clickButton1();
     void clickButton2();
     void clickButton3();
+    void clickButton4();
+    void clickButton5();
     void clickBackButton();
 };
 

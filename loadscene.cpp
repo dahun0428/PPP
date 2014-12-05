@@ -21,19 +21,19 @@ LoadScene::LoadScene( Game* game) : Scene( game )
         load[i] = false;
     }
 
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1")) {
+    if(QFile::exists("C:\\Qt\\PPP\\Resources\\Save\\save_data1")) {
         filename[0] =  "data1.png";
         load[0] = true;
     }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2")) {
+    if(QFile::exists("C:\\Qt\\PPP\\Resources\\Save\\save_data2")) {
         filename[1] =  "data2.png";
         load[1] = true;
     }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3")) {
+    if(QFile::exists("C:\\Qt\\PPP\\Resources\\Save\\save_data3")) {
         filename[2] =  "data3.png";
         load[2] = true;
     }
-    if(QFile::exists("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4")) {
+    if(QFile::exists("C:\\Qt\\PPP\\Resources\\Save\\save_data4")) {
         filename[3] =  "data4.png";
         load[3] = true;
     }
@@ -141,7 +141,7 @@ void LoadScene::clickButton1()
     if(load[0]) {
         // game load
         Game* pg = getGameClass();
-        pg->loadGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data1");
+        pg->loadGame("C:\\Qt\\PPP\\Resources\\Save\\save_data1");
         nextScene = new NewScene( getGameClass() );
     }
 }
@@ -151,7 +151,7 @@ void LoadScene::clickButton2()
     if(load[1]) {
         // game load
         Game* pg = getGameClass();
-        pg->loadGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data2");
+        pg->loadGame("C:\\Qt\\PPP\\Resources\\Save\\save_data2");
         nextScene = new NewScene( getGameClass() );
     }
 }
@@ -161,7 +161,7 @@ void LoadScene::clickButton3()
     if(load[2]) {
         // game load
         Game* pg = getGameClass();
-        pg->loadGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data3");
+        pg->loadGame("C:\\Qt\\PPP\\Resources\\Save\\save_data3");
         nextScene = new NewScene( getGameClass() );
     }
 }
@@ -171,7 +171,7 @@ void LoadScene::clickButton4()
     if(load[3]) {
         // game load
         Game* pg = getGameClass();
-        pg->loadGame("C:\\Qt\\Tools\\QtCreator\\bin\\PPP\\Resources\\Save\\save_data4");
+        pg->loadGame("C:\\Qt\\PPP\\Resources\\Save\\save_data4");
         nextScene = new NewScene( getGameClass() );
     }
 }

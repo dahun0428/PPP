@@ -20,6 +20,7 @@ INPUT(
 ./release/SwimScene.o
 ./release/CharacterScene.o
 ./release/basketballscene.o
+./release/basketresultscene.o
 ./release/moc_Window.o
 ./release/moc_mainwindow.o
 );

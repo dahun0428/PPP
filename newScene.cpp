@@ -58,9 +58,9 @@ Scene* NewScene::update()
         drawCenter( 70-2, 70-2, "Back.png" );
 
     if( HistoryButton.contains( lastCursor ) )
-        drawCenter( 400, 480, "Olympic.png" );
+        drawCenter( 400, 480, "History.png" );
     else
-        drawCenter( 400-2, 480-2, "Olympic.png" );
+        drawCenter( 400-2, 480-2, "History.png" );
 
 	return nextScene;
 }

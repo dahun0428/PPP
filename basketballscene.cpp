@@ -3,6 +3,8 @@
 #include <string>
 #include <sstream>
 #include "qlabel.h"
+#include"selectsinglescene.h"
+#include"basketresultscene.h"
 
 basketballscene::basketballscene(Game *game) : Scene(game)
 {
@@ -10,6 +12,7 @@ basketballscene::basketballscene(Game *game) : Scene(game)
     score=0;
     updown=true;
     state=0;
+    life=3;
     scoretext=intToQString(score);
     BackButton = QRect ( 50, 50, 40, 40 );
     bx=0;
@@ -33,6 +36,8 @@ basketballscene::basketballscene(Game *game) : Scene(game)
         bx0=BXN;
     else
         bx0=BXH;
+
+    mode=game->getGamemode();
 
 }
 QString basketballscene::intToQString(int n) {
@@ -81,7 +86,11 @@ bool basketballscene::keyEvent(QKeyEvent * input){
                 updown=true;
                 state=3;
             }
+            else if(state==3){
+                ;
+            }
             else{
+
                 state=0;//지워야됌
                 t=0;
                 bx=0;
@@ -103,8 +112,21 @@ bool basketballscene::keyEvent(QKeyEvent * input){
 
 Scene* basketballscene::update()
 {
+    if(life==0){
+        getGameClass()->setScore(score);
+        if(mode==SINGLE)
+            nextScene = new basketResultScene(getGameClass());
+        else
+            nextScene = new SelectSingleScene(getGameClass());
+    }
+
     draw( 0, 0, "basketballBG.png" );
     draw(300,0,"soccerscore.png");
+    if(life==3)
+        drawCenter(760,30,"basketball.png");
+    if(life>=2)
+        drawCenter(710,30,"basketball.png");
+
     if( BackButton.contains(lastCursor))
         drawCenter( 70, 70, "Back.png" );
     else
@@ -151,6 +173,7 @@ Scene* basketballscene::update()
     case 3:
         if(t==3){
             t=0;
+            updown=true;
             bx=bx+bvx;
             by=by+bvy;
             bvy=bvy-GRAV;
@@ -176,6 +199,8 @@ Scene* basketballscene::update()
         if(by<-160||bx>bx0){
             bx=0;
             by=0;
+            if(check==true)
+                life--;
             state=0;
         }
 

@@ -103,6 +103,13 @@ void Game::setCharacterInUse(CharacterType character){
 enum CharacterType Game::getCharacterInUse(){
     return characterInUse;
 }
+void Game::setScore(int _score){
+    score=_score;
+}
+
+int Game::getScore(){
+    return score;
+}
 
 enum GameType Game::getGametype() {
     return gametype;

@@ -1,5 +1,6 @@
 #ifndef BASKETBALLSCENE_H
 #define BASKETBALLSCENE_H
+#include "Global.h"
 #include"Scene.h"
 #include "StartScene.h"
 #include "olympicnanido.h"
@@ -25,7 +26,7 @@ protected:
     bool keyEvent(QKeyEvent *);
 private:
     int t,t2;
-    int state;
+    int state,life;
     Scene* nextScene;
     QPoint lastCursor;
     QKeyEvent *lastKeyInput;
@@ -38,6 +39,9 @@ private:
      QString intToQString(int n);
      QRect BackButton;
      void clickBackButton();
+
+
+     enum GameMode mode;
 
 };
 

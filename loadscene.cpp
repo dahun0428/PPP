@@ -23,6 +23,8 @@ LoadScene::LoadScene( Game* game) : Scene( game )
         load[i] = false;
     }
 
+
+
     if(QFile::exists(FilePath+"Save\\save_data1")) {
         filename[0] =  "data1.png";
         load[0] = true;
@@ -39,6 +41,7 @@ LoadScene::LoadScene( Game* game) : Scene( game )
         filename[3] =  "data4.png";
         load[3] = true;
     }
+
 
 }
 LoadScene::~LoadScene()
@@ -143,6 +146,7 @@ void LoadScene::clickButton1()
     if(load[0]) {
         // game load
         Game* pg = getGameClass();
+
         pg->loadGame(FilePath+"Save\\save_data1");
         nextScene = new NewScene( getGameClass() );
     }
@@ -153,6 +157,7 @@ void LoadScene::clickButton2()
     if(load[1]) {
         // game load
         Game* pg = getGameClass();
+
         pg->loadGame(FilePath+"Save\\save_data2");
         nextScene = new NewScene( getGameClass() );
     }
@@ -163,6 +168,7 @@ void LoadScene::clickButton3()
     if(load[2]) {
         // game load
         Game* pg = getGameClass();
+
         pg->loadGame(FilePath+"Save\\save_data3");
         nextScene = new NewScene( getGameClass() );
     }
@@ -173,6 +179,7 @@ void LoadScene::clickButton4()
     if(load[3]) {
         // game load
         Game* pg = getGameClass();
+
         pg->loadGame(FilePath+"Save\\save_data4");
         nextScene = new NewScene( getGameClass() );
     }

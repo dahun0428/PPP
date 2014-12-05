@@ -24,6 +24,8 @@ class SelectSingleScene : public Scene
         QRect ButtonSwim;
         QRect ButtonBasket;
         QRect ButtonSoccer;
+        QRect ButtonQuiz;
+
         QRect BackButton;
         QRect SaveButton;
 
@@ -34,6 +36,8 @@ class SelectSingleScene : public Scene
         void clickButtonSwim();
         void clickButtonBasket();
         void clickButtonSoccer();
+        void clickButtonQuiz();
+
         void clickBackButton();
         void clickSaveButton();
 };

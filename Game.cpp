@@ -187,6 +187,10 @@ void Game::loadGame(QString filename) {
         OlympicHistory[i].setMedal(GIST, tmpList[0].toInt(), tmpList[1].toInt(), tmpList[2].toInt());
     }
 
+    // Game class data setting
+    singledifficulty = NONE;
+    olympicdifficulty = OlympicHistory[olympic_cnt].getDifficulty();
+
     file->close();
 }
 
@@ -207,28 +211,25 @@ void Game::saveGame(QString filename) {
             .arg((int)characterAvailable[4]);
     str.append(tmp);
 
-    tmp = QString("%1 %2 %3 %4 %5\n")
+    tmp = QString("%1 %2 %3 %4\n")
             .arg(easy_level_history[0])
             .arg(easy_level_history[1])
             .arg(easy_level_history[2])
-            .arg(easy_level_history[3])
-            .arg(easy_level_history[4]);
+            .arg(easy_level_history[3]);
     str.append(tmp);
 
-    tmp = QString("%1 %2 %3 %4 %5\n")
+    tmp = QString("%1 %2 %3 %4\n")
             .arg(normal_level_history[0])
             .arg(normal_level_history[1])
             .arg(normal_level_history[2])
-            .arg(normal_level_history[3])
-            .arg(normal_level_history[4]);
+            .arg(normal_level_history[3]);
     str.append(tmp);
 
-    tmp = QString("%1 %2 %3 %4 %5\n")
+    tmp = QString("%1 %2 %3 %4\n")
             .arg(hard_level_history[0])
             .arg(hard_level_history[1])
             .arg(hard_level_history[2])
-            .arg(hard_level_history[3])
-            .arg(hard_level_history[4]);
+            .arg(hard_level_history[3]);
     str.append(tmp);
 
     tmp = QString("%1\n").arg(olympic_cnt);

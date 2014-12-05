@@ -105,7 +105,7 @@ bool SaveScene::mouseEvent( int x, int y, MouseFunction function )
                 return true;
             }
 
-            if( Button3.contains( x, y ) )
+            if( Button4.contains( x, y ) )
             {
                 clickButton4();
                 return true;

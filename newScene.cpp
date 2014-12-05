@@ -135,7 +135,10 @@ void NewScene::clickButton1()
 
 void NewScene::clickButton2()
 {
-    nextScene = new OlympicNanido(getGameClass());
+    if (getGameClass()->getOlympicDifficulty() == NONE)
+        nextScene = new OlympicNanido(getGameClass());
+    else
+        nextScene = new SelectScene(getGameClass());
 }
 
 void NewScene::clickBackButton(){

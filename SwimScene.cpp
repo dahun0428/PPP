@@ -252,12 +252,10 @@ bool SwimScene::isFinished() {
 
 void SwimScene::sendResult() {
     if( getGameClass()->getGamemode() == SINGLE ) {
-<<<<<<< HEAD
-        nextScene = new singleResultScene( getGameClass() );
-=======
+
         getGameClass()->setNewHistory(elapsedTime);
         nextScene = new singleResultScene( getGameClass(), 10);
->>>>>>> a0fb2b76bbd0398280e9966a80895e7182ee7606
+
     }
     else {
         nextScene = new SelectScene( getGameClass() );

@@ -6,7 +6,7 @@
 class singleResultScene : public Scene
 {
 public:
-    singleResultScene(Game*);
+    singleResultScene(Game*, int);
 
     ~singleResultScene();
 protected:
@@ -20,11 +20,14 @@ private:
 
 
     QRect ButtonNext;
-    QString intToQString(int n);
-
     void clickButtonNext();
 
-    QFont Font1;
+    QFont ScoreFont;
+    QFont PointFont;
+    int pre_score;
+    int new_score;
+    int pre_point;
+    int new_point;
 
 };
 

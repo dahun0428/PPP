@@ -55,7 +55,7 @@ Scene* soccerscene::update()
     if(life==0&&enable){
         getGameClass()->setScore(score);
         if(mode==SINGLE)
-            nextScene = new singleResultScene(getGameClass());
+            nextScene = new singleResultScene(getGameClass(), score);
         else
             nextScene = new OlympicResultScene(getGameClass());
     }

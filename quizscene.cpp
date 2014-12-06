@@ -190,7 +190,7 @@ Scene* QuizScene::update()
         for (int i=0; i<100; i++)
             draw( 0, 0, "Blackboard.png" );
         if (getGameClass()->getGamemode() == SINGLE)
-            nextScene = new singleResultScene(getGameClass());
+            nextScene = new singleResultScene(getGameClass(), scores[0]);
         else
             nextScene = new OlympicResultScene(getGameClass());
     }

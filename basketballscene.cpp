@@ -137,7 +137,7 @@ Scene* basketballscene::update()
         //getGameClass()->setScore(score);
         if(mode==SINGLE) {
             getGameClass()->setScore(score);
-            nextScene = new singleResultScene(getGameClass());
+            nextScene = new singleResultScene(getGameClass(), score);
         }
         else
             nextScene = new OlympicResultScene(getGameClass());

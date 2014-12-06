@@ -19,11 +19,12 @@ private:
     int lastKey;
     QTime timer;
     int elapsedTime;
-    int finishedCount;
+    QRect BackButton;
+    QRect alertButton;
 
     Difficulty diff;
     int numOfPlayers;
-    Character** player;
+    Character* player;
     double* swimFactor;
     int* swimmerShapeCount;
     double* position;    
@@ -31,20 +32,14 @@ private:
 
     int userSwimCount;
     int opponentSwimCount;
-    int winnderIndex;
-
-    QRect BackButton;
-    QRect alertButton;
 
     void userSwim();
     void opponentSwim();
     void clickBackButton();
     bool isFinished();
     void storeResult();
-    void clearMemory();
 
     QString doubleToQString(double n);
 };
-
 
 #endif // SWIMSCENE_H

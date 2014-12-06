@@ -13,48 +13,50 @@ SwimScene::SwimScene( Game* game) : Scene(game)
     lastKey = Qt::Key_unknown;
     timer.start();
     elapsedTime = 0;
-    finishedCount = 0;
 
     if( getGameClass()->getGamemode() == SINGLE )
-        numOfPlayers = 2;   // development mode
+        numOfPlayers = 4;   // development mode
     else
         numOfPlayers = 4;
 
-    player = new Character* [numOfPlayers];
+    player = new Character [numOfPlayers];
     swimFactor = new double[numOfPlayers];
     position = new double[numOfPlayers];
     swimmerShapeCount = new int[numOfPlayers];
 
     switch( getGameClass()->getCharacterInUse() ) {
     case POBBA:
-        player[0] = new Pobba;
+        player[0] = Pobba();
         break;
     case KAISER:
-        player[0] = new Kaiser;
+        player[0] = Kaiser();
         break;
     case SWIMMER:
-        player[0] = new Swimmer;
+        player[0] = Swimmer();
         break;
     case PHYSICS:
-        player[0] = new Physics;
+        player[0] = Physics();
         break;
     case DEPTTOP:
-        player[0] = new Depttop;
+        player[0] = Depttop();
         break;
     case STUDENT:
     default:
-        player[0] = new Character;
+        player[0] = Character();
         break;
     }
-        player[1] = new Gist;   // development mode
+        player[1] = Gist();   // development mode
+
+        player[2] = Unist();
+        player[3] = Gist();
     if( getGameClass()->getGamemode() == OLYMPIC ) {
 
-        player[2] = new Unist;
-        player[3] = new Gist;
+        player[2] = Unist();
+        player[3] = Gist();
     }
 
     for(int i=0; i<numOfPlayers; i++) {
-        swimFactor[i] = player[i]->getSpeed();
+        swimFactor[i] = player[i].getSpeed();
     }
     if( getGameClass()->getCharacterInUse() == SWIMMER )
         swimFactor[0] *= 6.0;
@@ -84,13 +86,18 @@ SwimScene::SwimScene( Game* game) : Scene(game)
 
     for(int i=0; i<numOfPlayers; i++) {
         position[i] = 0.0;
-        swimmerShapeCount[i] = 0;
+        swimmerShapeCount[i] = i;
     }
     finishPosition = 600.0;
     userSwimCount = 0;
     opponentSwimCount = 0;
 }
-SwimScene::~SwimScene() {}
+SwimScene::~SwimScene() {
+    delete[] player;
+    delete[] swimFactor;
+    delete[] swimmerShapeCount;
+    delete[] position;
+}
 
 Scene* SwimScene::update()
 {
@@ -135,7 +142,6 @@ Scene* SwimScene::update()
         drawCenter( 70-2, 70-2, "Back.png" );
 
     if(isFinished()) {
-        finishedCount++;
         storeResult();
     }
     return nextScene;
@@ -211,7 +217,6 @@ void SwimScene::clickBackButton()
         nextScene = new SelectSingleScene( getGameClass() );
     else
         nextScene = new SelectScene( getGameClass() );
-    clearMemory();
 }
 
 bool SwimScene::isFinished() {
@@ -227,19 +232,10 @@ void SwimScene::storeResult() {
     if( getGameClass()->getGamemode() == SINGLE ) {
         getGameClass()->setNewHistory(elapsedTime);
         nextScene = new singleResultScene( getGameClass() );
-        clearMemory();
     }
     else {
         nextScene = new SelectScene( getGameClass() );
-        clearMemory();
     }
-}
-
-void SwimScene::clearMemory() {
-    delete player;
-    delete swimFactor;
-    delete swimmerShapeCount;
-    delete position;
 }
 
 QString SwimScene::doubleToQString(double n) {

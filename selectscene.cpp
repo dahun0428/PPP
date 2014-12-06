@@ -140,18 +140,18 @@ void SelectScene::clickButtonSwim()
 
 void SelectScene::clickButtonBasket()
 {
-    nextScene= new basketballscene(getGameClass());
+    nextScene = new CharacterScene( getGameClass() );
 }
 
 
 void SelectScene::clickButtonSoccer()
 {
-    nextScene= new soccerscene(getGameClass());
+    nextScene = new CharacterScene( getGameClass() );
 }
 
 void SelectScene::clickButtonQuiz()
 {
-
+    nextScene = new CharacterScene( getGameClass() );
 }
 
 void SelectScene::clickBackButton(){
@@ -160,6 +160,5 @@ void SelectScene::clickBackButton(){
 }
 
 void SelectScene::clickSaveButton(){
-    nextScene = new SaveScene( getGameClass(), OLYMPICSELECT);
+    nextScene = new SaveScene( getGameClass(), OLYMPICSELECT );
 }
-

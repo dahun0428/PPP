@@ -5,16 +5,25 @@
 #include <sstream>
 
 
-OlympicResultScene::OlympicResultScene(Game * game) : Scene(game)
+OlympicResultScene::OlympicResultScene(Game * game, int _scores[4]) : Scene(game)
 {
     nextScene = NULL;
 
     ButtonNext = QRect( 550, 400, 150, 70 );
 
-    //scoretext="t";
     Font1.setFamily("SansSerif");
     Font1.setPointSize(20);
     Font1.setStretch(160);
+
+    for(int i=0; i<4; i++)
+        scores[i] = _scores[i];
+    pre_point = getGameClass()->getPoint();
+    new_point = scores[0]*10;
+    // played update
+    getGameClass()->setPlayed(getGameClass()->getGametype());
+
+    //setting medal receuver
+    setMedalReceiver();
 }
 OlympicResultScene::~OlympicResultScene()
 {
@@ -24,9 +33,10 @@ Scene* OlympicResultScene::update()
 {
     draw( 0, 0, "White.png" );
     draw(50,100,"Olympic_Result.png");
-    //Score Best pint출력
-    scoretext=intToQString(getGameClass()->getScore());
-    drawText(220,415,scoretext,Font1);
+    //point print
+    drawText(450,215,QString("%1").arg(pre_point),PointFont);
+    drawText(450,260,QString("%1").arg(new_point),PointFont);
+    drawText(450,300,QString("%1").arg(pre_point+new_point),PointFont);
 
 
 
@@ -77,16 +87,30 @@ bool OlympicResultScene::keyEvent(QKeyEvent * input){
 }
 void OlympicResultScene::clickButtonNext()
 {
-    //point, Best 처리
     nextScene = new SelectScene(getGameClass());
 }
-QString OlympicResultScene::intToQString(int n) {
-    std::stringstream tempStrs;
-    std::string temp;
-    QString tempQStr;
-    tempStrs << n;
-    temp = tempStrs.str();
-    tempQStr = temp.c_str();
-    return tempQStr;
-}
 
+void OlympicResultScene::setMedalReceiver() {
+    gold_receiver = GIST;
+    silver_receiver = GIST;
+    bronze_receiver = GIST;
+    if (getGameClass()->getGamemode() == SWIMMING) {
+
+    }
+    else {
+        for (int i=3; i>=0; i--) {
+            if (scores[i] > scores[(int)gold_receiver]) {
+                bronze_receiver = silver_receiver;
+                silver_receiver = gold_receiver;
+                gold_receiver = (enum School)(i);
+            }
+            else if (scores[i] > scores[(int)silver_receiver]) {
+                bronze_receiver = silver_receiver;
+                silver_receiver = (enum School)(i);
+            }
+            else if (scores[i] > scores[(int)bronze_receiver]) {
+                bronze_receiver = (enum School)(i);
+            }
+        }
+    }
+}

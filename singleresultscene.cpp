@@ -98,7 +98,7 @@ bool singleResultScene::keyEvent(QKeyEvent * input){
 void singleResultScene::clickButtonNext()
 {
     //point, Best
-    getGameClass()->setScore(new_score);
+    getGameClass()->setNewHistory(new_score);
     getGameClass()->setPoint(pre_point+new_point);
     nextScene = new SelectSingleScene(getGameClass());
 }

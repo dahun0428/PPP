@@ -15,7 +15,7 @@ SwimScene::SwimScene( Game* game) : Scene(game)
     elapsedTime = 0;
 
     if( getGameClass()->getGamemode() == SINGLE )
-        numOfPlayers = 4;   // development mode
+        numOfPlayers = 1;   // development mode
     else
         numOfPlayers = 4;
 
@@ -45,12 +45,8 @@ SwimScene::SwimScene( Game* game) : Scene(game)
         player[0] = Character();
         break;
     }
-        player[1] = Gist();   // development mode
-
-        player[2] = Unist();
-        player[3] = Gist();
     if( getGameClass()->getGamemode() == OLYMPIC ) {
-
+        player[1] = Kaist();
         player[2] = Unist();
         player[3] = Gist();
     }
@@ -101,8 +97,7 @@ SwimScene::~SwimScene() {
 
 Scene* SwimScene::update()
 {
-    draw( 0, 0, "White.png" );
-    draw( 10, 200, "Pool.png");
+    draw( 30, 200, "Pool.png");
     drawCenter( 630, 550, "SwimTimer.png" );
 
     elapsedTime = timer.elapsed();
@@ -122,17 +117,17 @@ Scene* SwimScene::update()
     for(int i=0; i<numOfPlayers; i++) {
         switch(swimmerShapeCount[i]) {
         case 0:
-            drawCenter( 175 + position[i], 235 + 70*i, "SpinSlot1.png");
+            drawCenter( 650 - position[i], 235 + 70*i, "default_swim1.png");
             break;
         case 1:
-            drawCenter( 175 + position[i], 235 + 70*i, "SpinSlot2.png");
+            drawCenter( 650 - position[i], 235 + 70*i, "default_swim2.png");
             break;
         case 2:
-            drawCenter( 175 + position[i], 235 + 70*i, "SpinSlot3.png");
+            drawCenter( 650 - position[i], 235 + 70*i, "default_swim3.png");
             break;
         case 3:
         default:
-            drawCenter( 175 + position[i], 235 + 70*i, "SpinSlot4.png");
+            drawCenter( 650 - position[i], 235 + 70*i, "default_swim4.png");
             break;
         }
     }

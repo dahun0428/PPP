@@ -45,7 +45,6 @@ soccerscene::soccerscene(Game* game) : Scene( game )
     Button3 = QRect ( 580, 450, 40, 40);
     Button4 = QRect ( 280, 450, 40, 40);
     Button5 = QRect ( 480, 450, 40, 40);
-    BackButton = QRect ( 50, 50, 40, 40 );
     //alertButton = QRect( 260, 270, 120, 100 );
     newFont.setFamily("SansSerif");
     newFont.setPointSize(15);
@@ -344,11 +343,7 @@ bool soccerscene::mouseEvent( int x, int y, MouseFunction function )
                 clickButton2();
                 return true;
             }
-            if( BackButton.contains(x,y)){
-                clickBackButton();
-                return true;
-            }
-
+            
             if( Button3.contains(x,y))
                {
                 clickButton3();
@@ -479,11 +474,6 @@ void soccerscene::clickButton5(){
         else
             life--;
     }
-}
-void soccerscene::clickBackButton(){
-    nextScene = new StartScene( getGameClass() );
-
-
 }
 
 

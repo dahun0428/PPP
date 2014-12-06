@@ -49,36 +49,76 @@ Scene* ShopScene::update()
 
     for(int i=0; i<5; i++)
         drawText( 50+150*i, 330, priceText[i],Font2);
+    if(!(getGameClass()->getCharacterAvailable(1))){
+        if( BuyButton[0].contains( lastCursor ) )
+            drawCenter( 100, 250, "unknown.png");
+        else
+            drawCenter( 100-2, 250-2, "unknown.png");
 
-    if( BuyButton[0].contains( lastCursor ) )
-        drawCenter( 100, 250, "Pobba.png");
-    else
-        drawCenter( 100-2, 250-2, "Pobba.png");
+    }
+    else{
 
-    if(BuyButton[1].contains( lastCursor ) )
-        drawCenter( 250, 250, "Kaiser.png" );
-    else
-        drawCenter( 250-2, 250-2, "Kaiser.png" );
+        if( BuyButton[0].contains( lastCursor ) )
+            drawCenter( 100, 250, "Pobba.png");
+        else
+           drawCenter( 100-2, 250-2, "Pobba.png");
+    }
+    if(!(getGameClass()->getCharacterAvailable(2))){
+        if(BuyButton[1].contains( lastCursor ) )
+            drawCenter( 250, 250, "unknown.png" );
+        else
+            drawCenter( 250-2, 250-2, "unknown.png" );
+    }
+    else{
+        if(BuyButton[1].contains( lastCursor ) )
+            drawCenter( 250, 250, "Kaiser.png" );
+        else
+            drawCenter( 250-2, 250-2, "Kaiser.png" );
+    }
+    if(!(getGameClass()->getCharacterAvailable(3))){
+        if( BuyButton[2].contains( lastCursor ) )
+            drawCenter( 400, 250, "unknown.png" );
+        else
+            drawCenter( 400-2, 250-2, "unknown.png" );
+    }
+    else{
+        if( BuyButton[2].contains( lastCursor ) )
+            drawCenter( 400, 250, "Swimmer.png" );
+        else
+            drawCenter( 400-2, 250-2, "Swimmer.png" );
+    }
+    if(!(getGameClass()->getCharacterAvailable(4))){
+        if( BuyButton[3].contains( lastCursor ) )
+            drawCenter( 550, 250, "unknown.png" );
+        else
+            drawCenter( 550-2, 250-2, "unknown.png" );
 
-    if( BuyButton[2].contains( lastCursor ) )
-        drawCenter( 400, 250, "Swimmer.png" );
-    else
-        drawCenter( 400-2, 250-2, "Swimmer.png" );
+    }
+    else{
+        if( BuyButton[3].contains( lastCursor ) )
+            drawCenter( 550, 250, "Physics.png" );
+        else
+            drawCenter( 550-2, 250-2, "Physics.png" );
+    }
+    if(!(getGameClass()->getCharacterAvailable(5))){
+        if( BuyButton[4].contains( lastCursor ) )
+            drawCenter( 700, 250, "unknown.png" );
+        else
+            drawCenter( 700-2, 250-2, "unknown.png" );
 
-    if( BuyButton[3].contains( lastCursor ) )
-        drawCenter( 550, 250, "Physics.png" );
-    else
-        drawCenter( 550-2, 250-2, "Physics.png" );
-
-    if( BuyButton[4].contains( lastCursor ) )
-        drawCenter( 700, 250, "DeptTop.png" );
-    else
-        drawCenter( 700-2, 250-2, "DeptTop.png" );
+    }
+    else{
+        if( BuyButton[4].contains( lastCursor ) )
+            drawCenter( 700, 250, "DeptTop.png" );
+        else
+            drawCenter( 700-2, 250-2, "DeptTop.png" );
+    }
 
     if( GambleButton.contains( lastCursor ) )
         drawCenter( 700, 500, "Gamble.png");
     else
         drawCenter( 700-2, 500-2, "Gamble.png");
+    drawText(660,580,"Gamble",Font2);
 
     if( BackButton.contains( lastCursor ) )
         drawCenter( 70, 70, "Back.png" );

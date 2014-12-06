@@ -16,7 +16,6 @@ basketballscene::basketballscene(Game *game) : Scene(game)
     state=0;
     life=3;
     scoretext=intToQString(score);
-    BackButton = QRect ( 50, 50, 40, 40 );
     bx=0;
     by=0;
     bv=0;
@@ -43,6 +42,9 @@ basketballscene::basketballscene(Game *game) : Scene(game)
     //newFont.setBold(true);
     newFont.setFamily("SansSerif");
     newFont.setPointSize(15);
+
+    character=game->getCharacterInUse();
+    //character=STUDENT;
 
 }
 QString basketballscene::intToQString(int n) {
@@ -84,8 +86,22 @@ bool basketballscene::keyEvent(QKeyEvent * input){
                     bvy=5*(bv-bvx)/2;
                 else
                     bvy=bv-2*bvx/5;
-                bvx=bvx/2;
-                bvy=bvy/2;
+                if(character==STUDENT||character==PHYSICS){
+                    bvx=bvx*2/5;
+                    bvy=bvy*2/5;
+
+                }
+                else if(character==POBBA||character==DEPTTOP){
+                    bvx=bvx/2;
+                    bvy=bvy/2;
+
+                }
+
+
+                else{
+                    bvx=bvx*9/20;
+                    bvy=bvy*9/20;
+                }
 
                 t=0;
                 updown=true;
@@ -134,18 +150,40 @@ Scene* basketballscene::update()
     if(life>=2)
         drawCenter(710,30,"basketball.png");
 
-    if( BackButton.contains(lastCursor))
-        drawCenter( 70, 70, "Back.png" );
-    else
-        drawCenter( 68, 68, "Back.png" );
 
 
     scoretext=intToQString(score);
     drawText(400,30,scoretext,newFont);
     switch(state){
     case 0:
-        drawCenter(bx0,BY,"basketball.png");
-        break;
+        drawCenter(bx0+40,BY+170,"basketball.png");
+
+
+        switch(character){
+        case STUDENT:
+            drawCenter(bx0+90,BY+125,"default_basket1.png");
+            break;
+        case POBBA:
+            drawCenter(bx0+90,BY+125,"pobba_basket1.png");
+            break;
+        case KAISER:
+            drawCenter(bx0+85,BY+130,"kaiser_basket1.png");
+            break;
+        case SWIMMER:
+            drawCenter(bx0+95,BY+130,"swimmer_basket1.png");
+            break;
+        case PHYSICS:
+            drawCenter(bx0+50,BY+70,"physics_basket1.png");
+            break;
+        case DEPTTOP:
+            drawCenter(bx0+50,BY+70,"deptTop_basket1.png");
+            break;
+
+
+
+        }
+            break;
+
 
 
     case 1:
@@ -160,7 +198,28 @@ Scene* basketballscene::update()
             t++;
         else
             t--;
+        switch(character){
+        case STUDENT:
+            drawCenter(bx0+65,BY+125,"default_basket2.png");
+            break;
+        case POBBA:
+            drawCenter(bx0+65,BY+125,"pobba_basket2.png");
+            break;
+        case KAISER:
+            drawCenter(bx0+55,BY+130,"kaiser_basket2.png");
+            break;
+        case SWIMMER:
+            drawCenter(bx0+65,BY+130,"swimmer_basket2.png");
+            break;
+        case PHYSICS:
+            drawCenter(bx0+20,BY+70,"physics_basket2.png");
+            break;
+        case DEPTTOP:
+            drawCenter(bx0+20,BY+70,"deptTop_basket2.png");
+            break;
+        }
         break;
+
     case 2:
         drawCenter(bx0,BY,"basketball.png");
         drawCenter(bx0-50,BY-85,"anglebar.png");
@@ -176,6 +235,27 @@ Scene* basketballscene::update()
             t++;
         else
             t--;
+        switch(character){
+        case STUDENT:
+            drawCenter(bx0+65,BY+125,"default_basket2.png");
+            break;
+        case POBBA:
+            drawCenter(bx0+65,BY+125,"pobba_basket2.png");
+            break;
+        case KAISER:
+            drawCenter(bx0+55,BY+130,"kaiser_basket2.png");
+            break;
+        case SWIMMER:
+            drawCenter(bx0+65,BY+130,"swimmer_basket2.png");
+            break;
+        case PHYSICS:
+            drawCenter(bx0+20,BY+70,"physics_basket2.png");
+            break;
+        case DEPTTOP:
+            drawCenter(bx0+20,BY+70,"deptTop_basket2.png");
+            break;
+        }
+
         break;
     case 3:
         if(t==3){
@@ -189,8 +269,15 @@ Scene* basketballscene::update()
 
         drawCenter(bx0-bx,BY-by,"basketball.png");
         t++;
-        if(by>92&&by<190&&bx>(bx0-180)&&bx<(bx0-125)&&bvx>0)
+        if(by>92&&by<190&&bx>(bx0-180)&&bx<(bx0-125)&&bvx>0){
             bvx=-9*bvx/10;
+            if(character==POBBA||character==DEPTTOP){
+                if(by>110&&by<130)
+                    bvx=bvx*4/3;
+                else if(by<110)
+                    bvx=bvx*3/2;
+            }
+        }
         if(by<125&&by>110){
             if(bx<(bx0-180)&&bx>(bx0-220)){
                 if(bvy<0&&check){
@@ -210,6 +297,27 @@ Scene* basketballscene::update()
                 life--;
             state=0;
         }
+        switch(character){
+        case STUDENT:
+            drawCenter(bx0+65,BY+125,"default_basket3.png");
+            break;
+        case POBBA:
+            drawCenter(bx0+65,BY+125,"pobba_basket3.png");
+            break;
+        case KAISER:
+            drawCenter(bx0+55,BY+130,"kaiser_basket3.png");
+            break;
+        case SWIMMER:
+            drawCenter(bx0+65,BY+130,"swimmer_basket3.png");
+            break;
+        case PHYSICS:
+            drawCenter(bx0+20,BY+70,"physics_basket3.png");
+            break;
+        case DEPTTOP:
+            drawCenter(bx0+20,BY+70,"deptTop_basket3.png");
+            break;
+        }
+    break;
 
 
     default:
@@ -230,26 +338,6 @@ bool basketballscene::mouseEvent( int x, int y, MouseFunction function )
     if(nextScene != NULL)
         return false;
 
-    switch( function )
-    {
-        case MOUSE_CLICK:
-
-
-            if( BackButton.contains(x,y))
-            {
-                clickBackButton();
-                return true;
-            }
-
-
-    }
-    return false;
-
-
-}
-void basketballscene::clickBackButton(){
-
-    nextScene = new StartScene( getGameClass() );
 
 
 }

@@ -25,7 +25,7 @@ basketballscene::basketballscene(Game *game) : Scene(game)
     t2=0;
     check=true;
 
-    enum Difficulty diff;
+    
     if (getGameClass()->getGamemode() == SINGLE)
         diff = getGameClass()->getSingleDifficulty();
     else
@@ -135,12 +135,23 @@ Scene* basketballscene::update()
 {
     if(life==0){
         //getGameClass()->setScore(score);
+        Olympicscore[0]=score;
+        int avr;
+        if(diff==EASY)
+            avr=3;
+        else if(diff==NORMAL)
+            avr=2;
+        else
+            avr=1;
+        for(int i=0;i<3;i++){
+            Olympicscore[i+1]=avr+qrand()%4;
+        }
         if(mode==SINGLE) {
             getGameClass()->setScore(score);
             nextScene = new singleResultScene(getGameClass(), score);
         }
         else
-            nextScene = new OlympicResultScene(getGameClass());
+            nextScene = new OlympicResultScene(getGameClass(),Olympicscore);
     }
 
     draw( 0, 0, "basketballBG.png" );

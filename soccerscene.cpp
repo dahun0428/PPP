@@ -56,7 +56,6 @@ soccerscene::soccerscene(Game* game) : Scene( game )
 Scene* soccerscene::update()
 {
     if(life==0&&enable){
-        getGameClass()->setScore(score);
         Olympicscore[0]=score;
         for(int i=0;i<3;i++){
             Olympicscore[i+1]=2*(qrand()%(3*(Dir-1)/Dir));

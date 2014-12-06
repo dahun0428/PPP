@@ -142,7 +142,6 @@ void HistoryScene::drawSingleHard() {
 }
 
 void HistoryScene::drawOlympic(int index) {
-
     int postech_x = 50;
     int kaist_x = 50;
     int unist_x = 450;

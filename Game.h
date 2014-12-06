@@ -73,12 +73,12 @@ private:
     Character* Characters;
 
     // exercise mode history
-    int easy_level_history[5];
-    int normal_level_history[5];
-    int hard_level_history[5];
+    int easy_level_history[4];
+    int normal_level_history[4];
+    int hard_level_history[4];
 
     // olympic mode history
-    bool played[5]; // if true --> player played the game
+    bool played[4]; // if true --> player played the game
     // in olympic mode, if all elemnets in played array are true
     // then olympic_cnt++ and played[i] = false for all i
     int olympic_cnt; // total number of olympic, need for loading

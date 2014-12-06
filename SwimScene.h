@@ -22,22 +22,27 @@ private:
     QRect BackButton;
     QRect alertButton;
 
-    Difficulty diff;
+    enum Difficulty diff;
     int numOfPlayers;
     Character* player;
     double* swimFactor;
     int* swimmerShapeCount;
-    double* position;    
+    double* position;
+    QByteArray* characterImgName;
     double finishPosition;
-
     int userSwimCount;
     int opponentSwimCount;
 
+    // For olympic mode
+    int finishedPlayerCount;
+    int score[4];   // Each entry stores the corresponding School's score.
+                    // As defined in enum School in "global.h", index means
+                    // 0: POSTECH, 1: KAIST, 2: UNIST, 3: GIST.
     void userSwim();
     void opponentSwim();
     void clickBackButton();
     bool isFinished();
-    void storeResult();
+    void sendResult();
 
     QString doubleToQString(double n);
 };

@@ -44,6 +44,8 @@ void Game::initialize(){
             OlympicHistory[i].setMedal((School)j,0,0,0);
         }
     }
+    singledifficulty = NONE;
+    olympicdifficulty = NONE;
 }
 
 bool Game::mouseEvent( int x, int y, MouseFunction function )

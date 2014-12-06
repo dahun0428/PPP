@@ -37,11 +37,11 @@ private:
     int bx0,bx,by,bv,bdir,bvx,bvy;
 
      QString intToQString(int n);
-     QRect BackButton;
-     void clickBackButton();
 
 
      enum GameMode mode;
+     enum CharacterType character;
+
 
      QFont newFont;
 

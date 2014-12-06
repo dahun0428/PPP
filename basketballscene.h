@@ -41,9 +41,11 @@ private:
 
      enum GameMode mode;
      enum CharacterType character;
+     enum Difficulty diff;
 
 
      QFont newFont;
+     int Olympicscore[4];
 
 };
 

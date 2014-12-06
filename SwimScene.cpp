@@ -223,7 +223,7 @@ void SwimScene::sendResult() {
     if( getGameClass()->getGamemode() == SINGLE )
         nextScene = new singleResultScene( getGameClass(), elapsedTime );
     else
-        nextScene = new OlympicResultScene( getGameClass() );
+        nextScene = new OlympicResultScene( getGameClass(), score );
 }
 
 QString SwimScene::doubleToQString(double n) {

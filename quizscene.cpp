@@ -192,7 +192,7 @@ Scene* QuizScene::update()
         if (getGameClass()->getGamemode() == SINGLE)
             nextScene = new singleResultScene(getGameClass(), scores[0]);
         else
-            nextScene = new OlympicResultScene(getGameClass());
+            nextScene = new OlympicResultScene(getGameClass(), scores);
     }
 
     return nextScene;

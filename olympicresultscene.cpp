@@ -11,10 +11,6 @@ OlympicResultScene::OlympicResultScene(Game * game, int _scores[4]) : Scene(game
 
     ButtonNext = QRect( 550, 400, 150, 70 );
 
-    Font1.setFamily("SansSerif");
-    Font1.setPointSize(20);
-    Font1.setStretch(160);
-
     for(int i=0; i<4; i++)
         scores[i] = _scores[i];
     pre_point = getGameClass()->getPoint();

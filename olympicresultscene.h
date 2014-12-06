@@ -6,7 +6,7 @@
 class OlympicResultScene : public Scene
 {
 public:
-    OlympicResultScene(Game *);
+    OlympicResultScene(Game *, int[4]);
 
     ~OlympicResultScene();
 protected:
@@ -16,14 +16,19 @@ protected:
 private:
     Scene* nextScene;
     QPoint lastCursor;
-    QString scoretext;
-
 
     QRect ButtonNext;
-    QString intToQString(int n);
 
     void clickButtonNext();
-    QFont Font1,Font2;
+    QFont ScoreFont;
+    QFont PointFont;
+    enum School gold_receiver;
+    enum School silver_receiver;
+    enum School bronze_receiver;
+    int scores[4];
+    int pre_point;
+    int new_point;
+    void setMedalReceiver();
 };
 
 #endif // OLYMPICRESULTSCENE_H

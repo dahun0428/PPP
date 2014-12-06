@@ -30,28 +30,53 @@ Scene* SelectScene::update()
     draw( 0, 0, "White.png" );
 
 
-    if( ButtonSwim.contains( lastCursor ) )
+    if( ButtonSwim.contains( lastCursor ) ) {
         drawCenter( 148, 238, "Swim.png" );
-    else
+        if (getGameClass()->getPlayed(SWIMMING))
+            drawCenter(198, 188, "check.png", 0.25);
+    }
+    else {
         drawCenter( 148-2, 238-2, "Swim.png" );
+        if (getGameClass()->getPlayed(SWIMMING))
+            drawCenter(198-2, 188-2, "check.png", 0.25);
+    }
 
-    if( ButtonBasket.contains( lastCursor ) )
+    if( ButtonBasket.contains( lastCursor ) ) {
         drawCenter( 271, 380, "Basket.png" );
-    else
+        if (getGameClass()->getPlayed(BASKETBALL))
+            drawCenter(321, 330, "check.png", 0.25);
+    }
+    else {
         drawCenter( 271-2, 380-2, "Basket.png" );
+        if (getGameClass()->getPlayed(BASKETBALL))
+            drawCenter(321-2, 330-2, "check.png", 0.25);
+    }
 
-    if( ButtonSoccer.contains( lastCursor ) )
+    if( ButtonSoccer.contains( lastCursor ) ) {
         drawCenter( 523, 374, "Soccer.png" );
-    else
+        if (getGameClass()->getPlayed(SOCCER))
+            drawCenter(573, 324, "check.png", 0.25);
+    }
+    else {
         drawCenter( 523-2, 374-2, "Soccer.png" );
+        if (getGameClass()->getPlayed(SOCCER))
+            drawCenter(573-2, 324-2, "check.png", 0.25);
+    }
 
-    if( ButtonQuiz.contains( lastCursor ) )
+    if( ButtonQuiz.contains( lastCursor ) ) {
         drawCenter( 646, 236, "Quiz.png" );
-    else
+        if (getGameClass()->getPlayed(QUIZ))
+            drawCenter(696, 186, "check.png", 0.25);
+    }
+    else {
         drawCenter( 646-2, 236-2, "Quiz.png" );
+        if (getGameClass()->getPlayed(QUIZ))
+            drawCenter(696-2, 186-2, "check.png", 0.25);
+    }
 
     if( SaveButton.contains( lastCursor ) )
         drawCenter( 670-2, 70, "Save.png" );
+
     else
         drawCenter( 670-3, 70-1, "Save.png" );
 
@@ -133,25 +158,35 @@ bool SelectScene::keyEvent(QKeyEvent * input){
 }
 void SelectScene::clickButtonSwim()
 {
-    nextScene = new CharacterScene( getGameClass() );
-
-
+    if (!getGameClass()->getPlayed(SWIMMING)) {
+        getGameClass()->setGametype(SWIMMING);
+        nextScene = new CharacterScene( getGameClass() );
+    }
 }
 
 void SelectScene::clickButtonBasket()
 {
-    nextScene = new CharacterScene( getGameClass() );
+    if (!getGameClass()->getPlayed(BASKETBALL)) {
+        getGameClass()->setGametype(BASKETBALL);
+        nextScene = new CharacterScene( getGameClass() );
+    }
 }
 
 
 void SelectScene::clickButtonSoccer()
 {
-    nextScene = new CharacterScene( getGameClass() );
+    if (!getGameClass()->getPlayed(SOCCER)) {
+        getGameClass()->setGametype(SOCCER);
+        nextScene = new CharacterScene( getGameClass() );
+    }
 }
 
 void SelectScene::clickButtonQuiz()
 {
-    nextScene = new CharacterScene( getGameClass() );
+    if (!getGameClass()->getPlayed(QUIZ)) {
+        getGameClass()->setGametype(QUIZ);
+        nextScene = new CharacterScene( getGameClass() );
+    }
 }
 
 void SelectScene::clickBackButton(){

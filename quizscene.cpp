@@ -3,6 +3,9 @@
 #include "selectscene.h"
 #include "Game.h"
 #include "Character.h"
+#include "savescene.h"
+#include "singleresultscene.h"
+#include "olympicresultscene.h"
 
 QuizScene::QuizScene( Game* game) : Scene(game)
 {
@@ -155,6 +158,7 @@ QuizScene::QuizScene( Game* game) : Scene(game)
             answers[i] = temp;
         }
     }
+    gettimeofday(&starttime, NULL);
 }
 
 QuizScene::~QuizScene() {
@@ -164,12 +168,32 @@ QuizScene::~QuizScene() {
 
 Scene* QuizScene::update()
 {
-    draw( 0, 0, "Blackboard.png" );
+    timeval tp;
+    gettimeofday(&tp, NULL);
+    double nElapsed = difftime(tp.tv_sec , starttime.tv_sec);
+    double milisec = tp.tv_usec - starttime.tv_usec;
+    milisec/= (double)1000000;
+    nElapsed += milisec;
 
-    drawText(50, 280, problems[problemindex], problemfont, Qt::white);
-    drawText(320, 420, equ, problemfont, Qt::white);
-    drawText(420, 420, ans, problemfont, Qt::white);
-    drawText(220, 80, "Score: "+QString("%1").arg(scores[0]), Scorefont, Qt::white);
+    if (playtime > nElapsed) {
+        draw( 0, 0, "Blackboard.png" );
+
+        drawText(50, 280, problems[problemindex], problemfont, Qt::white);
+        drawText(320, 420, equ, problemfont, Qt::white);
+        drawText(420, 420, ans, problemfont, Qt::white);
+        drawText(220, 80, "Score: "+QString("%1").arg(scores[0]), Scorefont, Qt::white);
+        QString temp;
+        drawText(550, 80, temp.sprintf("%.2f",playtime-nElapsed), Scorefont, Qt::red);
+    }
+    else {
+        // draw result
+        for (int i=0; i<100; i++)
+            draw( 0, 0, "Blackboard.png" );
+        if (getGameClass()->getGamemode() == SINGLE)
+            nextScene = new singleResultScene(getGameClass());
+        else
+            nextScene = new OlympicResultScene(getGameClass());
+    }
 
     return nextScene;
 }
@@ -181,7 +205,7 @@ bool QuizScene::mouseEvent( int x, int y, MouseFunction function )
 bool QuizScene::keyEvent(QKeyEvent* input){
     if(nextScene != NULL)
         return false;
-
+    // space: for start
     switch(input->key()){
         case Qt::Key_Enter:
         case Qt::Key_Return:

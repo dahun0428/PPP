@@ -3,6 +3,9 @@
 
 #include "Scene.h"
 #include <QFont>
+#include <sys/time.h>
+#include <time.h>
+
 class Character;
 
 class QuizScene : public Scene
@@ -33,6 +36,8 @@ private:
     QFont problemfont;
     QFont timerfont;
     QFont Scorefont;
+
+    timeval starttime;
 };
 
 #endif // QUIZSCENE_H

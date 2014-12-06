@@ -1,5 +1,6 @@
 #include "SwimScene.h"
 #include "singleresultscene.h"
+#include "olympicresultscene.h"
 #include "selectscene.h"
 #include "Game.h"
 #include <string>
@@ -8,14 +9,13 @@
 SwimScene::SwimScene( Game* game) : Scene(game)
 {
     nextScene = NULL;
-    BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
     lastKey = Qt::Key_unknown;
     timer.start();
     elapsedTime = 0;
 
     if( getGameClass()->getGamemode() == SINGLE )
-        numOfPlayers = 4;   // development mode
+        numOfPlayers = 1;
     else
         numOfPlayers = 4;
 
@@ -114,11 +114,11 @@ SwimScene::~SwimScene() {
 
 Scene* SwimScene::update()
 {
-    draw( 30, 200, "Pool.png");
-    drawCenter( 630, 550, "SwimTimer.png" );
+    draw( 0, 100, "Pool.png");
+    drawCenter( 120, 550, "SwimTimer.png" );
 
     elapsedTime = timer.elapsed();
-    drawText( 610, 550, doubleToQString(static_cast<double>(elapsedTime) / 1000) );
+    drawText( 100, 550, doubleToQString(static_cast<double>(elapsedTime) / 1000) );
 
     if( userSwimCount >= diff ) {
         userSwim();
@@ -148,11 +148,6 @@ Scene* SwimScene::update()
             break;
         }
     }
-    if( BackButton.contains(lastCursor) )
-        drawCenter( 70, 70, "Back.png" );
-    else
-        drawCenter( 70-2, 70-2, "Back.png" );
-
     if(isFinished()) {
         sendResult();
     }
@@ -160,22 +155,6 @@ Scene* SwimScene::update()
 }
 bool SwimScene::mouseEvent( int x, int y, MouseFunction function )
 {
-    lastCursor.setX( x );
-    lastCursor.setY( y );
-
-    if(nextScene != NULL)
-        return false;
-
-    switch( function )
-    {
-        case MOUSE_CLICK:
-            if( BackButton.contains( x, y ) )
-            {
-                clickBackButton();
-                return true;
-            }
-    }
-
     return false;
 }
 bool SwimScene::keyEvent(QKeyEvent* input){
@@ -224,14 +203,6 @@ void SwimScene::opponentSwim() {
     }
 }
 
-void SwimScene::clickBackButton()
-{
-    if( getGameClass()->getGamemode() == SINGLE )
-        nextScene = new SelectSingleScene( getGameClass() );
-    else
-        nextScene = new SelectScene( getGameClass() );
-}
-
 bool SwimScene::isFinished() {
     if( getGameClass()->getGamemode() == SINGLE ) {
         for(int i=0; i<numOfPlayers; i++)
@@ -251,17 +222,10 @@ bool SwimScene::isFinished() {
 }
 
 void SwimScene::sendResult() {
-    if( getGameClass()->getGamemode() == SINGLE ) {
-<<<<<<< HEAD
-        nextScene = new singleResultScene( getGameClass() );
-=======
-        getGameClass()->setNewHistory(elapsedTime);
-        nextScene = new singleResultScene( getGameClass(), 10);
->>>>>>> a0fb2b76bbd0398280e9966a80895e7182ee7606
-    }
-    else {
-        nextScene = new SelectScene( getGameClass() );
-    }
+    if( getGameClass()->getGamemode() == SINGLE )
+        nextScene = new singleResultScene( getGameClass(), elapsedTime );
+    else
+        nextScene = new OlympicResultScene( getGameClass() );
 }
 
 QString SwimScene::doubleToQString(double n) {

@@ -1,14 +1,14 @@
-#ifndef BASKETRESULTSCENE_H
-#define BASKETRESULTSCENE_H
-#include"Scene.h"
-#include"selectsinglescene.h"
+#ifndef OLYMPICRESULTSCENE_H
+#define OLYMPICRESULTSCENE_H
+#include "Scene.h"
+#include"selectscene.h"
 
-class basketResultScene : public Scene
+class OlympicResultScene : public Scene
 {
 public:
-    basketResultScene(Game*);
+    OlympicResultScene(Game *);
 
-    ~basketResultScene();
+    ~OlympicResultScene();
 protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );
@@ -23,9 +23,7 @@ private:
     QString intToQString(int n);
 
     void clickButtonNext();
-
-    QFont Font1;
-
+    QFont Font1,Font2;
 };
 
-#endif // BASKETRESULTSCENE_H
+#endif // OLYMPICRESULTSCENE_H

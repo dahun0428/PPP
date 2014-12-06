@@ -13,7 +13,7 @@ ShopScene::ShopScene(Game * game) : Scene(game)
     pointText = intToQString(getGameClass()->getPoint());
     for(int i=0; i<5; i++) {
         price[i] = (i+1)*500;
-        if(getGameClass()->getCharacterAvailable(i))
+        if(getGameClass()->getCharacterAvailable(i+1))
             priceText[i] = "Purchased";
         else {
             priceText[i] = intToQString(price[i]);
@@ -26,6 +26,11 @@ ShopScene::ShopScene(Game * game) : Scene(game)
     GambleButton = QRect(640, 440, 120, 120);
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
+    Font1.setPointSize(18);
+    Font1.setFamily("SansSerif");
+    Font2.setPointSize(15);
+    Font2.setFamily("SansSerif");
+
 }
 ShopScene::~ShopScene()
 {
@@ -38,10 +43,12 @@ Scene* ShopScene::update()
 
     drawCenter( 660, 70, "Points.png");
     pointText = intToQString(getGameClass()->getPoint());
-    drawText( 680, 78, pointText);
+
+
+    drawText( 680, 78, pointText,Font1);
 
     for(int i=0; i<5; i++)
-        drawText( 70+150*i, 330, priceText[i]);
+        drawText( 50+150*i, 330, priceText[i],Font2);
 
     if( BuyButton[0].contains( lastCursor ) )
         drawCenter( 100, 250, "Pobba.png");
@@ -127,7 +134,7 @@ bool ShopScene::keyEvent(QKeyEvent * input){
     }
 }
 void ShopScene::clickBuyButton(int index) {
-    if( getGameClass()->getCharacterAvailable(index) ) {
+    if( getGameClass()->getCharacterAvailable(index+1) ) {
         // display already purchased.
     }
     else if( getGameClass()->getPoint() < price[index] ) {
@@ -135,7 +142,7 @@ void ShopScene::clickBuyButton(int index) {
     }
     else {
         getGameClass()->setPoint( getGameClass()->getPoint() - price[index] );
-        getGameClass()->setCharacterAvailable(index, true);
+        getGameClass()->setCharacterAvailable(index+1, true);
         priceText[index] = "Purchased";
         // display purchased.
     }

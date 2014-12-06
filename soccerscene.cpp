@@ -5,8 +5,9 @@
 #include "qlabel.h"
 #include <QKeyEvent>
 #include"Game.h"
-#include"basketresultscene.h"
+#include"singleresultscene.h"
 #include"selectsinglescene.h"
+#include"olympicresultscene.h"
 
 
 
@@ -45,6 +46,8 @@ soccerscene::soccerscene(Game* game) : Scene( game )
     Button5 = QRect ( 480, 450, 40, 40);
     BackButton = QRect ( 50, 50, 40, 40 );
     //alertButton = QRect( 260, 270, 120, 100 );
+    newFont.setFamily("SansSerif");
+    newFont.setPointSize(15);
 }
 
 Scene* soccerscene::update()
@@ -52,13 +55,13 @@ Scene* soccerscene::update()
     if(life==0&&enable){
         getGameClass()->setScore(score);
         if(mode==SINGLE)
-            nextScene = new basketResultScene(getGameClass());
-        else //olympic
-            nextScene = new SelectSingleScene(getGameClass());
+            nextScene = new singleResultScene(getGameClass());
+        else
+            nextScene = new OlympicResultScene(getGameClass());
     }
     draw( 0, 0, "soccerBG2.png" );
     draw(300,0,"soccerscore.png");
-    drawText(400,30,scoretext);
+    drawText(400,30,scoretext,newFont);
     if(life==3)
         drawCenter(760,30,"soccerball.png");
     if(life>=2)

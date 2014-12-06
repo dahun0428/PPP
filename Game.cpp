@@ -4,6 +4,7 @@
 #include "qfile.h" // tb
 #include "qtextstream.h" // tb
 #include "OlympicData.h" // tb
+#include "Character.h"
 
 Game::Game( Window* _window ) : window( _window )
 {
@@ -12,6 +13,14 @@ Game::Game( Window* _window ) : window( _window )
     setScene( scene );
 
     OlympicHistory = new OlympicData[10];
+    Characters = new Character[6];
+    Characters[0] = Character();
+    Characters[1] = Pobba();
+    Characters[2] = Kaiser();
+    Characters[3] = Swimmer();
+    Characters[4] = Physics();
+    Characters[5] = Depttop();
+
 }
 Game::~Game()
 {
@@ -20,7 +29,8 @@ Game::~Game()
 }
 void Game::initialize(){
     point = 0;
-    for (int i = 0 ;  i<5; i++)
+    characterAvailable[0] = true; // default character
+    for (int i = 1 ;  i<6; i++)
         characterAvailable[i]= false;
     for (int i=0; i<4; i++) {
         easy_level_history[i] = 0;
@@ -103,6 +113,11 @@ void Game::setCharacterInUse(CharacterType character){
 enum CharacterType Game::getCharacterInUse(){
     return characterInUse;
 }
+
+Character Game::getRealCharacterInUse() {
+    return Characters[5];
+}
+
 void Game::setScore(int _score){
     score=_score;
 }
@@ -147,7 +162,7 @@ void Game::loadGame(QString filename) {
 
     tmp = read.readLine();
     QStringList tmpList = tmp.split(" ");
-    for (int i=0; i<5; i++)
+    for (int i=0; i<6; i++)
         characterAvailable[i] = (bool)(tmpList[i].toInt());
 
     tmp = read.readLine(); // read easy level highest scores
@@ -210,12 +225,13 @@ void Game::saveGame(QString filename) {
     QByteArray str;
     str.append(tmp);
 
-    tmp = QString("%1 %2 %3 %4 %5\n")
+    tmp = QString("%1 %2 %3 %4 %5 %6\n")
             .arg((int)characterAvailable[0])
             .arg((int)characterAvailable[1])
             .arg((int)characterAvailable[2])
             .arg((int)characterAvailable[3])
-            .arg((int)characterAvailable[4]);
+            .arg((int)characterAvailable[4])
+            .arg((int)characterAvailable[5]);
     str.append(tmp);
 
     tmp = QString("%1 %2 %3 %4\n")

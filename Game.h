@@ -6,6 +6,7 @@ class Window;
 class QPainter;
 class Scene;
 class OlympicData;
+class Character;
 
 class Game
 {
@@ -33,6 +34,7 @@ public:
 
     void setCharacterInUse(CharacterType character);
     enum CharacterType getCharacterInUse();
+    Character getRealCharacterInUse();
 
     void setScore(int _score);
     int getScore();
@@ -62,12 +64,13 @@ private:
 	void drawNowScene( QPainter* canvas );
     int point;
     int score;
-    bool characterAvailable[5];
+    bool characterAvailable[6];
     enum Difficulty singledifficulty;
     enum Difficulty olympicdifficulty;
     enum GameMode gamemode;
     enum GameType gametype;
     enum CharacterType characterInUse;
+    Character* Characters;
 
     // exercise mode history
     int easy_level_history[5];

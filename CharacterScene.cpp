@@ -3,6 +3,9 @@
 #include "selectsinglescene.h"
 #include "selectscene.h"
 #include "SwimScene.h"
+#include "basketballscene.h"
+#include "soccerscene.h"
+#include "quizscene.h"
 #include "Game.h"
 
 CharacterScene::CharacterScene(Game * game) : Scene(game)
@@ -104,16 +107,23 @@ bool CharacterScene::keyEvent(QKeyEvent * input){
     }
 }
 void CharacterScene::clickCharacterButton(int index) {
-    if( index == 0 ) {
-        getGameClass()->setCharacterInUse(STUDENT);
-        nextScene = new SwimScene( getGameClass() );
+    if( getGameClass()->getCharacterAvailable(index) ) {
+        getGameClass()->setCharacterInUse(static_cast<CharacterType>(index));
+        switch(getGameClass()->getGametype()) {
+        case SWIMMING:
+            nextScene = new SwimScene( getGameClass() );
+            break;
+        case BASKETBALL:
+            nextScene = new basketballscene( getGameClass() );
+            break;
+        case SOCCER:
+            nextScene = new soccerscene( getGameClass() );
+            break;
+        case QUIZ:
+            nextScene = new QuizScene( getGameClass() );
+            break;
+        }
     }
-    else if( getGameClass()->getCharacterAvailable(index - 1) ) {
-        getGameClass()->setCharacterInUse( static_cast<CharacterType>(index - 1) );
-        nextScene = new SwimScene( getGameClass() );
-    }
-    else
-        nextScene = new SelectSingleScene( getGameClass() );
 }
 void CharacterScene::clickBackButton(){
     if( getGameClass()->getGamemode() == OLYMPIC )

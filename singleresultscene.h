@@ -1,14 +1,14 @@
-#ifndef BASKETRESULTSCENE_H
-#define BASKETRESULTSCENE_H
+#ifndef SINGLERESULTSCENE_H
+#define SINGLERESULTSCENE_H
 #include"Scene.h"
 #include"selectsinglescene.h"
 
-class basketResultScene : public Scene
+class singleResultScene : public Scene
 {
 public:
-    basketResultScene(Game*);
+    singleResultScene(Game*);
 
-    ~basketResultScene();
+    ~singleResultScene();
 protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );

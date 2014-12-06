@@ -3,7 +3,10 @@
 #include "qlabel.h"
 #include "olympicnanido.h"
 #include "soccerscene.h"
+#include "basketballscene.h"
+#include "CharacterScene.h"
 #include "savescene.h"
+
 SelectScene::SelectScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
@@ -130,19 +133,20 @@ bool SelectScene::keyEvent(QKeyEvent * input){
 }
 void SelectScene::clickButtonSwim()
 {
+    nextScene = new CharacterScene( getGameClass() );
 
 
 }
 
 void SelectScene::clickButtonBasket()
 {
-
+    nextScene= new basketballscene(getGameClass());
 }
 
 
 void SelectScene::clickButtonSoccer()
 {
-
+    nextScene= new soccerscene(getGameClass());
 }
 
 void SelectScene::clickButtonQuiz()

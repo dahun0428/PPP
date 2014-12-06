@@ -32,6 +32,7 @@ private:
     void showGambleResult();
 
     QString intToQString(int n);        // move somewhere else?
+    QFont newFont;
 
 };
 #endif // GAMBLESCENE_H

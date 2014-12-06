@@ -25,21 +25,23 @@ private:
     int numOfPlayers;
     Character** player;
     double* swimFactor;
-    double* position;
+    int* swimmerShapeCount;
+    double* position;    
     double finishPosition;
 
     int userSwimCount;
     int opponentSwimCount;
     int winnderIndex;
 
-    QRect Button1;
     QRect BackButton;
     QRect alertButton;
 
     void userSwim();
-    void clickBackButton();
     void opponentSwim();
+    void clickBackButton();
     bool isFinished();
+    void storeResult();
+    void clearMemory();
 
     QString doubleToQString(double n);
 };

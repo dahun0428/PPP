@@ -1,9 +1,11 @@
-#include"basketresultscene.h"
+#include "olympicresultscene.h"
 #include "Game.h"
 #include "qlabel.h"
 #include <string>
 #include <sstream>
-basketResultScene::basketResultScene(Game * game) : Scene(game)
+
+
+OlympicResultScene::OlympicResultScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
 
@@ -14,17 +16,17 @@ basketResultScene::basketResultScene(Game * game) : Scene(game)
     Font1.setPointSize(20);
     Font1.setStretch(160);
 }
-basketResultScene::~basketResultScene()
+OlympicResultScene::~OlympicResultScene()
 {
 
 }
-Scene* basketResultScene::update()
+Scene* OlympicResultScene::update()
 {
     draw( 0, 0, "White.png" );
-    draw(50,100,"Single_Result.png");
+    draw(50,100,"Olympic_Result.png");
     //Score Best pint출력
     scoretext=intToQString(getGameClass()->getScore());
-    drawText(220,420,scoretext,Font1);
+    drawText(220,415,scoretext,Font1);
 
 
 
@@ -36,7 +38,7 @@ Scene* basketResultScene::update()
 
     return nextScene;
 }
-bool basketResultScene::mouseEvent( int x, int y, MouseFunction function )
+bool OlympicResultScene::mouseEvent( int x, int y, MouseFunction function )
 {
     lastCursor.setX( x );
     lastCursor.setY( y );
@@ -59,7 +61,7 @@ bool basketResultScene::mouseEvent( int x, int y, MouseFunction function )
 
     return false;
 }
-bool basketResultScene::keyEvent(QKeyEvent * input){
+bool OlympicResultScene::keyEvent(QKeyEvent * input){
 
     if(nextScene !=NULL)
         return false;
@@ -73,12 +75,12 @@ bool basketResultScene::keyEvent(QKeyEvent * input){
 
     }
 }
-void basketResultScene::clickButtonNext()
+void OlympicResultScene::clickButtonNext()
 {
     //point, Best 처리
-    nextScene = new SelectSingleScene(getGameClass());
+    nextScene = new SelectScene(getGameClass());
 }
-QString basketResultScene::intToQString(int n) {
+QString OlympicResultScene::intToQString(int n) {
     std::stringstream tempStrs;
     std::string temp;
     QString tempQStr;
@@ -87,3 +89,4 @@ QString basketResultScene::intToQString(int n) {
     tempQStr = temp.c_str();
     return tempQStr;
 }
+

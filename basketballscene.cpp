@@ -4,7 +4,9 @@
 #include <sstream>
 #include "qlabel.h"
 #include"selectsinglescene.h"
-#include"basketresultscene.h"
+#include"singleresultscene.h"
+#include"olympicresultscene.h"
+
 
 basketballscene::basketballscene(Game *game) : Scene(game)
 {
@@ -38,6 +40,9 @@ basketballscene::basketballscene(Game *game) : Scene(game)
         bx0=BXH;
 
     mode=game->getGamemode();
+    //newFont.setBold(true);
+    newFont.setFamily("SansSerif");
+    newFont.setPointSize(15);
 
 }
 QString basketballscene::intToQString(int n) {
@@ -113,11 +118,13 @@ bool basketballscene::keyEvent(QKeyEvent * input){
 Scene* basketballscene::update()
 {
     if(life==0){
-        getGameClass()->setScore(score);
-        if(mode==SINGLE)
-            nextScene = new basketResultScene(getGameClass());
+        //getGameClass()->setScore(score);
+        if(mode==SINGLE) {
+            getGameClass()->setScore(score);
+            nextScene = new singleResultScene(getGameClass());
+        }
         else
-            nextScene = new SelectSingleScene(getGameClass());
+            nextScene = new OlympicResultScene(getGameClass());
     }
 
     draw( 0, 0, "basketballBG.png" );
@@ -134,7 +141,7 @@ Scene* basketballscene::update()
 
 
     scoretext=intToQString(score);
-    drawText(400,30,scoretext);
+    drawText(400,30,scoretext,newFont);
     switch(state){
     case 0:
         drawCenter(bx0,BY,"basketball.png");

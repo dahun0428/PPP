@@ -44,6 +44,7 @@ private:
     void clickButton4();
     void clickButton5();
     void clickBackButton();
+    QFont newFont;
 };
 
 #endif // SOCCERSCENE_H

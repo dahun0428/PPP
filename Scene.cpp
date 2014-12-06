@@ -3,6 +3,8 @@
 #include <QPainter>
 #include <QRect>
 #include <QKeyEvent>
+#include <QFont>
+ #include <QFontDatabase>
 
 Scene::Scene( Game* _game ) : game( _game )
 {
@@ -69,9 +71,21 @@ void Scene::drawCenter( double _x, double _y, QString imgName, double scale )
 
 void Scene::drawText( double x, double y, QString text )
 {
-	if(canvas)
+
+    if(canvas)
 		canvas->drawText( x, y, text );
 }
+void Scene::drawText( double x, double y, QString text, QFont font )
+{
+    QFont temp=canvas->font();
+    canvas->setFont(font);
+    if(canvas)
+        canvas->drawText( x, y, text );
+
+    canvas->setFont(temp);
+
+}
+
 void Scene::drawText( double x, double y, double w, double h, QString text, TextAlign align )
 {
 	QRect rect(x, y, w, h);
@@ -85,6 +99,7 @@ void Scene::drawText( QRect rect, QString text, TextAlign align )
 	if(canvas)
 		canvas->drawText( rect, text, textOption );
 }
+
 
 
 bool Scene::mouseFunction( int x, int y, MouseFunction function )

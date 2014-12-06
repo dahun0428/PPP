@@ -36,19 +36,18 @@ private:
     QRect Button4;
     QRect Button5;
     //QRect alertButton;
-    QRect BackButton;
 
     void clickButton1();
     void clickButton2();
     void clickButton3();
     void clickButton4();
     void clickButton5();
-    void clickBackButton();
     QFont newFont;
 
     enum CharacterType character;
 
     bool special;
+    int Olympicscore[4];
 };
 
 #endif // SOCCERSCENE_H

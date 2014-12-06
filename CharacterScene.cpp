@@ -27,36 +27,78 @@ Scene* CharacterScene::update()
 {
     draw( 0, 0, "White.png" );
 
-    if( CharacterButton[0].contains( lastCursor ) )
-        drawCenter( 100, 250, "DefaultCharacter.png");
-    else
-        drawCenter( 100-2, 250-2, "DefaultCharacter.png");
-
-    if(CharacterButton[1].contains( lastCursor ) )
-        drawCenter( 250, 250, "Pobba.png" );
-    else
-        drawCenter( 250-2, 250-2, "Pobba.png" );
-
-    if( CharacterButton[2].contains( lastCursor ) )
-        drawCenter( 400, 250, "Kaiser.png" );
-    else
-        drawCenter( 400-2, 250-2, "Kaiser.png" );
-
-    if( CharacterButton[3].contains( lastCursor ) )
-        drawCenter( 100, 400, "Swimmer.png" );
-    else
-        drawCenter( 100-2, 400-2, "Swimmer.png" );
-
-    if( CharacterButton[4].contains( lastCursor ) )
-        drawCenter( 250, 400, "Physics.png" );
-    else
-        drawCenter( 250-2, 400-2, "Physics.png" );
-
-    if( CharacterButton[5].contains( lastCursor ) )
-        drawCenter( 400, 400, "DeptTop.png" );
-    else
-        drawCenter( 400-2, 400-2, "DeptTop.png" );
-
+    if(getGameClass()->getCharacterAvailable(0)){
+        if( CharacterButton[0].contains( lastCursor ) )
+            drawCenter( 100, 250, "DefaultCharacter.png");
+        else
+            drawCenter( 100-2, 250-2, "DefaultCharacter.png");
+    }
+    else{
+        if( CharacterButton[0].contains( lastCursor ) )
+            drawCenter( 100, 250, "unknown.png");
+        else
+            drawCenter( 100-2, 250-2, "unknown.png");
+    }
+    if(getGameClass()->getCharacterAvailable(1)){
+        if(CharacterButton[1].contains( lastCursor ) )
+            drawCenter( 250, 250, "Pobba.png" );
+        else
+            drawCenter( 250-2, 250-2, "Pobba.png" );
+    }
+    else{
+        if(CharacterButton[1].contains( lastCursor ) )
+            drawCenter( 250, 250, "unknown.png" );
+        else
+            drawCenter( 250-2, 250-2, "unknown.png" );
+    }
+    if(getGameClass()->getCharacterAvailable(2)){
+        if( CharacterButton[2].contains( lastCursor ) )
+            drawCenter( 400, 250, "Kaiser.png" );
+        else
+            drawCenter( 400-2, 250-2, "Kaiser.png" );
+    }
+    else{
+        if( CharacterButton[2].contains( lastCursor ) )
+            drawCenter( 400, 250, "unknown.png" );
+        else
+            drawCenter( 400-2, 250-2, "unknown.png" );
+    }
+    if(getGameClass()->getCharacterAvailable(3)){
+        if( CharacterButton[3].contains( lastCursor ) )
+            drawCenter( 100, 400, "Swimmer.png" );
+        else
+           drawCenter( 100-2, 400-2, "Swimmer.png" );
+    }
+    else{
+        if( CharacterButton[3].contains( lastCursor ) )
+            drawCenter( 100, 400, "unknown.png" );
+        else
+           drawCenter( 100-2, 400-2, "unknown.png" );
+    }
+    if(getGameClass()->getCharacterAvailable(4)){
+        if( CharacterButton[4].contains( lastCursor ) )
+            drawCenter( 250, 400, "Physics.png" );
+        else
+           drawCenter( 250-2, 400-2, "Physics.png" );
+    }
+    else{
+        if( CharacterButton[4].contains( lastCursor ) )
+            drawCenter( 250, 400, "unknown.png" );
+        else
+           drawCenter( 250-2, 400-2, "unknown.png" );
+    }
+    if(getGameClass()->getCharacterAvailable(5)){
+        if( CharacterButton[5].contains( lastCursor ) )
+            drawCenter( 400, 400, "DeptTop.png" );
+        else
+           drawCenter( 400-2, 400-2, "DeptTop.png" );
+    }
+    else{
+        if( CharacterButton[5].contains( lastCursor ) )
+            drawCenter( 400, 400, "unknown.png" );
+        else
+           drawCenter( 400-2, 400-2, "unknown.png" );
+    }
     if( BackButton.contains( lastCursor ) )
         drawCenter( 70, 70, "Back.png" );
     else

@@ -60,10 +60,19 @@ Scene* GambleScene::update()
 
     drawCenter( 680, 200, "Cost.png");
     drawText( 695, 207, intToQString(gambleCost),newFont);
-    if( Button1.contains( lastCursor ) )
-        drawCenter( 680, 350, "Pull1.png" );
-    else
-        drawCenter( 680-2, 350-2, "Pull1.png" );
+    if(spinCount==0){
+        if( Button1.contains( lastCursor ) )
+            drawCenter( 680, 350, "Pull1.png" );
+        else
+            drawCenter( 680-2, 350-2, "Pull1.png" );
+    }
+    else{
+        if( Button1.contains( lastCursor ) )
+            drawCenter( 680, 350, "Pull2.png" );
+        else
+            drawCenter( 680-2, 350-2, "Pull2.png" );
+    }
+
 
     if( BackButton.contains( lastCursor ) )
         drawCenter( 70, 70, "Back.png" );

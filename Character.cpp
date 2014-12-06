@@ -40,8 +40,8 @@ Physics::Physics() {
 Physics::~Physics() {}
 
 Depttop::Depttop() {
-    speed = 1.3;
-    accuracy = 3.0;
+    speed = 5.0;
+    accuracy = 5.0;
     intelligence = 6.0;
 }
 Depttop::~Depttop() {}

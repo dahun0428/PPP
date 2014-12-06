@@ -21,6 +21,7 @@ soccerscene::soccerscene(Game* game) : Scene( game )
     t=0;
     state=0;
     score=0;
+    scoretext=intToQString(score);
     life=3;
     if (game->getGamemode() == SINGLE)
         Diff = game->getSingleDifficulty();
@@ -48,6 +49,9 @@ soccerscene::soccerscene(Game* game) : Scene( game )
     //alertButton = QRect( 260, 270, 120, 100 );
     newFont.setFamily("SansSerif");
     newFont.setPointSize(15);
+
+    character=game->getCharacterInUse();
+    special=false;
 }
 
 Scene* soccerscene::update()
@@ -118,11 +122,19 @@ Scene* soccerscene::update()
         drawCenter(400-2*t,450-t,"soccerball.png",1-t/140.00);
         t++;
         if(t>35){
-            if(keeper!=(state-1)){
-                drawCenter(400,550,"goal.png");
+            if(special==true){
+                if(character==STUDENT||character==PHYSICS)
+                    drawCenter(400,550,"Supersave.png");
+                else if(character==KAISER||character==DEPTTOP)
+                    drawCenter(400,550,"Supergoal.png");
             }
-            else
-                drawCenter(400,550,"Block.png");
+            else{
+                if(keeper!=(state-1)){
+                    drawCenter(400,550,"goal.png");
+                }
+                else
+                    drawCenter(400,550,"Block.png");
+            }
         }
         if(t==70){
             enable=true;
@@ -152,11 +164,19 @@ Scene* soccerscene::update()
         drawCenter(400,450-3*t,"soccerball.png",1-t/140.00);
         t++;
         if(t>35){
-            if(keeper!=(state-1)){
-                drawCenter(400,550,"goal.png");
+            if(special==true){
+                if(character==STUDENT||character==PHYSICS)
+                    drawCenter(400,550,"Supersave.png");
+                else if(character==KAISER||character==DEPTTOP)
+                    drawCenter(400,550,"Supergoal.png");
             }
-            else
-                drawCenter(400,550,"Block.png");
+            else{
+                if(keeper!=(state-1)){
+                    drawCenter(400,550,"goal.png");
+                }
+                else
+                    drawCenter(400,550,"Block.png");
+            }
         }
         if(t==70){
             enable=true;
@@ -181,11 +201,19 @@ Scene* soccerscene::update()
         drawCenter(400+2*t,450-t,"soccerball.png",1-t/140.00);
         t++;
         if(t>35){
-            if(keeper!=(state-1)){
-                drawCenter(400,550,"goal.png");
+            if(special==true){
+                if(character==STUDENT||character==PHYSICS)
+                    drawCenter(400,550,"Supersave.png");
+                else if(character==KAISER||character==DEPTTOP)
+                    drawCenter(400,550,"Supergoal.png");
             }
-            else
-                drawCenter(400,550,"Block.png");
+            else{
+                if(keeper!=(state-1)){
+                    drawCenter(400,550,"goal.png");
+                }
+                else
+                    drawCenter(400,550,"Block.png");
+            }
         }
         if(t==70){
             enable=true;
@@ -209,11 +237,19 @@ Scene* soccerscene::update()
         drawCenter(400-t,450-2*t,"soccerball.png",1-t/140.00);
         t++;
         if(t>35){
-            if(keeper!=(state-1)){
-                drawCenter(400,550,"goal.png");
+            if(special==true){
+                if(character==STUDENT||character==PHYSICS)
+                    drawCenter(400,550,"Supersave.png");
+                else if(character==KAISER||character==DEPTTOP)
+                    drawCenter(400,550,"Supergoal.png");
             }
-            else
-                drawCenter(400,550,"Block.png");
+            else{
+                if(keeper!=(state-1)){
+                    drawCenter(400,550,"goal.png");
+                }
+                else
+                    drawCenter(400,550,"Block.png");
+            }
         }
         if(t==70){
             enable=true;
@@ -237,11 +273,19 @@ Scene* soccerscene::update()
         drawCenter(400+t,450-2*t,"soccerball.png",1-t/140.00);
         t++;
         if(t>35){
-            if(keeper!=(state-1)){
-                drawCenter(400,550,"goal.png");
+            if(special==true){
+                if(character==STUDENT||character==PHYSICS)
+                    drawCenter(400,550,"Supersave.png");
+                else if(character==KAISER||character==DEPTTOP)
+                    drawCenter(400,550,"Supergoal.png");
             }
-            else
-                drawCenter(400,550,"Block.png");
+            else{
+                if(keeper!=(state-1)){
+                    drawCenter(400,550,"goal.png");
+                }
+                else
+                    drawCenter(400,550,"Block.png");
+            }
         }
         if(t==70){
             enable=true;
@@ -284,6 +328,10 @@ bool soccerscene::mouseEvent( int x, int y, MouseFunction function )
     {
         case MOUSE_CLICK:
         if(enable){
+            if(qrand()%10<3)
+                special=true;
+            else
+                special=false;
 
             if( Button1.contains( x, y ) )
             {
@@ -333,11 +381,18 @@ void soccerscene::clickButton1()
 
     state=1;
     if(keeper!=(state-1)){
-        score++;
-     //  supersave
+        if(special&&(character==STUDENT||character==PHYSICS))
+            life--;
+        else
+            score++;
+        //  supersave
     }
-    else
-        life--;
+    else{
+        if(special&&(character==KAISER||character==DEPTTOP))
+            score++;
+        else
+            life--;
+    }
 }
 void soccerscene::clickButton2()
 {
@@ -348,11 +403,18 @@ void soccerscene::clickButton2()
 
     state=2;
     if(keeper!=(state-1)){
-        score++;
-      //  supersave
+        if(special&&(character==STUDENT||character==PHYSICS))
+            life--;
+        else
+            score++;
+        //  supersave
     }
-    else
-        life--;
+    else{
+        if(special&&(character==KAISER||character==DEPTTOP))
+            score++;
+        else
+            life--;
+    }
 
 }
 void soccerscene::clickButton3(){
@@ -362,12 +424,18 @@ void soccerscene::clickButton3(){
         keeper=keeper*2;
     state=3;
     if(keeper!=(state-1)){
-        score++;
-     // supersave
-
+        if(special&&(character==STUDENT||character==PHYSICS))
+            life--;
+        else
+            score++;
+        //  supersave
     }
-    else
-        life --;
+    else{
+        if(special&&(character==KAISER||character==DEPTTOP))
+            score++;
+        else
+            life--;
+    }
 }
 void soccerscene::clickButton4(){
     enable=false;
@@ -378,11 +446,18 @@ void soccerscene::clickButton4(){
         keeper=keeper*2;
     state=4;
     if(keeper!=(state-1)){
-        score++;
-     //supersave
+        if(special&&(character==STUDENT||character==PHYSICS))
+            life--;
+        else
+            score++;
+        //  supersave
     }
-    else
-        life;;
+    else{
+        if(special&&(character==KAISER||character==DEPTTOP))
+            score++;
+        else
+            life--;
+    }
 }
 void soccerscene::clickButton5(){
     enable=false;
@@ -392,11 +467,18 @@ void soccerscene::clickButton5(){
 
     state=5;
     if(keeper!=(state-1)){
-        score++;
-     //   supersave
+        if(special&&(character==STUDENT||character==PHYSICS))
+            life--;
+        else
+            score++;
+        //  supersave
     }
-    else
-        life--;
+    else{
+        if(special&&(character==KAISER||character==DEPTTOP))
+            score++;
+        else
+            life--;
+    }
 }
 void soccerscene::clickBackButton(){
     nextScene = new StartScene( getGameClass() );

@@ -54,20 +54,18 @@ SwimScene::SwimScene( Game* game) : Scene(game)
     }
     if( getGameClass()->getGamemode() == OLYMPIC ) {
         player[1] = Kaist();
-        //characterImgName[1] = "kaist_swim";
+        characterImgName[1] = "kaist_swim";
         player[2] = Unist();
-        //characterImgName[2] = "unist_swim";
+        characterImgName[2] = "unist_swim";
         player[3] = Gist();
-        //characterImgName[3] = "gist_swim";
-        for(int i=1; i<4; i++)
-            characterImgName[i] = "default_swim";   //development mode
+        characterImgName[3] = "gist_swim";
     }
 
     for(int i=0; i<numOfPlayers; i++) {
         swimFactor[i] = player[i].getSpeed();
     }
     if( getGameClass()->getCharacterInUse() == SWIMMER )
-        swimFactor[0] *= 6.0;
+        swimFactor[0] *= 4.5;
     else
         swimFactor[0] *= 3.0;
 
@@ -79,16 +77,16 @@ SwimScene::SwimScene( Game* game) : Scene(game)
     switch( diff ) {
     case EASY:
         for(int i=1; i<numOfPlayers; i++)
-            swimFactor[i] *= 0.5;
+            swimFactor[i] *= 0.8;
         break;
     case NORMAL:
     default:
         for(int i=1; i<numOfPlayers; i++)
-            swimFactor[i] *= 0.7;
+            swimFactor[i] *= 1.0;
         break;
     case HARD:
         for(int i=1; i<numOfPlayers; i++)
-            swimFactor[i] *= 1.0;
+            swimFactor[i] *= 1.2;
         break;
     }
 
@@ -114,11 +112,11 @@ SwimScene::~SwimScene() {
 
 Scene* SwimScene::update()
 {
-    draw( 0, 100, "Pool.png");
-    drawCenter( 120, 550, "SwimTimer.png" );
+    draw( 0, 0, "Pool.png");
+    drawCenter( 120, 560, "SwimTimer.png" );
 
     elapsedTime = timer.elapsed();
-    drawText( 100, 550, doubleToQString(static_cast<double>(elapsedTime) / 1000) );
+    drawText( 100, 560, doubleToQString(static_cast<double>(elapsedTime) / 1000) );
 
     if( userSwimCount >= diff ) {
         userSwim();

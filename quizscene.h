@@ -2,6 +2,10 @@
 #define QUIZSCENE_H
 
 #include "Scene.h"
+#include <QFont>
+#include <sys/time.h>
+#include <time.h>
+
 class Character;
 
 class QuizScene : public Scene
@@ -21,9 +25,19 @@ private:
     Character* player;
     int* scores;
     double playtime;
+    int problemindex;
+    QString equ;
+    QString ans;
+
     QString problems[100];
     QString answers[100];
     QString operators[4];
+
+    QFont problemfont;
+    QFont timerfont;
+    QFont Scorefont;
+
+    timeval starttime;
 };
 
 #endif // QUIZSCENE_H

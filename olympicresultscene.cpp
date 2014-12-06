@@ -1,6 +1,7 @@
 #include "olympicresultscene.h"
 #include "Game.h"
 #include "qlabel.h"
+#include "historyscene.h"
 #include <string>
 #include <sstream>
 
@@ -15,13 +16,14 @@ OlympicResultScene::OlympicResultScene(Game * game, int _scores[4]) : Scene(game
     ScoreFont.setPointSize(15);
     ScoreFont.setStretch(160);
     PointFont.setFamily("SansSerif");
-    PointFont.setPointSize(20);
+    PointFont.setPointSize(15);
     PointFont.setStretch(160);
 
     for(int i=0; i<4; i++)
         scores[i] = _scores[i];
     pre_point = getGameClass()->getPoint();
     new_point = scores[0]*10;
+
     // played update
     getGameClass()->setPlayed(getGameClass()->getGametype());
 
@@ -41,6 +43,22 @@ Scene* OlympicResultScene::update()
     drawText(450,260,QString("%1").arg(new_point),PointFont);
     drawText(450,300,QString("%1").arg(pre_point+new_point),PointFont);
 
+    int ypos[4] = {200, 280, 360, 440};
+    drawCenter(130, ypos[0], "postech.png", 0.8);
+    drawCenter(130, ypos[1], "kaist.png", 0.8);
+    drawCenter(130, ypos[2], "unist.png", 0.8);
+    drawCenter(130, ypos[3], "gist.png", 0.8);
+
+    QString tmp;
+    //drawText(175, ypos[0]+10, tmp.sprintf("%.2f",(double)scores[0]/1000.0), PointFont);
+    drawText(175, ypos[0]+10, QString("%1").arg(scores[0]), PointFont);
+    drawText(175, ypos[1]+10, QString("%1").arg(scores[1]), PointFont);
+    drawText(175, ypos[2]+10, QString("%1").arg(scores[2]), PointFont);
+    drawText(175, ypos[3]+10, QString("%1").arg(scores[3]), PointFont);
+
+    drawCenter(285, ypos[(int)gold_receiver], "Gold_medal.png");
+    drawCenter(285, ypos[(int)silver_receiver], "Silver_medal.png");
+    drawCenter(285, ypos[(int)bronze_receiver], "Bronze_medal.png");
 
 
     if( ButtonNext.contains( lastCursor ) )
@@ -90,18 +108,50 @@ bool OlympicResultScene::keyEvent(QKeyEvent * input){
 }
 void OlympicResultScene::clickButtonNext()
 {
-    nextScene = new SelectScene(getGameClass());
+    Game* pt = getGameClass();
+    pt->setPoint(pre_point+new_point);
+    pt->getOlympicData(pt->getOlympicCnt())->goldReceive(gold_receiver);
+    pt->getOlympicData(pt->getOlympicCnt())->silverReceive(silver_receiver);
+    pt->getOlympicData(pt->getOlympicCnt())->bronzeReceive(bronze_receiver);
+    bool cmp = pt->getPlayed(SWIMMING) && pt->getPlayed(BASKETBALL)
+            && pt->getPlayed(SOCCER) && pt->getPlayed(QUIZ);
+    if (cmp) {
+        pt->complete();
+        nextScene = new HistoryScene(getGameClass());
+    }
+    else
+        nextScene = new SelectScene(getGameClass());
 }
 
 void OlympicResultScene::setMedalReceiver() {
     gold_receiver = GIST;
     silver_receiver = GIST;
     bronze_receiver = GIST;
-    if (getGameClass()->getGamemode() == SWIMMING) {
-
+    if (getGameClass()->getGametype() == SWIMMING) {
+        for (int i=2; i>=0; i--) {
+            if (scores[i] < scores[(int)gold_receiver]) {
+                bronze_receiver = silver_receiver;
+                silver_receiver = gold_receiver;
+                gold_receiver = (enum School)(i);
+            }
+            else if (scores[i] < scores[(int)silver_receiver]) {
+                bronze_receiver = silver_receiver;
+                silver_receiver = (enum School)(i);
+            }
+            else if (scores[i] < scores[(int)bronze_receiver]) {
+                bronze_receiver = (enum School)(i);
+            }
+            if (gold_receiver == silver_receiver) {
+                silver_receiver = UNIST;
+                bronze_receiver = KAIST;
+            }
+            if (silver_receiver == bronze_receiver) {
+                bronze_receiver = UNIST;
+            }
+        }
     }
     else {
-        for (int i=3; i>=0; i--) {
+        for (int i=2; i>=0; i--) {
             if (scores[i] > scores[(int)gold_receiver]) {
                 bronze_receiver = silver_receiver;
                 silver_receiver = gold_receiver;
@@ -113,6 +163,13 @@ void OlympicResultScene::setMedalReceiver() {
             }
             else if (scores[i] > scores[(int)bronze_receiver]) {
                 bronze_receiver = (enum School)(i);
+            }
+            if (gold_receiver == silver_receiver) {
+                silver_receiver = UNIST;
+                bronze_receiver = KAIST;
+            }
+            if (silver_receiver == bronze_receiver) {
+                bronze_receiver = (enum School)((int)UNIST-1);
             }
         }
     }

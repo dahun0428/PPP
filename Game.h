@@ -56,6 +56,7 @@ public:
     OlympicData* getOlympicData(int _index);
     // tb
     int getOlympicCnt();
+    void complete();
 
 private:
 	Window* window;

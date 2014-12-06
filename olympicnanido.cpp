@@ -4,6 +4,7 @@
 #include "qlabel.h"
 #include "newScene.h"
 #include "selectscene.h"
+#include "OlympicData.h"
 OlympicNanido::OlympicNanido(Game * game) : Scene(game)
 {
     nextScene = NULL;
@@ -105,12 +106,16 @@ bool OlympicNanido::keyEvent(QKeyEvent * input){
 void OlympicNanido::clickButtonEasy()
 {
     getGameClass()->setOlympicDifficulty(EASY);
+    int o = getGameClass()->getOlympicCnt();
+    getGameClass()->getOlympicData(o)->setDiff(EASY);
     nextScene = new SelectScene(getGameClass());
 }
 
 void OlympicNanido::clickButtonNormal()
 {
     getGameClass()->setOlympicDifficulty(NORMAL);
+    int o = getGameClass()->getOlympicCnt();
+    getGameClass()->getOlympicData(o)->setDiff(NORMAL);
     nextScene = new SelectScene(getGameClass());
 }
 
@@ -118,6 +123,8 @@ void OlympicNanido::clickButtonNormal()
 void OlympicNanido::clickButtonHard()
 {
     getGameClass()->setOlympicDifficulty(HARD);
+    int o = getGameClass()->getOlympicCnt();
+    getGameClass()->getOlympicData(o)->setDiff(HARD);
     nextScene = new SelectScene(getGameClass());
 }
 

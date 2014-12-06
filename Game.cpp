@@ -5,7 +5,7 @@
 #include "qtextstream.h" // tb
 #include "OlympicData.h" // tb
 #include "Character.h"
-
+#include "olympicresultscene.h"
 Game::Game( Window* _window ) : window( _window )
 {
     nowScene = NULL;
@@ -187,7 +187,7 @@ void Game::loadGame(QString filename) {
 
     tmp = read.readLine(); // read played array
     tmpList = tmp.split(" ");
-    for (int i=0; i<3; i++)
+    for (int i=0; i<4; i++)
         played[i] = (bool)tmpList[i].toInt();
 
     for (int i=0; i<=olympic_cnt; i++) {
@@ -377,6 +377,13 @@ bool Game::getPlayed(enum GameType type) {
 
 void Game::setPlayed(enum GameType type) {
     played[(int)type] = true;
+}
+
+void Game::complete() {
+    olympic_cnt++;
+    for(int i=0; i<4; i++)
+        played[i] = false;
+    olympicdifficulty = NONE;
 }
 
 // tb

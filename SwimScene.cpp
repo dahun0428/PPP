@@ -226,7 +226,7 @@ void SwimScene::storeResult() {
     getGameClass()->setScore(elapsedTime);
     if( getGameClass()->getGamemode() == SINGLE ) {
         getGameClass()->setNewHistory(elapsedTime);
-        nextScene = new singleResultScene( getGameClass() );
+        nextScene = new singleResultScene( getGameClass(), 10);
     }
     else {
         nextScene = new SelectScene( getGameClass() );

@@ -23,9 +23,9 @@ SelectSingleScene::SelectSingleScene(Game * game) : Scene(game)
     BackButton = QRect ( 50, 50, 40, 40 );
 
 
-    ButtonEasy = QRect( 300, 70, 40, 60 );
-    ButtonNormal = QRect( 400, 70, 50, 60 );
-    ButtonHard = QRect( 500, 70, 50, 60 );
+    ButtonEasy = QRect( 276, 70, 40, 60 );
+    ButtonNormal = QRect( 376, 70, 50, 60 );
+    ButtonHard = QRect( 476, 70, 50, 60 );
 
     SaveButton = QRect ( 650, 50, 40, 40);
 
@@ -121,14 +121,7 @@ bool SelectSingleScene::keyEvent(QKeyEvent * input){
     if(nextScene !=NULL)
         return false;
 
-    switch(input->key()){
-        case Qt::Key_A:
-     //       drawCenter( 100, 100, "Exit.png" );
-            break;
-    default:
-        break;
 
-    }
 }
 bool SelectSingleScene::mouseEvent( int x, int y, MouseFunction function )
 {

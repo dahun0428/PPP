@@ -115,7 +115,7 @@ enum CharacterType Game::getCharacterInUse(){
 }
 
 Character Game::getRealCharacterInUse() {
-    return Characters[5];
+    return Characters[(int)characterInUse];
 }
 
 void Game::setScore(int _score){

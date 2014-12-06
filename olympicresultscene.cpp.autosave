@@ -100,7 +100,7 @@ void OlympicResultScene::setMedalReceiver() {
     }
     else {
         if (scores[i] == scores[(int)gold_receiver]) {
-
+            
         }
     }
 }

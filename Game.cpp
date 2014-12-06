@@ -371,4 +371,12 @@ int Game::getOlympicCnt() {
     return olympic_cnt;
 }
 
+bool Game::getPlayed(enum GameType type) {
+    return played[(int)type];
+}
+
+void Game::setPlayed(enum GameType type) {
+    played[(int)type] = true;
+}
+
 // tb

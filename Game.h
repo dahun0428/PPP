@@ -38,6 +38,8 @@ public:
 
     void setScore(int _score);
     int getScore();
+    bool getPlayed(enum GameType type);
+    void setPlayed(enum GameType type);
 
 	// tb
     void setPoint(int _point);

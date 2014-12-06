@@ -87,20 +87,30 @@ bool OlympicResultScene::keyEvent(QKeyEvent * input){
 }
 void OlympicResultScene::clickButtonNext()
 {
-    //point, Best 처리
     nextScene = new SelectScene(getGameClass());
 }
 
 void OlympicResultScene::setMedalReceiver() {
-    gold_receiver = POSTECH;
-    silver_receiver = POSTECH;
-    bronze_receiver = POSTECH;
+    gold_receiver = GIST;
+    silver_receiver = GIST;
+    bronze_receiver = GIST;
     if (getGameClass()->getGamemode() == SWIMMING) {
 
     }
     else {
-        if (scores[i] == scores[(int)gold_receiver]) {
-
+        for (int i=3; i>=0; i--) {
+            if (scores[i] > scores[(int)gold_receiver]) {
+                bronze_receiver = silver_receiver;
+                silver_receiver = gold_receiver;
+                gold_receiver = (enum School)(i);
+            }
+            else if (scores[i] > scores[(int)silver_receiver]) {
+                bronze_receiver = silver_receiver;
+                silver_receiver = (enum School)(i);
+            }
+            else if (scores[i] > scores[(int)bronze_receiver]) {
+                bronze_receiver = (enum School)(i);
+            }
         }
     }
 }

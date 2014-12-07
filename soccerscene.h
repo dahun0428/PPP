@@ -8,6 +8,7 @@ class soccerscene : public Scene
 {
 public:
     soccerscene( Game* game);
+    ~soccerscene();
 protected:
     Scene* update();
     bool mouseEvent( int x, int y, MouseFunction );

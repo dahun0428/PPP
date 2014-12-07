@@ -52,6 +52,9 @@ soccerscene::soccerscene(Game* game) : Scene( game )
     character=game->getCharacterInUse();
     special=false;
 }
+soccerscene::~soccerscene(){
+
+}
 
 Scene* soccerscene::update()
 {

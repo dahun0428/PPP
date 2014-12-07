@@ -30,14 +30,23 @@ QuizScene::QuizScene( Game* game) : Scene(game)
     player = new Character[numOfPlayers];
     player[0] = Character();
     scores[0] = 0;
+
+    int diff_value;
+    if (getGameClass()->getOlympicDifficulty() == EASY)
+        diff_value = 10;
+    else if (getGameClass()->getOlympicDifficulty() == NORMAL)
+        diff_value = 5;
+    else
+        diff_value = 0;
+
     if( getGameClass()->getGamemode() == OLYMPIC ) {
         player[1] = Kaist();
         player[2] = Unist();
         player[3] = Gist();
         // score initializing
-        scores[1] = qrand()%10;
-        scores[2] = qrand()%10;
-        scores[3] = qrand()%10;
+        scores[1] = diff_value + qrand()%11;
+        scores[2] = diff_value + qrand()%11;
+        scores[3] = diff_value + qrand()%11;
     }
 
     // playtime initializing

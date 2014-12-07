@@ -22,7 +22,37 @@ OlympicResultScene::OlympicResultScene(Game * game, int _scores[4]) : Scene(game
     for(int i=0; i<4; i++)
         scores[i] = _scores[i];
     pre_point = getGameClass()->getPoint();
-    new_point = scores[0]*10;
+
+    // new point update
+    if (getGameClass()->getGametype() == SWIMMING) {
+        new_point = 200000/_scores[0];
+        if (new_point > 50)
+            new_point = 50;
+    }
+    else if (getGameClass()->getGametype() == BASKETBALL) {
+        if (getGameClass()->getOlympicDifficulty() == EASY)
+            new_point = scores[0]*5;
+        else if (getGameClass()->getOlympicDifficulty() == NORMAL)
+            new_point = scores[0]*10;
+        else if (getGameClass()->getOlympicDifficulty() == HARD)
+            new_point = scores[0]*15;
+    }
+    else if (getGameClass()->getGametype() == SOCCER) {
+        if (getGameClass()->getOlympicDifficulty() == EASY)
+            new_point = scores[0]*3;
+        else if (getGameClass()->getOlympicDifficulty() == NORMAL)
+            new_point = scores[0]*6;
+        else if (getGameClass()->getOlympicDifficulty() == HARD)
+            new_point = scores[0]*10;
+    }
+    else {
+        if (getGameClass()->getOlympicDifficulty() == EASY)
+            new_point = scores[0]*2;
+        else if (getGameClass()->getOlympicDifficulty() == NORMAL)
+            new_point = scores[0]*3;
+        else if (getGameClass()->getOlympicDifficulty() == HARD)
+            new_point = scores[0]*5;
+    }
 
     // played update
     getGameClass()->setPlayed(getGameClass()->getGametype());
@@ -49,12 +79,19 @@ Scene* OlympicResultScene::update()
     drawCenter(130, ypos[2], "unist.png", 0.8);
     drawCenter(130, ypos[3], "gist.png", 0.8);
 
-    QString tmp;
-    //drawText(175, ypos[0]+10, tmp.sprintf("%.2f",(double)scores[0]/1000.0), PointFont);
-    drawText(175, ypos[0]+10, QString("%1").arg(scores[0]), PointFont);
-    drawText(175, ypos[1]+10, QString("%1").arg(scores[1]), PointFont);
-    drawText(175, ypos[2]+10, QString("%1").arg(scores[2]), PointFont);
-    drawText(175, ypos[3]+10, QString("%1").arg(scores[3]), PointFont);
+    if (getGameClass()->getGametype() == SWIMMING) {
+        QString tmp;
+        drawText(175, ypos[0]+10, tmp.sprintf("%.2f",(double)scores[0]/1000.0), PointFont);
+        drawText(175, ypos[1]+10, tmp.sprintf("%.2f",(double)scores[1]/1000.0), PointFont);
+        drawText(175, ypos[2]+10, tmp.sprintf("%.2f",(double)scores[2]/1000.0), PointFont);
+        drawText(175, ypos[3]+10, tmp.sprintf("%.2f",(double)scores[3]/1000.0), PointFont);
+    }
+    else {
+        drawText(175, ypos[0]+10, QString("%1").arg(scores[0]), PointFont);
+        drawText(175, ypos[1]+10, QString("%1").arg(scores[1]), PointFont);
+        drawText(175, ypos[2]+10, QString("%1").arg(scores[2]), PointFont);
+        drawText(175, ypos[3]+10, QString("%1").arg(scores[3]), PointFont);
+    }
 
     drawCenter(285, ypos[(int)gold_receiver], "Gold_medal.png");
     drawCenter(285, ypos[(int)silver_receiver], "Silver_medal.png");

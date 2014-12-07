@@ -38,6 +38,11 @@ void Game::initialize(){
         hard_level_history[i] = 0;
         played[i] = false;
     }
+    // swimming: best score is infinite
+    easy_level_history[0] = -1;
+    normal_level_history[0] = -1;
+    hard_level_history[0] = -1;
+
     olympic_cnt = 0;
     for (int i=0; i<10; i++) {
         for (int j=0; j<4; j++) {
@@ -309,7 +314,9 @@ void Game::setNewHistory(int _score) {
     switch (singledifficulty) {
         case EASY:
             if (gametype == SWIMMING) {
-                if (easy_level_history[gametype] > _score)
+                if (easy_level_history[gametype] < 0)
+                    easy_level_history[gametype] = _score;
+                else if (easy_level_history[gametype] > _score)
                     easy_level_history[gametype] = _score;
             }
             else {
@@ -319,7 +326,9 @@ void Game::setNewHistory(int _score) {
             break;
         case NORMAL:
             if (gametype == SWIMMING) {
-                if (normal_level_history[gametype] > _score)
+                if (normal_level_history[gametype] < 0)
+                    normal_level_history[gametype] = _score;
+                else if (normal_level_history[gametype] > _score)
                     normal_level_history[gametype] = _score;
             }
             else {
@@ -329,7 +338,9 @@ void Game::setNewHistory(int _score) {
         break;
         case HARD:
             if (gametype == SWIMMING) {
-                if (hard_level_history[gametype] > _score)
+                if (hard_level_history[gametype] < 0)
+                    hard_level_history[gametype] = _score;
+                else if (hard_level_history[gametype] > _score)
                     hard_level_history[gametype] = _score;
             }
             else {

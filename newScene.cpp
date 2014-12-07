@@ -137,6 +137,9 @@ void NewScene::clickButton2()
 {
     if (getGameClass()->getOlympicDifficulty() == NONE)
         nextScene = new OlympicNanido(getGameClass());
+    else if (!getGameClass()->getPlayed(SWIMMING) && !getGameClass()->getPlayed(BASKETBALL) &&
+             !getGameClass()->getPlayed(SOCCER) && !getGameClass()->getPlayed(QUIZ))
+        nextScene = new OlympicNanido(getGameClass());
     else
         nextScene = new SelectScene(getGameClass());
 }

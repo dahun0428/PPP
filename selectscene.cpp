@@ -6,6 +6,7 @@
 #include "basketballscene.h"
 #include "CharacterScene.h"
 #include "savescene.h"
+#include "newScene.h"
 
 SelectScene::SelectScene(Game * game) : Scene(game)
 {
@@ -190,7 +191,11 @@ void SelectScene::clickButtonQuiz()
 }
 
 void SelectScene::clickBackButton(){
-    nextScene = new OlympicNanido( getGameClass() );
+    if (getGameClass()->getPlayed(SWIMMING) || getGameClass()->getPlayed(BASKETBALL) ||
+            getGameClass()->getPlayed(SOCCER) || getGameClass()->getPlayed(QUIZ))
+        nextScene = new NewScene(getGameClass());
+    else
+        nextScene = new OlympicNanido( getGameClass() );
 
 }
 

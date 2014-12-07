@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "OlympicData.h"
+#include <QFont>
 
 #ifndef HISTORYSCENE_H
 #define HISTORYSCENE_H
@@ -41,6 +42,8 @@ private:
     void drawSingleNormal();
     void drawSingleHard();
     void drawOlympic(int index);
+
+    QFont ScoreFont;
 
 };
 

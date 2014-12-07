@@ -12,7 +12,37 @@ singleResultScene::singleResultScene(Game * game, int _score) : Scene(game)
     pre_score = getGameClass()->getHistory();
     new_score = _score;
     pre_point = getGameClass()->getPoint();
-    new_point = new_score*5;
+
+    // new point update
+    if (getGameClass()->getGametype() == SWIMMING) {
+        new_point = 200000/new_score;
+        if (new_point > 50)
+            new_point = 50;
+    }
+    else if (getGameClass()->getGametype() == BASKETBALL) {
+        if (getGameClass()->getSingleDifficulty() == EASY)
+            new_point = new_score*5;
+        else if (getGameClass()->getSingleDifficulty() == NORMAL)
+            new_point = new_score*10;
+        else if (getGameClass()->getSingleDifficulty() == HARD)
+            new_point = new_score*15;
+    }
+    else if (getGameClass()->getGametype() == SOCCER) {
+        if (getGameClass()->getSingleDifficulty() == EASY)
+            new_point = new_score*3;
+        else if (getGameClass()->getSingleDifficulty() == NORMAL)
+            new_point = new_score*6;
+        else if (getGameClass()->getSingleDifficulty() == HARD)
+            new_point = new_score*10;
+    }
+    else {
+        if (getGameClass()->getSingleDifficulty() == EASY)
+            new_point = new_score*2;
+        else if (getGameClass()->getSingleDifficulty() == NORMAL)
+            new_point = new_score*3;
+        else if (getGameClass()->getSingleDifficulty() == HARD)
+            new_point = new_score*5;
+    }
 
     //scoretext="t";
     ScoreFont.setFamily("SansSerif");
@@ -31,15 +61,24 @@ Scene* singleResultScene::update()
 {
     draw( 0, 0, "White.png" );
     draw(50,100,"Single_Result.png");
-    //Score print
-    drawText(200,260,QString("%1").arg(pre_score),ScoreFont);
-    drawText(220,420,QString("%1").arg(new_score),ScoreFont);
 
+    //Score print
     if (getGameClass()->getGametype() == SWIMMING) {
-        if (new_score<pre_score)
-            drawCenter(350,400,"new_record.png",0.6);
+        QString temp;
+        drawText(220,420,temp.sprintf("%.2f",((double)new_score)/1000), ScoreFont);
+        if (pre_score < 0) {
+            drawText(200,260,QString("-"), ScoreFont);
+            drawCenter(350,370,"new_record.png",0.6);
+        }
+        else {
+            drawText(220,260,temp.sprintf("%.2f",((double)pre_score)/1000), ScoreFont);
+            if (new_score<pre_score)
+                drawCenter(350,370,"new_record.png",0.6);
+        }
     }
     else {
+        drawText(200,260,QString("%1").arg(pre_score), ScoreFont);
+        drawText(220,420,QString("%1").arg(new_score),ScoreFont);
         if (new_score>pre_score)
             drawCenter(350,400,"new_record.png",0.6);
     }

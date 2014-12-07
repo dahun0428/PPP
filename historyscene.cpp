@@ -19,6 +19,10 @@ HistoryScene::HistoryScene( Game* game) : Scene( game ) {
     SingleNormalButton = QRect(325, 170, 150, 60);
     SingleHardButton = QRect(550, 170, 150, 60);
     OlympicButtons = QRect(0, 170, 800, 60);
+
+    ScoreFont.setFamily("SansSerif");
+    ScoreFont.setPointSize(20);
+    ScoreFont.setStretch(160);
 }
 
 HistoryScene::~HistoryScene() {
@@ -48,7 +52,7 @@ Scene* HistoryScene::update() {
         drawCenter( 148, 200, "Easy_history.png");
         drawCenter( 396, 200, "Normal_history.png");
         drawCenter( 647, 200, "Hard_history.png");
-        if (diff == SINGLE)
+        if (diff == EASY)
             drawSingleEasy();
         if (diff == NORMAL)
             drawSingleNormal();
@@ -130,15 +134,54 @@ void HistoryScene::clickBackButton() {
 }
 
 void HistoryScene::drawSingleEasy() {
+    drawCenter(100, 350, "Swim.png");
+    drawCenter(300, 350, "Basket.png");
+    drawCenter(500, 350, "Soccer.png");
+    drawCenter(700, 350, "Quiz.png");
 
+    if (getGameClass()->getHistory(EASY, SWIMMING) < 0)
+        drawText(50, 450, "-", ScoreFont);
+    else {
+        QString temp;
+        drawText(50,450, temp.sprintf("%.2f",(double)(getGameClass()->getHistory(EASY, SWIMMING))/1000), ScoreFont);
+    }
+    drawText(250,450, QString("%1").arg(getGameClass()->getHistory(EASY, BASKETBALL)), ScoreFont);
+    drawText(450,450, QString("%1").arg(getGameClass()->getHistory(EASY, SOCCER)), ScoreFont);
+    drawText(650,450, QString("%1").arg(getGameClass()->getHistory(EASY, QUIZ)), ScoreFont);
 }
 
 void HistoryScene::drawSingleNormal() {
+    drawCenter(100, 350, "Swim.png");
+    drawCenter(300, 350, "Basket.png");
+    drawCenter(500, 350, "Soccer.png");
+    drawCenter(700, 350, "Quiz.png");
 
+    if (getGameClass()->getHistory(NORMAL, SWIMMING) < 0)
+        drawText(50, 450, "-", ScoreFont);
+    else {
+        QString temp;
+        drawText(50,450, temp.sprintf("%.2f",(double)(getGameClass()->getHistory(NORMAL, SWIMMING))/1000), ScoreFont);
+    }
+    drawText(250,450, QString("%1").arg(getGameClass()->getHistory(NORMAL, BASKETBALL)), ScoreFont);
+    drawText(450,450, QString("%1").arg(getGameClass()->getHistory(NORMAL, SOCCER)), ScoreFont);
+    drawText(650,450, QString("%1").arg(getGameClass()->getHistory(NORMAL, QUIZ)), ScoreFont);
 }
 
 void HistoryScene::drawSingleHard() {
+    drawCenter(100, 350, "Swim.png");
+    drawCenter(300, 350, "Basket.png");
+    drawCenter(500, 350, "Soccer.png");
+    drawCenter(700, 350, "Quiz.png");
 
+    if (getGameClass()->getHistory(HARD, SWIMMING) < 0)
+        drawText(50, 450, "-", ScoreFont);
+    else {
+        QString temp;
+        drawText(50,450, temp.sprintf("%.2f",(double)(getGameClass()->getHistory(HARD, SWIMMING))/1000), ScoreFont);
+    }
+    drawText(250,450, QString("%1").arg(getGameClass()->getHistory(HARD, BASKETBALL)), ScoreFont);
+    drawText(450,450, QString("%1").arg(getGameClass()->getHistory(HARD, SOCCER)), ScoreFont);
+    drawText(650,450, QString("%1").arg(getGameClass()->getHistory(HARD, QUIZ)), ScoreFont);
 }
 
 void HistoryScene::drawOlympic(int index) {

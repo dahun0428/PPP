@@ -28,6 +28,7 @@ Scene* StartScene::update()
 {
     draw( 0, 0, "White.png" );
 
+    drawCenter( 400, 210, "PPP.png");
 
     if( ButtonNew.contains( lastCursor ) )
         drawCenter( 400, 240, "NewGame.png" );

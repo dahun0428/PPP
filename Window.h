@@ -36,10 +36,10 @@ private:
 	QPointF mouseDownPos;
 	QPointF mousePos;
 
-	QLabel* fpsLabel;
-	int checkingFps;
-	QTime lastFpsTime;
-	int lastFps;
+    QLabel* fpsLabel;
+    int checkingFps;
+    QTime lastFpsTime;
+    int lastFps;
 	
 	void initialize();
 	void makeTimer();
@@ -47,7 +47,7 @@ private:
 	void setDrawTime();
 	bool mouseFunction( MouseFunction );
     void startFps();
-	void checkFps();
+    void checkFps();
 
     bool keyFunction( QKeyEvent *);
 

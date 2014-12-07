@@ -47,6 +47,10 @@ basketballscene::basketballscene(Game *game) : Scene(game)
     //character=STUDENT;
 
 }
+basketballscene::~basketballscene(){
+
+}
+
 QString basketballscene::intToQString(int n) {
     std::stringstream tempStrs;
     std::string temp;

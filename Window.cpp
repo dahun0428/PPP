@@ -22,7 +22,7 @@ Window::~Window()
 void Window::initialize()
 {
 	std::srand( (unsigned int)time(NULL) );
-    setWindowTitle( "  Postech Olympics!!!  ");
+    setWindowTitle( "  POSTECH Olympic!  ");
 	setMouseTracking(true);
 	setFixedSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 	isMouseDown = false;

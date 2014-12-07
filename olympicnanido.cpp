@@ -106,16 +106,20 @@ bool OlympicNanido::keyEvent(QKeyEvent * input){
 void OlympicNanido::clickButtonEasy()
 {
     getGameClass()->setOlympicDifficulty(EASY);
-    int o = getGameClass()->getOlympicCnt();
-    getGameClass()->getOlympicData(o)->setDiff(EASY);
+    if (getGameClass()->getOlympicCnt()==10) {
+        getGameClass()->result_reset();
+    }
+    getGameClass()->getOlympicData(getGameClass()->getOlympicCnt())->setDiff(EASY);
     nextScene = new SelectScene(getGameClass());
 }
 
 void OlympicNanido::clickButtonNormal()
 {
     getGameClass()->setOlympicDifficulty(NORMAL);
-    int o = getGameClass()->getOlympicCnt();
-    getGameClass()->getOlympicData(o)->setDiff(NORMAL);
+    if (getGameClass()->getOlympicCnt()==10) {
+        getGameClass()->result_reset();
+    }
+    getGameClass()->getOlympicData(getGameClass()->getOlympicCnt())->setDiff(NORMAL);
     nextScene = new SelectScene(getGameClass());
 }
 
@@ -123,8 +127,10 @@ void OlympicNanido::clickButtonNormal()
 void OlympicNanido::clickButtonHard()
 {
     getGameClass()->setOlympicDifficulty(HARD);
-    int o = getGameClass()->getOlympicCnt();
-    getGameClass()->getOlympicData(o)->setDiff(HARD);
+    if (getGameClass()->getOlympicCnt()==10) {
+        getGameClass()->result_reset();
+    }
+    getGameClass()->getOlympicData(getGameClass()->getOlympicCnt())->setDiff(HARD);
     nextScene = new SelectScene(getGameClass());
 }
 

@@ -12,10 +12,10 @@ SaveScene::SaveScene( Game* game, enum SavePoint _sp) : Scene( game )
     nextScene = NULL;
 
 
-    Button1 = QRect( 130, 140, 540, 60 );
-    Button2 = QRect( 130, 240, 540, 60 );
-    Button3 = QRect( 130, 340, 540, 60 );
-    Button4 = QRect( 130, 440, 540, 60 );
+    Button1 = QRect( 78, 168, 140, 140 );
+    Button2 = QRect( 201, 310, 140, 140 );
+    Button3 = QRect( 453, 304, 140, 140 );
+    Button4 = QRect ( 576, 166, 140, 140);
     BackButton = QRect ( 50, 50, 40, 40 );
     alertButton = QRect( 260, 270, 120, 100 );
 
@@ -46,24 +46,24 @@ Scene* SaveScene::update()
 
 
     if( Button1.contains( lastCursor ) )
-        drawCenter( 400, 170, filename[0] );
+        drawCenter( 138, 248, filename[0] );
     else
-        drawCenter( 400-2, 170-2, filename[0] );
+        drawCenter( 138-2, 248-2, filename[0] );
 
     if( Button2.contains( lastCursor ) )
-        drawCenter( 400, 270, filename[1] );
+        drawCenter( 271, 380, filename[1] );
     else
-        drawCenter( 400-2, 270-2, filename[1] );
+        drawCenter( 271-2, 380-2, filename[1] );
 
     if( Button3.contains( lastCursor ) )
-        drawCenter( 400, 370, filename[2] );
+        drawCenter( 523, 374, filename[2] );
     else
-        drawCenter( 400-2, 370-2, filename[2] );
+        drawCenter( 523-2, 374-2, filename[2] );
 
     if( Button4.contains( lastCursor ) )
-        drawCenter( 400, 470, filename[3] );
+        drawCenter( 646, 236, filename[3] );
     else
-        drawCenter( 400-2, 470-2, filename[3] );
+        drawCenter( 646-2, 236-2, filename[3] );
 
 
     if( BackButton.contains(lastCursor))

@@ -11,8 +11,12 @@ ShopScene::ShopScene(Game * game) : Scene(game)
 {
     nextScene = NULL;
     pointText = intToQString(getGameClass()->getPoint());
+    price[0] = 1500;
+    price[1] = 1500;
+    price[2] = 2000;
+    price[3] = 1000;
+    price[4] = 5000;
     for(int i=0; i<5; i++) {
-        price[i] = (i+1)*500;
         if(getGameClass()->getCharacterAvailable(i+1))
             priceText[i] = "Purchased";
         else {

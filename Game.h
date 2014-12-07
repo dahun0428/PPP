@@ -57,6 +57,7 @@ public:
     // tb
     int getOlympicCnt();
     void complete();
+    void result_reset();
 
 private:
 	Window* window;

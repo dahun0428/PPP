@@ -195,7 +195,13 @@ void Game::loadGame(QString filename) {
     for (int i=0; i<4; i++)
         played[i] = (bool)tmpList[i].toInt();
 
-    for (int i=0; i<=olympic_cnt; i++) {
+    int load_cnt;
+    if (olympic_cnt > 9)
+        load_cnt = 9;
+    else
+        load_cnt = olympic_cnt;
+
+    for (int i=0; i<=load_cnt; i++) {
         tmp = read.readLine(); // read difficulty
         OlympicHistory[i].setDiff((enum Difficulty)(tmp.toInt()));
 
@@ -271,8 +277,13 @@ void Game::saveGame(QString filename) {
             .arg(played[2])
             .arg(played[3]);
     str.append(tmp);
+    int save_cnt;
+    if (olympic_cnt > 9)
+        save_cnt = 9;
+    else
+        save_cnt = olympic_cnt;
 
-    for (int i=0; i<=olympic_cnt; i++) {
+    for (int i=0; i<=save_cnt; i++) {
         tmp = QString("%1\n")
                 .arg((int)(OlympicHistory[i].getDifficulty()));
         str.append(tmp);
@@ -395,6 +406,14 @@ void Game::complete() {
     for(int i=0; i<4; i++)
         played[i] = false;
     olympicdifficulty = NONE;
+}
+
+void Game::result_reset() {
+    olympic_cnt--;
+    for(int i=0; i<8; i++)
+        OlympicHistory[i] = OlympicHistory[i+1];
+    OlympicHistory[9] = OlympicData();
+
 }
 
 // tb

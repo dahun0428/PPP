@@ -26,7 +26,7 @@ GambleScene::~GambleScene() {}
 
 Scene* GambleScene::update()
 {
-    draw( 0, 0, "GambleBackgrouond.png" );
+    draw( 0, 0, "GambleBackground.png" );
 
     drawCenter( 660, 70, "Points.png");
     pointText = intToQString(getGameClass()->getPoint());

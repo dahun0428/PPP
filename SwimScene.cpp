@@ -213,7 +213,7 @@ bool SwimScene::isFinished() {
                 score[i] = elapsedTime;
                 finishedPlayerCount++;
             }
-        if(finishedPlayerCount >= 4)
+        if(finishedPlayerCount >= numOfPlayers)
             return true;
     }
     return false;

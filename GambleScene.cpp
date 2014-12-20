@@ -8,7 +8,7 @@ GambleScene::GambleScene( Game* game) : Scene(game)
 {
     nextScene = NULL;
     pointText = intToQString(getGameClass()->getPoint());
-    gambleCost = 500;
+    gambleCost = 300;
     spinCount = 0;
     for(int i=0; i<3; i++) {
         spinSlot[i] = 0;
@@ -16,6 +16,7 @@ GambleScene::GambleScene( Game* game) : Scene(game)
     }
     Button1 = QRect( 670, 265, 60, 170 );
     BackButton = QRect ( 50, 50, 40, 40 );
+    hiddenButton = QRect ( 700, 500, 100, 100 );
     alertButton = QRect( 260, 270, 120, 100 );
     newFont.setPointSize(18);
     newFont.setFamily("SansSerif");
@@ -25,7 +26,7 @@ GambleScene::~GambleScene() {}
 
 Scene* GambleScene::update()
 {
-    draw( 0, 0, "White.png" );
+    draw( 0, 0, "GambleBackground.png" );
 
     drawCenter( 660, 70, "Points.png");
     pointText = intToQString(getGameClass()->getPoint());
@@ -103,6 +104,11 @@ bool GambleScene::mouseEvent( int x, int y, MouseFunction function )
                 clickBackButton();
                 return true;
             }
+            if( hiddenButton.contains( x, y ) && spinCount == 0 )
+            {
+                clickHiddenButton();
+                return true;
+            }
     }
 
     return false;
@@ -124,17 +130,16 @@ bool GambleScene::keyEvent(QKeyEvent * input){
 }
 void GambleScene::clickButton1()
 {
-    if(getGameClass()->getPoint() < gambleCost) {
-        // display no money
-        getGameClass()->setPoint(getGameClass()->getPoint() + 3000);
-    }
-    else {
+    if(getGameClass()->getPoint() >= gambleCost)
         startOneRound();
-    }
 }
 void GambleScene::clickBackButton()
 {
     nextScene = new ShopScene(getGameClass());
+}
+void GambleScene::clickHiddenButton()
+{
+    getGameClass()->setPoint(getGameClass()->getPoint() + 4000);
 }
 
 QString GambleScene::intToQString(int n) {
@@ -159,9 +164,9 @@ void GambleScene::startOneRound() {
 
 void GambleScene::finishOneRound() {
     if(spinSlot[0] == spinSlot[1] && spinSlot[0] == spinSlot[2])
-        getGameClass()->setPoint(getGameClass()->getPoint() + 3000);
+        getGameClass()->setPoint(getGameClass()->getPoint() + 1800);
     else if(spinSlot[0] == spinSlot[1] || spinSlot[0] == spinSlot[2] || spinSlot[1] == spinSlot[2])
-        getGameClass()->setPoint(getGameClass()->getPoint() + 1500);
+        getGameClass()->setPoint(getGameClass()->getPoint() + 800);
 
     spinCount = 0;
     for(int i=0; i<3; i++) {

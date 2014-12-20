@@ -52,13 +52,16 @@ soccerscene::soccerscene(Game* game) : Scene( game )
     character=game->getCharacterInUse();
     special=false;
 }
+soccerscene::~soccerscene(){
+
+}
 
 Scene* soccerscene::update()
 {
     if(life==0&&enable){
         Olympicscore[0]=score;
         for(int i=0;i<3;i++){
-            Olympicscore[i+1]=2*(qrand()%(3*(Dir-1)/Dir));
+            Olympicscore[i+1]=(Dir-1)*(qrand()%4);
         }
         if(mode==SINGLE)
             nextScene = new singleResultScene(getGameClass(), score);

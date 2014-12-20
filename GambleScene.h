@@ -1,4 +1,4 @@
-    #ifndef GAMBLESCENE_H
+#ifndef GAMBLESCENE_H
 #define GAMBLESCENE_H
 #include "Scene.h"
 
@@ -23,10 +23,12 @@ private:
 
     QRect Button1;
     QRect BackButton;
+    QRect hiddenButton;
     QRect alertButton;
 
     void clickButton1();
     void clickBackButton();
+    void clickHiddenButton();
     void startOneRound();
     void finishOneRound();
     void showGambleResult();
@@ -36,5 +38,3 @@ private:
 
 };
 #endif // GAMBLESCENE_H
-
-// Git FUck
